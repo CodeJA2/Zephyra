@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Zephyra | Página principal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Cloudflare -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Animaciones del carousel -->
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
+    <!-- Carousel Header -->
+    <link rel="stylesheet" href="/css/carouselHeader.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Google Fonts - Afacad Flux -->
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="fragments/header"></div>
+
+    <!-- Carousel -->
+    <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators">
+            <button type="button" data-target="#carouselExampleAutoplaying" data-bs-target="#carouselExampleAutoplaying" data-slide-to="0" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-target="#carouselExampleAutoplaying" data-bs-target="#carouselExampleAutoplaying" data-slide-to="1" data-bs-slide-to="1"></button>
+            <button type="button" data-target="#carouselExampleAutoplaying" data-bs-target="#carouselExampleAutoplaying" data-slide-to="2" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item position-relative active banner" >
+                <video class="position-absolute w-100 h-100" style="object-fit: cover;" autoplay loop muted>
+                    <source src="/img/Portadas/Portada_video1.mp4" type="video/mp4" style="object-fit: cover;">
+                </video>
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 700px;">
+                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Estilo Actual: Ropa Moderna</h1>
+                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Descubre nuestra colección de ropa moderna que marca tendencia. Desde 
+                            prendas elegantes hasta looks casuales, cada pieza está diseñada para hacerte destacar en cualquier ocasión. ¡Actualiza tu guardarropa
+                             y refleja tu estilo único!</p>
+                        <a class="btn btn-outline-light-custom py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Ver ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item position-relative banner" >
+                <img src="/img/Portadas/Portada_1.png" class="position-absolute w-100 h-100" style="object-fit: cover;">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 700px;">
+                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Looks Completos: Combos Modernos</h1>
+                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Facilita tus elecciones de moda con nuestros combos modernos. 
+                            Cada conjunto está cuidadosamente seleccionado para ofrecerte un estilo impecable y versátil, perfecto para cualquier ocasión. 
+                            ¡Luce genial sin esfuerzo!</p>
+                        <a class="btn btn-outline-light-custom py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Ver ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item position-relative banner" >
+                <img src="/img/Portadas/Portada_2.png" class="position-absolute w-100 h-100" style="object-fit: cover;">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 700px;">
+                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Detalles que Marcan la Diferencia: Accesorios</h1>
+                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Completa tu look moderno y deportivo con nuestros accesorios esenciales. 
+                            Desde gorras hasta mochilas, cada pieza está diseñada para combinar funcionalidad y estilo. ¡No subestimes el poder de un buen accesorio!</p>
+                        <a class="btn btn-outline-light-custom py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Ver ahora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-target="#carouselExampleAutoplaying" data-bs-slide="prev" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-target="#carouselExampleAutoplaying" data-bs-slide="next" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- Carousel -->
+
+    <!-- Productos Destacados-->
+    <div class="pt-3">
+        <div class="mt-3">
+            <h2 class="text-center">Productos destacados</h2>
+        </div>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                            <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                        </div>
+                        
+                        <div class="card-body product-info">
+                            <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>             
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                  
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                    
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                  
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                     
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                     
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Productos Nuevos-->
+    <div class="bg-light pt-3">
+        <div class="mt-3">
+            <h2 class="text-center">Nuevos ingresos</h2>
+        </div>   
+        <div class="container mt-5">
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                
+                        <div class="card-body product-info">
+                            <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                      
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                    
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                   
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                      
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                     
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <div class="image position-relative overflow-hidden clickeable">
+                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                        </div>                      
+                        <div class="card-body product-info">
+                            <h3 class="card-title">4018 - ESSENTIAL CROPPED TEES</h3>
+                            <p>$35.00</p>
+                            <div class="list-colors mb-3">
+                                <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
+                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
+                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
+                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="fragments/footer"></div>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Custom javascript -->
+    <script src="/js/script.js"></script>
+    <!-- Animaciones del carousel -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

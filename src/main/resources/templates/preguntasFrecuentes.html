@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Zephyra | Preguntas frecuentes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Cloudflare -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Google Fonts - Afacad Flux -->
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="fragments/header"></div>
+
+    <!-- Preguntas Frecuentes -->
+    <div class="container mt-5">
+        <div class="row">
+            <div>
+                <div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a th:href="@{/index}" class="text-dark">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Preguntas más Frecuentes</li>
+                        </ol>
+                    </nav>
+                    <div class="card-header">
+                        <h1 class="modal-title fs-2 d-flex justify-content-center align-items-center">Preguntas frecuentes</h1>
+                    </div>
+                    <br>
+                    <div class="input-group mb-4">
+                        <input type="email" class="form-control" id="correoElectronico" placeholder="Escribe la pregunta">
+                    </div>
+                </div>
+                <div class="accordion" id="accordionExample">
+
+                    <!-- Primera pregunta -->
+                    <div class="accordion-item custom-accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                1. ¿Cuáles son los métodos de pago disponibles?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Aceptamos tarjetas de crédito y débito (Visa, MasterCard, American Express),
+                                pagos a través de plataformas electrónicas como PayPal y transferencias
+                                bancarias. También ofrecemos la opción de pagar contra entrega en algunas
+                                ubicaciones.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Segunda pregunta -->
+                    <div class="accordion-item custom-accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                2. ¿Cómo realizo un seguimiento de mi pedido?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Una vez que tu pedido haya sido enviado, recibirás un correo electrónico con
+                                un número de seguimiento. Puedes utilizar este número en nuestra página de
+                                "Seguimiento de Pedido" para ver el estado actualizado de tu envío.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tercera pregunta -->
+                    <div class="accordion-item custom-accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                3. ¿Cuál es el costo y tiempo estimado de envío?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                El costo de envío estándar es de S/15.00 dentro del territorio nacional. Los
+                                pedidos suelen entregarse entre 3 a 5 días hábiles, dependiendo de tu ubicación.
+                                Ofrecemos opciones de envío expreso por un costo adicional.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuarta pregunta -->
+                    <div class="accordion-item custom-accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                4. ¿Cuál es la política de devoluciones?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Puedes devolver productos dentro de los 30 días posteriores a la compra,
+                                siempre y cuando estén en su estado original, sin uso y con todas las etiquetas
+                                intactas. Para iniciar una devolución, contáctanos a través de nuestro
+                                formulario
+                                de devoluciones o por correo electrónico a
+                                <span><a href="">servicioalcliente@zephyra.com</a></span>. Mas información <span><a  th:href="@{/politicaDevoluciones}">aqui</a></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quinta pregunta -->
+                    <div class="accordion-item custom-accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                5. ¿Puedo cambiar la dirección de entrega después de haber realizado el pedido?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Si aún no hemos procesado tu pedido, puedes solicitar un cambio de dirección
+                                contactando a nuestro equipo de soporte lo antes posible. Ten en cuenta que,
+                                después de haber sido enviado, no podemos modificar la dirección de
+                                entrega.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sexta pregunta -->
+                    <div class="accordion-item custom-accordion-item">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                6. ¿Ofrecen descuentos para compras al por mayor?
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Sí, ofrecemos descuentos para compras al por mayor. Si estás interesado en
+                                adquirir productos en grandes cantidades, por favor contáctanos para discutir
+                                las
+                                opciones de precios y descuentos disponibles para pedidos al por mayor.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repite el resto de preguntas... -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preguntas Frecuentes -->
+
+    <!-- Footer -->
+    <div th:replace="fragments/footer"></div>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Custom javascript -->
+    <script src="/js/script.js"></script>
+</body>
+</html>

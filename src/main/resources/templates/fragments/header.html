@@ -1,0 +1,293 @@
+<!-- Header con menú de navegación -->
+<header class="main-header">   
+    <div class="top-bar">
+        <a th:text="#{topBar}">ENVÍO A TODO EL PERÚ 🚚</a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-white bg-white">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="row row-cols-3">                
+                <section class="offcanvas offcanvas-start pt-5 pt-lg-0" id="menuLateral" tabindex="-1">
+                    <div class="offcanvas-header">
+                        <img src="/img\Logos\logo_principal2.png" class="rounded mx-0 d-block" alt="Zephyra Logo" style="width: 50px;">
+                        <button class="btn-close" type="button" aria-label="close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <ul class="navbar-nav justify-content-evenly mx-3">
+                        <li class="nav-item dropdown p-1 py-md-1">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.hombres}">
+                                HOMBRES
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Polos</a></li>
+                                <li><a class="dropdown-item" href="#">Shorts</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown p-1 py-md-1">
+                            <a class="nav-link" href="#" id="navbarDropdownForHer" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.mujeres}">
+                                MUJERES
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownForHer">
+                                <li><a class="dropdown-item" href="#">Tanks</a></li>
+                                <li><a class="dropdown-item" href="#">Pantalones</a></li>
+                                <li><a class="dropdown-item" href="#">Leggings</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown p-1 py-md-1">
+                            <a class="nav-link" href="#" id="navbarDropdownNewDrop" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{nav.nuevo}">
+                                NUEVO
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownNewDrop">
+                                <a class="dropdown-item" href="#">Próximo Lanzamiento</a>
+                                <a class="dropdown-item" href="#">Destacado</a>
+                                <a class="dropdown-item" href="#">Reabastecimiento</a>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <a class="nav justify-content-center" th:href="@{/index}">
+                <img src="\img\Logos\logo_principal2.png" class="nav-logo rounded mx-auto d-block" alt="Zephyra Logo">
+            </a>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link clickeable" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </li>
+                <li class="nav-item d-none d-md-block">
+                    <a class="nav-link" href="https://l.instagram.com/?u=https%3A%2F%2Fwa.link%2Ff1vdzy&e=AT0MkH1DY8S9eyfVkbN9SwWYXvRai-rs7t_w4ORpbHknu8Ypztbty8SrCEH8G7J_up_ex5VdmSezYtB_cLmjuJz2Az9VtUpTRUZy4PoFNxKz8MbBFSe8zA"><i class="fa-brands fa-whatsapp fa-beat"></i> (818) 206-8764</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link clickeable" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="fas fa-user"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link clickeable" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"><i class="fas fa-shopping-bag"></i></a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <a href="#" class="nav-link" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-globe"></i> <span id="languageText" th:text="#{idioma}">ES</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                            <li><a class="dropdown-item" href="?lang=es">Español</a></li>
+                            <li><a class="dropdown-item" href="?lang=en">Inglés</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!-- Header con menú de navegación -->
+
+<!-- Modal del login-->
+<div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="authModalLabel">Iniciar sesión o Registrarse</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Logo de la empresa -->
+                <div class="logo">
+                    <img src="\img\Logos\logo_principal.png" alt="Logo de la Empresa">
+                </div>
+                <!-- Pestañas de navegación -->
+                <ul class="nav nav-login nav-tabs" id="authTab" role="tablist">
+                    <li class="nav-item w-50 h-100" role="presentation">
+                        <button class="nav-link active w-100 h-100 d-flex align-items-center justify-content-center" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Iniciar Sesión</button>
+                    </li>
+                    <li class="nav-item w-50 h-100" role="presentation">
+                        <button class="nav-link w-100 h-100 d-flex align-items-center justify-content-center" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">Registrarse</button>
+                    </li>
+                </ul>
+                <div class="tab-content mt-3" id="authTabContent">
+                    <!-- Formulario de Iniciar Sesión -->
+                    <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                        <form>
+                            <div class="mb-3">
+                                <label for="loginEmail" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="loginEmail" placeholder="nombre@ejemplo.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="loginPassword" placeholder="Contraseña">
+                            </div>
+                            <button type="submit" class="btn btn-custom w-100">Iniciar Sesión</button>
+                            <!-- Opciones de iniciar sesión con Google y Facebook -->
+                            <div class="text-center my-3">o inicia sesión con</div>
+                            <button type="button" class="btn btn-outline-custom btn-social w-100">
+                                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google">Google
+                            </button>
+                            <button type="button" class="btn btn-outline-custom btn-social w-100">
+                                <img src="https://img.icons8.com/color/48/000000/facebook.png" alt="Facebook">Facebook
+                            </button>
+                        </form>      
+                    </div>
+                    <!-- Formulario de Registro -->
+                    <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                        <form>
+                            <div class="mb-3">
+                                <label for="registerName" class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control" id="registerName" placeholder="Tu nombre">
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerEmail" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="registerEmail" placeholder="nombre@ejemplo.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerPassword" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="registerPassword" placeholder="Contraseña">
+                            </div>
+                            <button type="submit" class="btn btn-custom w-100">Registrarse</button>
+                            <!-- Opciones de registrarse con Google y Facebook -->
+                            <div class="text-center my-3">o regístrate con</div>
+                            <button type="button" class="btn btn-outline-custom btn-social w-100">
+                                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google">Google
+                            </button>
+                            <button type="button" class="btn btn-outline-custom btn-social w-100">
+                                <img src="https://img.icons8.com/color/48/000000/facebook.png" alt="Facebook">Facebook
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal del login-->
+
+<!-- Modal de búsqueda -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModalLabel">Busqueda</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Campo de búsqueda -->
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Buscar en Zephyra.com" aria-label="Buscar" aria-describedby="button-search">
+                        <button class="btn btn-custom" type="button" id="button-search">Buscar</button>
+                    </div>
+                </form>  
+                <!-- Resultados de búsqueda simulados -->
+                <!-- <div class="search-result">
+                    <h6>Resultado 1</h6>
+                    <p>Descripción breve del resultado de búsqueda.</p>
+                </div>
+                <div class="search-result">
+                    <h6>Resultado 2</h6>
+                    <p>Descripción breve del resultado de búsqueda.</p>
+                </div>
+                <div class="search-result">
+                    <h6>Resultado 3</h6>
+                    <p>Descripción breve del resultado de búsqueda.</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal de busqueda-->
+
+<!-- Offcanvas del Carrito -->
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasCartLabel">Carrito de compras</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <!-- Encabezado de columnas -->
+        <div class="row mb-2 px-4">
+            <div class="col-6 col-lg-8"><strong>Producto</strong></div>
+            <div class="col-4 col-lg-2 text-center"><strong>Cantidad</strong></div>
+            <div class="col-2 text-end"><strong>Subtotal</strong></div>
+        </div>
+        <!-- Lista de productos en el carrito -->
+        <ul class="list-group mb-3">
+            <!-- Producto 1 -->
+            <li class="list-group-item">
+                <div class="row align-items-center">
+                    <!-- Columna Imagen -->
+                    <div class="col-3">
+                        <img src="/img/Polos/Polo_1.png" alt="Producto 1" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
+                    </div>
+                    <!-- Columna Nombre y Precio Unitario -->
+                    <div class="col-5">
+                        <h6 class="my-0">Producto 1</h6>
+                        <small class="text-muted">Precio unitario: $10.00</small>
+                    </div>
+                    <!-- Columna Cantidad -->
+                    <div class="col-2 text-center">
+                        <small class="text-muted">2</small>
+                    </div>
+                    <!-- Columna Subtotal -->
+                    <div class="col-2 text-end">
+                        <span class="text-muted">$20.00</span>
+                    </div>
+                </div>
+            </li>
+        
+            <!-- Producto 2 -->
+            <li class="list-group-item">
+                <div class="row align-items-center">
+                    <!-- Columna Imagen -->
+                    <div class="col-3">
+                        <img src="/img/Polos/Polo_2.png" alt="Producto 2" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
+                    </div>
+                    <!-- Columna Nombre y Precio Unitario -->
+                    <div class="col-5">
+                        <h6 class="my-0">Producto 2</h6>
+                        <small class="text-muted">Precio unitario: $15.00</small>
+                    </div>
+                    <!-- Columna Cantidad -->
+                    <div class="col-2 text-center">
+                        <small class="text-muted">1</small>
+                    </div>
+                    <!-- Columna Subtotal -->
+                    <div class="col-2 text-end">
+                        <span class="text-muted">$15.00</span>
+                    </div>
+                </div>
+            </li>
+            
+            <!-- Producto 3 -->
+            <li class="list-group-item">
+                <div class="row align-items-center">
+                    <!-- Columna Imagen -->
+                    <div class="col-3">
+                        <img src="/img/Polos/Polo_3.png" alt="Producto 3" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
+                    </div>
+                    <!-- Columna Nombre y Precio Unitario -->
+                    <div class="col-5">
+                        <h6 class="my-0">Producto 3</h6>
+                        <small class="text-muted">Precio unitario: $5.00</small>
+                    </div>
+                    <!-- Columna Cantidad -->
+                    <div class="col-2 text-center">
+                        <small class="text-muted">3</small>
+                    </div>
+                    <!-- Columna Subtotal -->
+                    <div class="col-2 text-end">
+                        <span class="text-muted">$15.00</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <!-- Total del Carrito -->
+        <div class="d-flex justify-content-between mb-3">
+            <h5>Total a Pagar</h5>
+            <h5>$50.00</h5>
+        </div>
+
+        <!-- Botón para Continuar la Compra -->
+        <a th:href="@{/paginaPago}" class="btn btn-custom w-100 mb-2">Terminar Compra</a>
+        <!-- Enlace para Editar Carrito -->
+        <a th:href="@{/editarCarrito}" class="btn btn-outline-custom w-100 mb-2">Editar carrito</a>
+    </div>
+</div>
+<!-- Offcanvas del Carrito -->

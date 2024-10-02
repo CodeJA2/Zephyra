@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zephyra | Sugerencia Enviada</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Custom css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Google Fonts - Afacad Flux -->
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">¡Gracias por tu sugerencia!</h1>
+        <p class="text-center">Hemos recibido tu sugerencia sobre: <strong th:text="${sugerencia.asunto}"></strong></p>
+        <p class="text-center">Nos pondremos en contacto contigo a través de tu correo: <strong th:text="${sugerencia.correoElectronico}"></strong></p>
+        <div class="text-center">
+            <a th:href="@{/sugerencia}" class="btn btn-custom mt-3">Enviar otra sugerencia</a>
+        </div>
+    </div>
+
+    <!-- Muestra los datos enviados -->
+    <div class="container">
+        <div>
+            <strong>Datos enviados</strong>
+        </div>
+        <ul>
+            <li><strong>Nombre completo:</strong> <span th:text="${sugerencia.nombre}"></span></li>
+            <li><strong>Apellido completo:</strong> <span th:text="${sugerencia.apellido}"></span></li>
+            <li><strong>Correo electronico:</strong> <span th:text="${sugerencia.correoElectronico}"></span></li>
+            <li><strong>Número de telefono:</strong> <span th:text="${sugerencia.telefono}"></span></li>
+            <li><strong>Asunto:</strong> <span th:text="${sugerencia.asunto}"></span></li>
+            <li><strong>Sugerencia:</strong> <span th:text="${sugerencia.sugerencia}"></span></li>
+        </ul>
+    </div>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
