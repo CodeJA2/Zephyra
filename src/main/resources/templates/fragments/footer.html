@@ -7,35 +7,35 @@
                 <span class="fs-5">Zephyra</span>
                 </a>
                 <ul class="list-unstyled small">
-                <li class="mb-2">Zephyra es una tienda de ropa enfocada en ofrecer estilos modernos y frescos, ideales para quienes buscan moda actual con un toque de elegancia y comodidad. La tienda se distingue por su selección de prendas versátiles y de alta calidad, diseñadas para adaptarse a diversas ocasiones, desde lo casual hasta lo más formal. Con una atención especial a los detalles y las tendencias, Zephyra busca brindar una experiencia de compra que combine estilo y funcionalidad.</li>
+                <li class="mb-2" th:text="#{sobre-nosotros}">Zephyra es una tienda de ropa enfocada en ofrecer estilos modernos y frescos, ideales para quienes buscan moda actual con un toque de elegancia y comodidad. La tienda se distingue por su selección de prendas versátiles y de alta calidad, diseñadas para adaptarse a diversas ocasiones, desde lo casual hasta lo más formal. Con una atención especial a los detalles y las tendencias, Zephyra busca brindar una experiencia de compra que combine estilo y funcionalidad.</li>
                 </ul>
             </div>
             <div class="col-12 col-sm-6 col-xl-3  mb-3 ps-xl-5">
-                <h5>Ayuda</h5>
+                <h5 th:text="#{ayuda}">Ayuda</h5>
                 <ul class="list-unstyled">
-                    <li class="mb-2"><a th:href="@{/politicaDevoluciones}">Política de devoluciones</a></li>
-                    <li class="mb-2"><a th:href="@{/politicaEnvios}">Política de envios</a></li>
-                    <li class="mb-2"><a th:href="@{/preguntasFrecuentes}">Preguntas frecuentes</a></li>
-                    <li class="mb-2"><a th:href="@{/sugerencia}">Realizar una sugerencia</a></li>
-                    <li class="mb-2"><a th:href="@{/formularioDevolucion}">Realizar una devolución</a></li>
-                    <li class="mb-2"><a th:href="@{/libroReclamaciones}">Libro de reclamaciones</a></li>
-                    <li class="mb-2"><a th:href="@{/servicioEntrega}">Servico de entrega</a></li>
-                    <li class="mb-2"><a th:href="@{/contactanos}">Contacto</a></li>
+                    <li class="mb-2"><a th:href="@{/politicaDevoluciones}" th:text="#{politica.devos}">Política de devoluciones</a></li>
+                    <li class="mb-2"><a th:href="@{/politicaEnvios}" th:text="#{politica.envios}">Política de envios</a></li>
+                    <li class="mb-2"><a th:href="@{/preguntasFrecuentes}" th:text="#{preguntas}">Preguntas frecuentes</a></li>
+                    <li class="mb-2"><a th:href="@{/sugerencia}" th:text="#{sugerencia}">Realizar una sugerencia</a></li>
+                    <li class="mb-2"><a th:href="@{/formularioDevolucion}" th:text="#{devolucion}">Realizar una devolución</a></li>
+                    <li class="mb-2"><a th:href="@{/libroReclamaciones}" th:text="#{reclamos}">Libro de reclamaciones</a></li>
+                    <li class="mb-2"><a th:href="@{/servicioEntrega}" th:text="#{entrega}">Servico de entrega</a></li>
+                    <li class="mb-2"><a th:href="@{/contactanos}" th:text="#{contacto}">Contacto</a></li>
                 </ul>
             </div>
             <div class="col-12 col-sm-6 col-xl-3 mb-3 ps-xl-5">
-                <h5>Mi cuenta</h5>
+                <h5 th:text="#{cuenta}">Mi cuenta</h5>
                 <ul class="list-unstyled">
-                    <li class="mb-2 clickeable"><a data-bs-toggle="modal" data-bs-target="#modalLogin">Acceso</a></li>
-                    <li class="mb-2 clickeable"><a data-bs-toggle="modal" data-bs-target="#modalLogin">Registro</a></li>
+                    <li class="mb-2 clickeable"><a data-bs-toggle="modal" data-bs-target="#modalLogin" th:text="#{botonlogin}">Acceso</a></li>
+                    <li class="mb-2 clickeable"><a data-bs-toggle="modal" data-bs-target="#modalLogin" th:text="#{registrarse}">Registro</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-xl-3"> 
-                <h4>Únete a la familia Zephyra</h4>
-                <p>Recibe actualizaciones al instante, acceso a ofertas exclusivas, detalles de lanzamientos de productos y mucho más</p>
+                <h4 th:text="#{unete}">Únete a la familia Zephyra</h4>
+                <p th:text="#{unete2}">Recibe actualizaciones al instante, acceso a ofertas exclusivas, detalles de lanzamientos de productos y mucho más</p>
                 <form action="#">
-                    <input type="email" placeholder="Ingresa tu dirección de correo electrónico" class="form-control mb-2" required>
-                    <button type="submit" class="btn btn-custom">Subscribirse</button>
+                    <input type="email" th:placeholder="#{ingresa-correo}" class="form-control mb-2" required>
+                    <button type="submit" class="btn btn-custom" th:text="#{suscribirse}">Subscribirse</button>
                 </form>
             </div>
         </div>

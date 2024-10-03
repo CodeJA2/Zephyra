@@ -20,8 +20,8 @@
                                 HOMBRES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Polos</a></li>
-                                <li><a class="dropdown-item" href="#">Shorts</a></li>
+                                <li><a class="dropdown-item" href="#" th:text="#{hombres-1}">Polos</a></li>
+                                <li><a class="dropdown-item" href="#" th:text="#{hombres-2}">Shorts</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
@@ -29,9 +29,9 @@
                                 MUJERES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownForHer">
-                                <li><a class="dropdown-item" href="#">Tanks</a></li>
-                                <li><a class="dropdown-item" href="#">Pantalones</a></li>
-                                <li><a class="dropdown-item" href="#">Leggings</a></li>
+                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-1}">Tops</a></li>
+                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-2}">Pantalones</a></li>
+                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-3}">Leggings</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
@@ -39,9 +39,9 @@
                                 NUEVO
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownNewDrop">
-                                <a class="dropdown-item" href="#">Próximo Lanzamiento</a>
-                                <a class="dropdown-item" href="#">Destacado</a>
-                                <a class="dropdown-item" href="#">Reabastecimiento</a>
+                                <a class="dropdown-item" href="#" th:text="#{proximo}">Próximo Lanzamiento</a>
+                                <a class="dropdown-item" href="#" th:text="#{destacado}">Destacado</a>
+                                <a class="dropdown-item" href="#" th:text="#{reabastecimiento}">Reabastecimiento</a>
                             </div>
                         </li>
                     </ul>
@@ -69,8 +69,8 @@
                             <i class="fas fa-globe"></i> <span id="languageText" th:text="#{idioma}">ES</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-                            <li><a class="dropdown-item" href="?lang=es">Español</a></li>
-                            <li><a class="dropdown-item" href="?lang=en">Inglés</a></li>
+                            <li><a class="dropdown-item" href="?lang=es" th:text="#{espanol}">Español</a></li>
+                            <li><a class="dropdown-item" href="?lang=en" th:text="#{ingles}">Inglés</a></li>
                         </ul>
                     </div>
                 </li>
@@ -85,7 +85,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="authModalLabel">Iniciar sesión o Registrarse</h5>
+                <h5 class="modal-title" id="authModalLabel" th:text="#{login}">Iniciar sesión o Registrarse</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -96,10 +96,10 @@
                 <!-- Pestañas de navegación -->
                 <ul class="nav nav-login nav-tabs" id="authTab" role="tablist">
                     <li class="nav-item w-50 h-100" role="presentation">
-                        <button class="nav-link active w-100 h-100 d-flex align-items-center justify-content-center" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Iniciar Sesión</button>
+                        <button class="nav-link active w-100 h-100 d-flex align-items-center justify-content-center" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true" th:text="#{iniciar-sesion}">Iniciar Sesión</button>
                     </li>
                     <li class="nav-item w-50 h-100" role="presentation">
-                        <button class="nav-link w-100 h-100 d-flex align-items-center justify-content-center" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">Registrarse</button>
+                        <button class="nav-link w-100 h-100 d-flex align-items-center justify-content-center" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false" th:text="#{registrarse}">Registrarse</button>
                     </li>
                 </ul>
                 <div class="tab-content mt-3" id="authTabContent">
@@ -107,16 +107,16 @@
                     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                         <form>
                             <div class="mb-3">
-                                <label for="loginEmail" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="loginEmail" placeholder="nombre@ejemplo.com">
+                                <label for="loginEmail" class="form-label" th:text="#{correo}">Correo electrónico</label>
+                                <input type="email" class="form-control" id="loginEmail" th:placeholder="#{ejemplo.correo}">
                             </div>
                             <div class="mb-3">
-                                <label for="loginPassword" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="loginPassword" placeholder="Contraseña">
+                                <label for="loginPassword" class="form-label" th:text="#{contra}">Contraseña</label>
+                                <input type="password" class="form-control" id="loginPassword" th:placeholder="#{ejemplo.contra}">
                             </div>
-                            <button type="submit" class="btn btn-custom w-100">Iniciar Sesión</button>
+                            <button type="submit" class="btn btn-custom w-100" th:text="#{botonlogin}">Iniciar Sesión</button>
                             <!-- Opciones de iniciar sesión con Google y Facebook -->
-                            <div class="text-center my-3">o inicia sesión con</div>
+                            <div class="text-center my-3" th:text="#{opciones-login}">o inicia sesión con</div>
                             <button type="button" class="btn btn-outline-custom btn-social w-100">
                                 <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google">Google
                             </button>
@@ -129,20 +129,20 @@
                     <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                         <form>
                             <div class="mb-3">
-                                <label for="registerName" class="form-label">Nombre completo</label>
-                                <input type="text" class="form-control" id="registerName" placeholder="Tu nombre">
+                                <label for="registerName" class="form-label" th:text="#{nombre.completo}">Nombre completo</label>
+                                <input type="text" class="form-control" id="registerName" th:placeholder="#{ejemplo.nombre}">
                             </div>
                             <div class="mb-3">
-                                <label for="registerEmail" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="registerEmail" placeholder="nombre@ejemplo.com">
+                                <label for="registerEmail" class="form-label" th:text="#{correo}">Correo electrónico</label>
+                                <input type="email" class="form-control" id="registerEmail" th:placeholder="#{ejemplo.correo}">
                             </div>
                             <div class="mb-3">
-                                <label for="registerPassword" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="registerPassword" placeholder="Contraseña">
+                                <label for="registerPassword" class="form-label" th:text="#{contra}">Contraseña</label>
+                                <input type="password" class="form-control" id="registerPassword" th:placeholder="#{ejemplo.contra}">
                             </div>
-                            <button type="submit" class="btn btn-custom w-100">Registrarse</button>
+                            <button type="submit" class="btn btn-custom w-100" th:text="#{registrarse}">Registrarse</button>
                             <!-- Opciones de registrarse con Google y Facebook -->
-                            <div class="text-center my-3">o regístrate con</div>
+                            <div class="text-center my-3" th:text="#{opciones-regis}">o regístrate con</div>
                             <button type="button" class="btn btn-outline-custom btn-social w-100">
                                 <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google">Google
                             </button>
@@ -163,7 +163,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="searchModalLabel">Busqueda</h5>
+                <h5 class="modal-title" id="searchModalLabel" th:text="#{busqueda}">Busqueda</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -171,7 +171,7 @@
                 <form>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Buscar en Zephyra.com" aria-label="Buscar" aria-describedby="button-search">
-                        <button class="btn btn-custom" type="button" id="button-search">Buscar</button>
+                        <button class="btn btn-custom" type="button" id="button-search" th:text="#{busqueda}">Buscar</button>
                     </div>
                 </form>  
                 <!-- Resultados de búsqueda simulados -->
@@ -196,15 +196,15 @@
 <!-- Offcanvas del Carrito -->
 <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasCartLabel">Carrito de compras</h5>
+        <h5 class="offcanvas-title" id="offcanvasCartLabel" th:text="#{carrito}">Carrito de compras</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <!-- Encabezado de columnas -->
         <div class="row mb-2 px-4">
-            <div class="col-6 col-lg-8"><strong>Producto</strong></div>
-            <div class="col-4 col-lg-2 text-center"><strong>Cantidad</strong></div>
-            <div class="col-2 text-end"><strong>Subtotal</strong></div>
+            <div class="col-6 col-lg-8" th:text="#{producto}"><strong>Producto</strong></div>
+            <div class="col-4 col-lg-2 text-center" th:text="#{cantidad}"><strong>Cantidad</strong></div>
+            <div class="col-2 text-end" th:text="#{sub-total}"><strong>Subtotal</strong></div>
         </div>
         <!-- Lista de productos en el carrito -->
         <ul class="list-group mb-3">
@@ -285,9 +285,9 @@
         </div>
 
         <!-- Botón para Continuar la Compra -->
-        <a th:href="@{/paginaPago}" class="btn btn-custom w-100 mb-2">Terminar Compra</a>
+        <a th:href="@{/paginaPago}" class="btn btn-custom w-100 mb-2" th:text="#{terminar-compra}">Terminar Compra</a>
         <!-- Enlace para Editar Carrito -->
-        <a th:href="@{/editarCarrito}" class="btn btn-outline-custom w-100 mb-2">Editar carrito</a>
+        <a th:href="@{/editarCarrito}" class="btn btn-outline-custom w-100 mb-2" th:text="#{editar-carrito}">Editar carrito</a>
     </div>
 </div>
 <!-- Offcanvas del Carrito -->

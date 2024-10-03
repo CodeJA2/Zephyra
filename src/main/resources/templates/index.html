@@ -37,8 +37,8 @@
                 </video>
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 700px;">
-                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Estilo Actual: Ropa Moderna</h1>
-                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Descubre nuestra colección de ropa moderna que marca tendencia. Desde 
+                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown" th:text="#{titulo-1}">Estilo Actual: Ropa Moderna</h1>
+                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn" th:text="#{subtitulo-1}">Descubre nuestra colección de ropa moderna que marca tendencia. Desde 
                             prendas elegantes hasta looks casuales, cada pieza está diseñada para hacerte destacar en cualquier ocasión. ¡Actualiza tu guardarropa
                              y refleja tu estilo único!</p>
                         <a class="btn btn-outline-light-custom py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Ver ahora</a>
@@ -49,8 +49,8 @@
                 <img src="/img/Portadas/Portada_1.png" class="position-absolute w-100 h-100" style="object-fit: cover;">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 700px;">
-                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Looks Completos: Combos Modernos</h1>
-                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Facilita tus elecciones de moda con nuestros combos modernos. 
+                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown" th:text="#{titulo-2}">Looks Completos: Combos Modernos</h1>
+                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn" th:text="#{subtitulo-2}">Facilita tus elecciones de moda con nuestros combos modernos. 
                             Cada conjunto está cuidadosamente seleccionado para ofrecerte un estilo impecable y versátil, perfecto para cualquier ocasión. 
                             ¡Luce genial sin esfuerzo!</p>
                         <a class="btn btn-outline-light-custom py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Ver ahora</a>
@@ -61,10 +61,10 @@
                 <img src="/img/Portadas/Portada_2.png" class="position-absolute w-100 h-100" style="object-fit: cover;">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 700px;">
-                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Detalles que Marcan la Diferencia: Accesorios</h1>
-                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Completa tu look moderno y deportivo con nuestros accesorios esenciales. 
+                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown" th:text="#{titulo-3}">Detalles que Marcan la Diferencia: Accesorios</h1>
+                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn" th:text="#{subtitulo-3}">Completa tu look moderno y deportivo con nuestros accesorios esenciales. 
                             Desde gorras hasta mochilas, cada pieza está diseñada para combinar funcionalidad y estilo. ¡No subestimes el poder de un buen accesorio!</p>
-                        <a class="btn btn-outline-light-custom py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Ver ahora</a>
+                        <a class="btn btn-outline-light-custom py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#" th:text="#{ver-ahora}">Ver ahora</a>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
     <!-- Productos Destacados-->
     <div class="pt-3">
         <div class="mt-3">
-            <h2 class="text-center">Productos destacados</h2>
+            <h2 class="text-center" th:text="#{productos.destacados}">Productos destacados</h2>
         </div>
         <div class="container mt-5">
             <div class="row">
