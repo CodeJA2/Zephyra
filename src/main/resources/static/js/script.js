@@ -59,3 +59,14 @@ document.querySelectorAll('.star-rating').forEach(rating => {
         }
     });
 });
+
+//Esconder el Top-bar cuando se hace scroll
+window.addEventListener("scroll", function(){
+    var header = document.querySelector("header");
+    // Solo cambia la clase si se ha hecho scroll
+    if (window.scrollY > 50) {
+        header.classList.add("header-scroll");
+    } else {
+        header.classList.remove("header-scroll");
+    }
+});
