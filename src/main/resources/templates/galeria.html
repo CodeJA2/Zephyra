@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Zephyra | Galeria</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Cloudflare -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Google Fonts - Afacad Flux -->
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <div th:replace="fragments/header"></div>
+
+    <!-- Shop Start -->
+    <div class="container-fluid pt-4">
+        <div class="row px-xl-3">
+            <!-- Shop Sidebar Start -->
+            <div class="col-lg-3 col-md-4">
+                <div class="accordion p-0" id="accordionPanelsStayOpenExample">
+                    <!-- Filtro por precio -->
+                    <div class="custom-accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseOne">
+                                Filter by price
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                            <div class="p-4">
+                                <form>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="price-all" checked>
+                                        <label class="custom-label" for="price-all">All Price</label>
+                                        <span class="badge">1000</span>
+                                    </div>
+                                    <!-- Rango de precios -->
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="price-1">
+                                        <label class="custom-label" for="price-1">$0 - $100</label>
+                                        <span class="badge">150</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="price-2">
+                                        <label class="custom-label" for="price-2">$100 - $200</label>
+                                        <span class="badge">295</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="price-3">
+                                        <label class="custom-label" for="price-3">$200 - $300</label>
+                                        <span class="badge">246</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="price-4">
+                                        <label class="custom-label" for="price-4">$300 - $400</label>
+                                        <span class="badge">145</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="price-5">
+                                        <label class="custom-label" for="price-5">$400 - $500</label>
+                                        <span class="badge">168</span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Filtro por color -->
+                    <div class="custom-accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseTwo">
+                                Filter by color
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                            <div class="p-4">
+                                <form>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="color-all" checked>
+                                        <label class="custom-label" for="color-all">All Color</label>
+                                        <span class="badge">1000</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="color-1">
+                                        <label class="custom-label" for="color-1">Black</label>
+                                        <span class="badge">150</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="color-2">
+                                        <label class="custom-label" for="color-2">White</label>
+                                        <span class="badge">295</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="color-3">
+                                        <label class="custom-label" for="color-3">Red</label>
+                                        <span class="badge">246</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="color-4">
+                                        <label class="custom-label" for="color-4">Blue</label>
+                                        <span class="badge">145</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="color-5">
+                                        <label class="custom-label" for="color-5">Green</label>
+                                        <span class="badge">168</span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Filtro por tamaño -->
+                    <div class="custom-accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseThree">
+                                Filter by size
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                            <div class="p-4">
+                                <form>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="size-all" checked>
+                                        <label class="custom-label" for="size-all">All Size</label>
+                                        <span class="badge">1000</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="size-1">
+                                        <label class="custom-label" for="size-1">XS</label>
+                                        <span class="badge">150</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="size-2">
+                                        <label class="custom-label" for="size-2">S</label>
+                                        <span class="badge">295</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="size-3">
+                                        <label class="custom-label" for="size-3">M</label>
+                                        <span class="badge">246</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="size-4">
+                                        <label class="custom-label" for="size-4">L</label>
+                                        <span class="badge">145</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
+                                        <input type="checkbox" class="hidden-checkbox" id="size-5">
+                                        <label class="custom-label" for="size-5">XL</label>
+                                        <span class="badge">168</span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Shop Sidebar End -->
+
+
+            <!-- Shop Product Start -->
+            <div class="col-lg-9 col-md-8">
+                <div class="row pb-3">
+                    <div class="col-12 pb-1">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div>
+                                <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
+                                <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
+                            </div>
+                            <div class="ml-2">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                        data-toggle="dropdown">Sorting</button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">Latest</a>
+                                        <a class="dropdown-item" href="#">Popularity</a>
+                                        <a class="dropdown-item" href="#">Best Rating</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group ml-2">
+                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                        data-toggle="dropdown">Showing</button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">10</a>
+                                        <a class="dropdown-item" href="#">20</a>
+                                        <a class="dropdown-item" href="#">30</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="card product-card mb-4">
+                            <div class="image position-relative overflow-hidden clickeable">
+                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            </div>
+
+                            <div class="card-body product-info">
+                                <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                                <p>$35.00</p>
+                                <div class="list-colors mb-3">
+                                    <span data-color="purple" class="color-option"
+                                        style="background-color: #800080;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="card product-card mb-4">
+                            <div class="image position-relative overflow-hidden clickeable">
+                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            </div>
+
+                            <div class="card-body product-info">
+                                <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                                <p>$35.00</p>
+                                <div class="list-colors mb-3">
+                                    <span data-color="purple" class="color-option"
+                                        style="background-color: #800080;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="card product-card mb-4">
+                            <div class="image position-relative overflow-hidden clickeable">
+                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            </div>
+
+                            <div class="card-body product-info">
+                                <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                                <p>$35.00</p>
+                                <div class="list-colors mb-3">
+                                    <span data-color="purple" class="color-option"
+                                        style="background-color: #800080;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="card product-card mb-4">
+                            <div class="image position-relative overflow-hidden clickeable">
+                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            </div>
+
+                            <div class="card-body product-info">
+                                <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                                <p>$35.00</p>
+                                <div class="list-colors mb-3">
+                                    <span data-color="purple" class="color-option"
+                                        style="background-color: #800080;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="card product-card mb-4">
+                            <div class="image position-relative overflow-hidden clickeable">
+                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            </div>
+
+                            <div class="card-body product-info">
+                                <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                                <p>$35.00</p>
+                                <div class="list-colors mb-3">
+                                    <span data-color="purple" class="color-option"
+                                        style="background-color: #800080;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="card product-card mb-4">
+                            <div class="image position-relative overflow-hidden clickeable">
+                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            </div>
+
+                            <div class="card-body product-info">
+                                <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                                <p>$35.00</p>
+                                <div class="list-colors mb-3">
+                                    <span data-color="purple" class="color-option"
+                                        style="background-color: #800080;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="card product-card mb-4">
+                            <div class="image position-relative overflow-hidden clickeable">
+                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            </div>
+
+                            <div class="card-body product-info">
+                                <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                                <p>$35.00</p>
+                                <div class="list-colors mb-3">
+                                    <span data-color="purple" class="color-option"
+                                        style="background-color: #800080;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="card product-card mb-4">
+                            <div class="image position-relative overflow-hidden clickeable">
+                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            </div>
+
+                            <div class="card-body product-info">
+                                <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                                <p>$35.00</p>
+                                <div class="list-colors mb-3">
+                                    <span data-color="purple" class="color-option"
+                                        style="background-color: #800080;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="card product-card mb-4">
+                            <div class="image position-relative overflow-hidden clickeable">
+                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            </div>
+
+                            <div class="card-body product-info">
+                                <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                                <p>$35.00</p>
+                                <div class="list-colors mb-3">
+                                    <span data-color="purple" class="color-option"
+                                        style="background-color: #800080;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="card product-card mb-4">
+                            <div class="image position-relative overflow-hidden clickeable">
+                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
+                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            </div>
+
+                            <div class="card-body product-info">
+                                <h3 class="card-title clickeable">4018 - ESSENTIAL CROPPED TEES</h3>
+                                <p>$35.00</p>
+                                <div class="list-colors mb-3">
+                                    <span data-color="purple" class="color-option"
+                                        style="background-color: #800080;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- Shop Product End -->
+        </div>
+    </div>
+    <!-- Shop End -->
+
+    <!-- Footer -->
+    <div th:replace="fragments/footer"></div>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- Custom javascript -->
+    <script src="/js/script.js"></script>
+    <!-- Animaciones del carousel -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

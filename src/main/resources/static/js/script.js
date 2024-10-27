@@ -64,9 +64,21 @@ document.querySelectorAll('.star-rating').forEach(rating => {
 window.addEventListener("scroll", function(){
     var header = document.querySelector("header");
     // Solo cambia la clase si se ha hecho scroll
-    if (window.scrollY > 50) {
+    if (window.scrollY > 80) {
         header.classList.add("header-scroll");
     } else {
         header.classList.remove("header-scroll");
+    }
+});
+
+// Busqueda te regirige a la pagina "galeria"
+document.getElementById('button-search').addEventListener('click', function () {
+    const searchQuery = document.getElementById('search-query').value.trim();
+
+    if (searchQuery !== '') {
+        // Redirige a la página de búsqueda con el término introducido
+        window.location.href = `/galeria?search=${encodeURIComponent(searchQuery)}`;
+    } else {
+        
     }
 });

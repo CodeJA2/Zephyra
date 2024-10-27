@@ -105,4 +105,24 @@ public class HomeController {
         model.addAttribute("contacto", consulta);
         return "envioContactanos"; // Nombre de la vista de resultado
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @GetMapping("/galeria")
+    public String galeriaProductos() {
+        return "galeria";  // Muestra la pagina html
+    }
 }
