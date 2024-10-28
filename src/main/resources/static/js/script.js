@@ -1,11 +1,3 @@
-// Redirigir solo cuando se hace clic en la imagen del producto
-document.querySelectorAll('.product-img').forEach(img => {
-    img.addEventListener('click', () => {
-        const productId = img.getAttribute('data-id');
-        window.location.href = `/detalleProducto`;
-    });
-});
-
 // Funcionalidad de selección de colores
 document.querySelectorAll('.color-option').forEach(color => {
     color.addEventListener('click', () => {
@@ -61,7 +53,7 @@ document.querySelectorAll('.star-rating').forEach(rating => {
 });
 
 //Esconder el Top-bar cuando se hace scroll
-window.addEventListener("scroll", function(){
+window.addEventListener("scroll", function () {
     var header = document.querySelector("header");
     // Solo cambia la clase si se ha hecho scroll
     if (window.scrollY > 80) {
@@ -79,6 +71,69 @@ document.getElementById('button-search').addEventListener('click', function () {
         // Redirige a la página de búsqueda con el término introducido
         window.location.href = `/galeria?search=${encodeURIComponent(searchQuery)}`;
     } else {
-        
+
     }
 });
+
+// Carrito de compras
+let carrito = []; // Array para almacenar los productos en el carrito
+let totalProductos = 0; // Contador de productos en el carrito
+
+function agregarProducto(nombre, precio) {
+    const productoExistente = carrito.find(producto => producto.nombre === nombre);
+
+    if (productoExistente) {
+        // Si ya existe, aumentar la cantidad
+        productoExistente.cantidad += 1;
+    } else {
+        // Si no existe, agregar nuevo producto al carrito
+        carrito.push({ nombre, precio, cantidad: 1 });
+    }
+
+    // Actualizar el total de productos en el carrito
+    totalProductos += 1; // Incrementa el contador total
+    actualizarCarrito();
+    actualizarContador(); // Llama a la función para actualizar el contador en la página
+}
+
+function actualizarCarrito() {
+    const carritoContainer = document.querySelector('.list-group'); // Seleccionar la lista de productos en el carrito
+    carritoContainer.innerHTML = ''; // Limpiar la lista actual
+
+    let total = 0; // Variable para calcular el total
+
+    // Recorrer los productos en el carrito
+    carrito.forEach(producto => {
+        const subtotal = producto.precio * producto.cantidad;
+        total += subtotal;
+
+        // Crear el elemento de la lista para el carrito
+        const item = document.createElement('li');
+        item.classList.add('list-group-item');
+        item.innerHTML = `
+            <div class="row align-items-center">
+                <div class="col-3">
+                    <img src="/img/Polos/Polo_1.png" alt="${producto.nombre}" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
+                </div>
+                <div class="col-5">
+                    <h6 class="my-0">${producto.nombre}</h6>
+                    <small class="text-muted">Precio unitario: S/. ${producto.precio.toFixed(2)}</small>
+                </div>
+                <div class="col-2 text-center">
+                    <small class="text-muted">${producto.cantidad}</small>
+                </div>
+                <div class="col-2 text-end">
+                    <span class="text-muted">S/. ${subtotal.toFixed(2)}</span>
+                </div>
+            </div>
+        `;
+        carritoContainer.appendChild(item);
+    });
+
+    // Actualizar el total
+    document.querySelector('.d-flex.justify-content-between.mb-3 h5:last-child').innerText = `S/. ${total.toFixed(2)}`;
+}
+
+function actualizarContador() {
+    document.getElementById("cart-count").textContent = totalProductos; // Actualiza el contador
+}

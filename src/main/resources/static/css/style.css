@@ -525,11 +525,51 @@ body {
 /* Card Productos */
 .product-card {
     background-color: rgba(255, 255, 255, 0.801);
-    padding: 20px;
+    padding: 0px;
     text-align: center;
-    border: 1px solid #000000;
-    border-radius: 0;
+    /* border: 0px solid #000000; */
+    border-radius: 0px;
     transition: box-shadow 0.3s;
+}
+
+/* Altura de la imagen para pantallas extra grandes (xl) */
+@media (min-width: 1200px) {
+    .product-card {
+        height: 550px;
+        /* Cuadrado de 300x300px */
+    }
+}
+
+/* Altura de la imagen para pantallas grandes (lg) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .product-card {
+        height: 500px;
+        /* Cuadrado de 250x250px */
+    }
+}
+
+/* Altura de la imagen para pantallas medianas (md) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .product-card {
+        height: 500px;
+        /* Cuadrado de 200x200px */
+    }
+}
+
+/* Altura de la imagen para pantallas pequeñas (sm) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .product-card {
+        height: 600px;
+        /* Cuadrado de 180x180px */
+    }
+}
+
+/* Altura de la imagen para pantallas extra pequeñas (xs) */
+@media (max-width: 575.98px) {
+    .product-card {
+        height: 550px;
+        /* Cuadrado de 150x150px */
+    }
 }
 
 .product-card:hover {
@@ -546,9 +586,9 @@ body {
 }
 
 /* Opcional */
-/* .product-card .image img {
+.product-card .image img {
     transition: .5s;
-} */
+}
 
 .product-card:hover .image img {
     transform: scale(1.1);
@@ -566,7 +606,7 @@ body {
 
 .product-info h3 {
     font-size: 1rem;
-    margin: 10px 0;
+    margin: 20px;
     font-weight: bold;
 }
 
@@ -693,4 +733,24 @@ body {
     font-size: 12px;
     color: rgb(0, 0, 0);
     font-weight: bold;
+}
+
+
+
+
+
+
+
+.product-title {
+    color: #000; /* Color negro */
+    font-size: 1.5rem; /* Tamaño de la fuente grande, similar a un título */
+    font-weight: normal;
+}
+
+.text-decoration-none {
+    text-decoration: none; /* Quita la subrayado del enlace */
+}
+
+.product-title:hover {
+    color: #505050; /* Mantener color negro incluso al pasar el ratón */
 }

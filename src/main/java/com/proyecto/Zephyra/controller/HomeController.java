@@ -1,31 +1,75 @@
 package com.proyecto.Zephyra.controller;
 
+import com.proyecto.Zephyra.entidades.Producto;
 import com.proyecto.Zephyra.model.Contactanos;
 import com.proyecto.Zephyra.model.Devolucion;
 import com.proyecto.Zephyra.model.LibroReclamaciones;
 import com.proyecto.Zephyra.model.Sugerencia;
+import com.proyecto.Zephyra.servicios.ProductoService;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
 @Controller
 public class HomeController {
+    @Autowired
+    private ProductoService productoService;
+
+    // @GetMapping("/index")
+    // public String index() {
+    //     return "index";  // Muestra la pagina html
+    // }
+
+    @GetMapping({"/", "/index"})
+    public String listarProductos(Model model) {
+        List<Producto> lista = productoService.listarProductos();
+        model.addAttribute("productos", lista);
+        return "index";
+    }
 
     @GetMapping("/detalleProducto")
     public String detalleProducto() {
         return "detalleProducto";  // Muestra la pagina html
     }
 
+
+
+
+
+
+    @GetMapping("/detalleProducto/{id}")
+    public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
+        Producto producto = productoService.obtenerProductoPorId(id);
+        if (producto != null) {
+            model.addAttribute("producto", producto);
+            return "detalleProducto";
+        } else {
+            return "redirect:/index"; // Redirige si no se encuentra el colaborador
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     @GetMapping("/editarCarrito")
     public String editarCarrito() {
         return "editarCarrito";  // Muestra la pagina html
-    }
-
-    @GetMapping("/index")
-    public String index() {
-        return "index";  // Muestra la pagina html
     }
 
     @GetMapping("/paginaPago")
@@ -122,7 +166,9 @@ public class HomeController {
 
 
     @GetMapping("/galeria")
-    public String galeriaProductos() {
-        return "galeria";  // Muestra la pagina html
+    public String galeriaProductos(Model model) {
+        List<Producto> lista = productoService.listarProductos();
+        model.addAttribute("productos", lista);
+        return "galeria";
     }
 }
