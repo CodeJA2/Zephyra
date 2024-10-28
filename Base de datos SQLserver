@@ -1,0 +1,184 @@
+-- Tabla de Roles
+CREATE TABLE Roles (
+    idRol INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(50) NOT NULL,
+    descripcion TEXT
+);
+
+-- Tabla de Usuarios
+CREATE TABLE Usuarios (
+    userId INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(50) NOT NULL,
+    segundoNombre VARCHAR(50),
+    apellido VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL, 
+    direccion VARCHAR(255),
+    telefono VARCHAR(15),
+    dni VARCHAR(20) UNIQUE,
+    fecha_creacion DATE DEFAULT GETDATE(),
+    idRol INT,
+    FOREIGN KEY (idRol) REFERENCES Roles(idRol)
+);
+
+-- Tabla de Ubigeo
+CREATE TABLE Ubigeo (
+    idUbigeo INT PRIMARY KEY IDENTITY(1,1),
+    pais VARCHAR(50) NOT NULL,
+    ciudad VARCHAR(50) NOT NULL,
+    distrito VARCHAR(50),
+    direccion VARCHAR(255),
+    codigoPostal VARCHAR(10)
+);
+
+-- Tabla de Productos
+CREATE TABLE Productos (
+    idProducto INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(100) NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    detalle TEXT,
+    stock INT DEFAULT 0,
+    fecha_creacion DATE DEFAULT GETDATE()
+);
+
+-- Tabla de Almacenes
+CREATE TABLE Almacenes (
+    idAlmacen INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(100) NOT NULL,
+    direccion VARCHAR(255),
+    stock INT DEFAULT 0,
+    idUbigeo INT,
+    FOREIGN KEY (idUbigeo) REFERENCES Ubigeo(idUbigeo)
+);
+
+-- Tabla de Promociones
+CREATE TABLE Promociones (
+    idPromocion INT PRIMARY KEY IDENTITY(1,1),
+    nombrePromocion VARCHAR(100) NOT NULL,
+    fecha_inicio DATE NOT NULL,
+    fecha_final DATE,
+    estado VARCHAR(20),
+    idTipoPromocion INT,
+    FOREIGN KEY (idTipoPromocion) REFERENCES TipoPromocion(idTipoPromocion)
+);
+
+-- Tabla de Detalle de Promociones
+CREATE TABLE DetallePromocion (
+    idDetallePromocion INT PRIMARY KEY IDENTITY(1,1),
+    idPromocion INT,
+    idProducto INT,
+    descuento DECIMAL(5, 2),
+    detalle TEXT,
+    FOREIGN KEY (idPromocion) REFERENCES Promociones(idPromocion),
+    FOREIGN KEY (idProducto) REFERENCES Productos(idProducto)
+);
+
+-- Tabla de TipoPromocion
+CREATE TABLE TipoPromocion (
+    idTipoPromocion INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(50) NOT NULL,
+    descripcion TEXT
+);
+
+-- Tabla de Ventas
+CREATE TABLE Ventas (
+    idVenta INT PRIMARY KEY IDENTITY(1,1),
+    idUsuario INT,
+    idPedido INT,
+    fecha DATE DEFAULT GETDATE(),
+    total DECIMAL(10, 2),
+    idPago INT,
+    FOREIGN KEY (idUsuario) REFERENCES Usuarios(userId),
+    FOREIGN KEY (idPedido) REFERENCES Pedidos(idPedido),
+    FOREIGN KEY (idPago) REFERENCES Pagos(idPago)
+);
+
+-- Tabla de DetalleVenta
+CREATE TABLE DetalleVenta (
+    idDetalleVenta INT PRIMARY KEY IDENTITY(1,1),
+    idVenta INT,
+    idProducto INT,
+    cantidad INT NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    subtotal AS (cantidad * precio),
+    FOREIGN KEY (idVenta) REFERENCES Ventas(idVenta),
+    FOREIGN KEY (idProducto) REFERENCES Productos(idProducto)
+);
+
+-- Tabla de Pedidos
+CREATE TABLE Pedidos (
+    idPedido INT PRIMARY KEY IDENTITY(1,1),
+    fecha DATE DEFAULT GETDATE(),
+    total DECIMAL(10, 2),
+    idProducto INT,
+    cantidad INT,
+    estado VARCHAR(20) DEFAULT 'Pendiente',
+    FOREIGN KEY (idProducto) REFERENCES Productos(idProducto)
+);
+
+-- Tabla de Consultas de Pago
+CREATE TABLE ConsultasPago (
+    idConsulta INT PRIMARY KEY IDENTITY(1,1),
+    idPago INT,
+    fechaConsulta DATE DEFAULT GETDATE(),
+    estado VARCHAR(20),
+    FOREIGN KEY (idPago) REFERENCES Pagos(idPago)
+);
+
+-- Tabla de DetalleCompra
+CREATE TABLE DetalleCompra (
+    idDetalleCompra INT PRIMARY KEY IDENTITY(1,1),
+    idCompra INT,
+    idProducto INT,
+    precio DECIMAL(10, 2) NOT NULL,
+    cantidad INT NOT NULL,
+    subtotal AS (precio * cantidad),
+    FOREIGN KEY (idCompra) REFERENCES Compras(idCompra),
+    FOREIGN KEY (idProducto) REFERENCES Productos(idProducto)
+);
+
+-- Tabla de Pagos
+CREATE TABLE Pagos (
+    idPago INT PRIMARY KEY IDENTITY(1,1),
+    total DECIMAL(10, 2) NOT NULL,
+    fecha DATE DEFAULT GETDATE(),
+    metodoPago VARCHAR(50)
+);
+
+-- Tabla de DetallePago
+CREATE TABLE DetallePago (
+    idDetallePago INT PRIMARY KEY IDENTITY(1,1),
+    idPago INT,
+    cantidad DECIMAL(10, 2),
+    descripcion TEXT,
+    FOREIGN KEY (idPago) REFERENCES Pagos(idPago)
+);
+
+-- Tabla de Formularios
+CREATE TABLE Formularios (
+    idFormulario INT PRIMARY KEY IDENTITY(1,1),
+    idPersona INT,
+    idTipoFormulario INT,
+    detalle TEXT,
+    fecha_creacion DATE DEFAULT GETDATE(),
+    FOREIGN KEY (idPersona) REFERENCES Usuarios(userId),
+    FOREIGN KEY (idTipoFormulario) REFERENCES TipoFormulario(idTipoFormulario)
+);
+
+-- Tabla de TipoFormulario
+CREATE TABLE TipoFormulario (
+    idTipoFormulario INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(50) NOT NULL,
+    detalle TEXT
+);
+
+-- Tabla de Envío
+CREATE TABLE Envio (
+    idEnvio INT PRIMARY KEY IDENTITY(1,1),
+    idPersona INT,
+    idVenta INT,
+    fechaEnvio DATE DEFAULT GETDATE(),
+    estado VARCHAR(20),
+    FOREIGN KEY (idPersona) REFERENCES Usuarios(userId),
+    FOREIGN KEY (idVenta) REFERENCES Ventas(idVenta)
+);
