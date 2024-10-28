@@ -37,8 +37,8 @@
         <h1 class="text-center">Editar Categoria</h1>
         <form th:action="@{/ADM/categorias/actualizar/{id}(id=${categoria.id})}" th:object="${categoria}"
             method="post" class="mt-4">
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
+            <div class="form-group mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
             </div>
             <button type="submit" class="btn btn-primary">Actualizar</button>

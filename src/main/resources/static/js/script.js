@@ -127,7 +127,7 @@ function actualizarCarrito() {
         item.classList.add('list-group-item');
         item.innerHTML = `
             <div class="row align-items-center">
-                <div class="col-3">
+                <div class="col-2">
                     <img src="/img/Polos/Polo_1.png" alt="${producto.nombre}" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
                 </div>
                 <div class="col-5">
@@ -137,7 +137,7 @@ function actualizarCarrito() {
                 <div class="col-2 text-center">
                     <small class="text-muted">${producto.cantidad}</small>
                 </div>
-                <div class="col-2 text-end">
+                <div class="col-3 text-end">
                     <span class="text-muted">S/. ${subtotal.toFixed(2)}</span>
                 </div>
             </div>
