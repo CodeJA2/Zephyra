@@ -1,14 +1,12 @@
 package com.proyecto.Zephyra.entidades;
 
-
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
 @Table(name = "productos")
 public class Producto {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,12 +26,9 @@ public class Producto {
     private int stock;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "producto_categoria",
-               joinColumns = @JoinColumn(name = "producto_id"),
-               inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+    @JoinTable(name = "producto_categoria", joinColumns = @JoinColumn(name = "producto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private List<Categoria> categorias;
 
-    
     // Getters, setters, constructores
     public Producto() {
     }
@@ -94,6 +89,4 @@ public class Producto {
         this.categorias = categorias;
     }
 
-    
-    
 }

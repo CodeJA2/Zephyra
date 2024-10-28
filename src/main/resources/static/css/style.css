@@ -295,19 +295,25 @@ body {
 /* Check Box */
 /* Esconde el checkbox original */
 .hidden-checkbox {
-    opacity: 0; /* Lo hace invisible, pero sigue presente en el DOM */
-    position: absolute; /* Posicionarlo fuera de la vista para evitar interferencias con el layout */
-    
+    opacity: 0;
+    /* Lo hace invisible, pero sigue presente en el DOM */
+    position: absolute;
+    /* Posicionarlo fuera de la vista para evitar interferencias con el layout */
+
 }
+
 /* Estilo para el label */
 .custom-label {
-    display: flex; /* Flexbox para alinear checkbox y texto */
-    align-items: center; /* Centrado vertical */
+    display: flex;
+    /* Flexbox para alinear checkbox y texto */
+    align-items: center;
+    /* Centrado vertical */
     cursor: pointer;
     user-select: none;
     font-size: 16px;
     position: relative;
 }
+
 /* Estilo para el "falso" checkbox */
 .custom-label::before {
     content: '';
@@ -315,21 +321,29 @@ body {
     height: 16px;
     background-color: transparent;
     border: 1px solid #000;
-    border-radius: 0px; /* Sin bordes redondeados */
-    margin-right: 10px; /* Espacio entre el checkbox y el texto */
+    border-radius: 0px;
+    /* Sin bordes redondeados */
+    margin-right: 10px;
+    /* Espacio entre el checkbox y el texto */
 }
+
 /* Checkbox marcado */
-.hidden-checkbox:checked + .custom-label::before {
-    background-color: black; /* Fondo negro cuando está marcado */
+.hidden-checkbox:checked+.custom-label::before {
+    background-color: black;
+    /* Fondo negro cuando está marcado */
     border: 1px solid black;
 }
+
 /* Marca de verificación */
-.hidden-checkbox:checked + .custom-label::after {
-    content: '✓'; /* Marca de verificación */
+.hidden-checkbox:checked+.custom-label::after {
+    content: '✓';
+    /* Marca de verificación */
     position: absolute;
-    left: 4px; /* Ajuste de posición dentro del checkbox */
+    left: 4px;
+    /* Ajuste de posición dentro del checkbox */
     top: 50%;
-    transform: translateY(-50%); /* Centrar verticalmente la marca */
+    transform: translateY(-50%);
+    /* Centrar verticalmente la marca */
     font-size: 14px;
     color: white;
 }
@@ -345,13 +359,16 @@ body {
 }
 
 /* Inputs */
-.form-control, .form-select{
+.form-control,
+.form-select {
     background-color: transparent;
     border: 1px solid rgb(126, 126, 126);
     border-radius: 0;
     box-shadow: none;
 }
-.form-control:focus, .form-select:focus{
+
+.form-control:focus,
+.form-select:focus {
     outline: none;
     /* Eliminar el foco azul */
     box-shadow: none;
@@ -367,6 +384,7 @@ body {
     border: 0px;
     border-radius: 0;
 }
+
 /* Estilos de los botones para que al seleccionarse no cambien el borde */
 .accordion-button:not(.collapsed) {
     background-color: transparent;
@@ -376,12 +394,14 @@ body {
     border: 1px solid transparent;
     /* Evita que se marque en negro cuando está seleccionado */
 }
+
 /* Mantiene el estilo de fondo transparente y texto negro cuando se selecciona */
 .accordion-button {
     background-color: transparent;
     color: black;
     border: none;
 }
+
 /* Evitar que el borde cambie de color al hacer foco en el botón */
 .accordion-button:focus {
     box-shadow: none;
@@ -439,27 +459,33 @@ body {
     display: inline-block;
     transition: transform 0.3s ease;
 }
+
 .color-product-item:hover:not(.disabled) {
     transform: scale(1.1);
     /* Efecto al hacer hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     /* Añadir sombra al hacer hover */
 }
+
 .color-product-item.disabled {
     cursor: not-allowed;
     /* Cambia el cursor cuando está deshabilitado */
     opacity: 0.5;
     /* Hace que el div deshabilitado sea más tenue */
 }
+
 .color-product-item.black {
     background-color: black;
 }
+
 .color-product-item.blue {
     background-color: blue;
 }
+
 .color-product-item.red {
     background-color: red;
 }
+
 .color-product-item.selected:not(.disabled) {
     border: 2px solid #000;
 }
@@ -482,6 +508,7 @@ body {
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
     /* Transiciones suaves */
 }
+
 .size-product-item.selected {
     background-color: #000;
     /* Fondo negro cuando se selecciona */
@@ -490,11 +517,13 @@ body {
     border-color: #000;
     /* Bordes en negro */
 }
+
 .size-product-item.disabled {
     text-decoration: line-through;
     color: #ccc;
     cursor: not-allowed;
 }
+
 .size-product-item:hover {
     background-color: #000;
     /* Cambia a negro al hacer hover */
@@ -512,12 +541,14 @@ body {
     gap: 10px;
     /* Espacio entre el ícono y el texto */
 }
+
 .check-icon {
     color: rgb(0, 150, 20);
     /* Cambia el color del ícono si lo deseas */
     font-size: 1em;
     /* Tamaño del ícono */
 }
+
 .check-text {
     font-size: small;
 }
@@ -594,7 +625,7 @@ body {
     transform: scale(1.1);
 }
 
-.product-card .sold-out {
+.sold-out {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -616,6 +647,24 @@ body {
     font-weight: bold;
     margin-bottom: 1em;
     color: #000000;
+}
+
+.product-title {
+    color: #000;
+    /* Color negro */
+    font-size: 1.5rem;
+    /* Tamaño de la fuente grande, similar a un título */
+    font-weight: normal;
+}
+
+.text-decoration-none {
+    text-decoration: none;
+    /* Quita la subrayado del enlace */
+}
+
+.product-title:hover {
+    color: #505050;
+    /* Mantener color negro incluso al pasar el ratón */
 }
 
 .list-colors span {
@@ -708,11 +757,13 @@ body {
     outline: none;
     box-shadow: none;
 }
+
 /* Estilo por defecto de la paginación */
 .page-link {
     color: black;
     /* Letra negra por defecto */
 }
+
 /* Estilo cuando está seleccionada */
 .page-item.active .page-link {
     background-color: black;
@@ -722,6 +773,7 @@ body {
     border-color: black;
     /* Ajustar el borde para que coincida con el fondo */
 }
+
 /* Opcional: Si quieres cambiar también el hover */
 .page-link:hover {
     color: black;
@@ -733,24 +785,4 @@ body {
     font-size: 12px;
     color: rgb(0, 0, 0);
     font-weight: bold;
-}
-
-
-
-
-
-
-
-.product-title {
-    color: #000; /* Color negro */
-    font-size: 1.5rem; /* Tamaño de la fuente grande, similar a un título */
-    font-weight: normal;
-}
-
-.text-decoration-none {
-    text-decoration: none; /* Quita la subrayado del enlace */
-}
-
-.product-title:hover {
-    color: #505050; /* Mantener color negro incluso al pasar el ratón */
 }

@@ -106,15 +106,18 @@
         <div class="mt-3">
             <h2 class="text-center" th:text="#{productos.destacados}">Productos destacados</h2>
         </div>
-        <div class="m-3">
+        <div class="m-3 m-sm-5">
             <div class="row">
-                <div th:each="producto : ${productos}" class="col-lg-3 col-md-4 mb-4">
+                <div th:each="producto : ${productosDestacados}" class="col-lg-3 col-md-4 mb-4">
                     <div class="card product-card">
                         <div class="image position-relative overflow-hidden clickeable">
                             <a th:href="@{/detalleProducto/{id}(id=${producto.id})}">
                                 <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
                             </a>
-                            <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            <span class="sold-out position-absolute bg-dark text-white p-1" 
+                                th:if="${producto.stock == 0}">
+                                SOLD OUT
+                            </span>
                         </div>
                         <div class="card-body product-info p-0">
                             <h3 class="card-title">
@@ -145,17 +148,20 @@
     <!-- Productos Nuevos-->
     <div class="bg-light pt-3">
         <div class="mt-3">
-            <h2 class="text-center">Nuevos ingresos</h2>
+            <h2 class="text-center">Próximos Lanzamientos</h2>
         </div>
-        <div class="m-3">
+        <div class="m-5">
             <div class="row">
-                <div th:each="producto : ${productos}" class="col-lg-3 col-md-4 mb-4">
+                <div th:each="producto : ${proximosLanzamientos}" class="col-lg-3 col-md-4 mb-4">
                     <div class="card product-card">
                         <div class="image position-relative overflow-hidden clickeable">
                             <a th:href="@{/detalleProducto/{id}(id=${producto.id})}">
                                 <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
                             </a>
-                            <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                            <span class="sold-out position-absolute bg-dark text-white p-1" 
+                                th:if="${producto.stock == 0}">
+                                SOLD OUT
+                            </span>
                         </div>
                         <div class="card-body product-info p-0">
                             <h3 class="card-title">

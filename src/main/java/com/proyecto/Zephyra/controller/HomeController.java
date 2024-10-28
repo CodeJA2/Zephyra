@@ -22,82 +22,62 @@ public class HomeController {
     @Autowired
     private ProductoService productoService;
 
-    // @GetMapping("/index")
-    // public String index() {
-    //     return "index";  // Muestra la pagina html
-    // }
-
-    @GetMapping({"/", "/index"})
+    @GetMapping({ "/", "/index" })
     public String listarProductos(Model model) {
         List<Producto> lista = productoService.listarProductos();
+        List<Producto> productosDestacados = productoService.listarProductosPorCategoria((long) 7);
+        List<Producto> proximosLanzamientos = productoService.listarProductosPorCategoria((long) 6);
         model.addAttribute("productos", lista);
+        model.addAttribute("productosDestacados", productosDestacados);
+        model.addAttribute("proximosLanzamientos", proximosLanzamientos);
         return "index";
     }
-
-    @GetMapping("/detalleProducto")
-    public String detalleProducto() {
-        return "detalleProducto";  // Muestra la pagina html
-    }
-
-
-
-
-
 
     @GetMapping("/detalleProducto/{id}")
     public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
         Producto producto = productoService.obtenerProductoPorId(id);
         if (producto != null) {
             model.addAttribute("producto", producto);
+            List<Producto> productosDestacados = productoService.listarProductosPorCategoria((long) 7);
+            model.addAttribute("productosDestacados", productosDestacados);
             return "detalleProducto";
         } else {
             return "redirect:/index"; // Redirige si no se encuentra el colaborador
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     @GetMapping("/editarCarrito")
     public String editarCarrito() {
-        return "editarCarrito";  // Muestra la pagina html
+        return "editarCarrito"; // Muestra la pagina html
     }
 
     @GetMapping("/paginaPago")
     public String paginaPago() {
-        return "paginaPago";  // Muestra la pagina html
+        return "paginaPago"; // Muestra la pagina html
     }
 
     @GetMapping("/politicaEnvios")
     public String politicaEnvios() {
-        return "politicaEnvios";  // Muestra la pagina html
+        return "politicaEnvios"; // Muestra la pagina html
     }
 
     @GetMapping("/politicaDevoluciones")
     public String politicaDevoluciones() {
-        return "politicaDevoluciones";  // Muestra la pagina html
+        return "politicaDevoluciones"; // Muestra la pagina html
     }
 
     @GetMapping("/preguntasFrecuentes")
     public String preguntasFrecuentes() {
-        return "preguntasFrecuentes";  // Muestra la pagina html
+        return "preguntasFrecuentes"; // Muestra la pagina html
     }
 
     @GetMapping("/servicioEntrega")
     public String servicioEntrega() {
-        return "servicioEntrega";  // Muestra la pagina html
+        return "servicioEntrega"; // Muestra la pagina html
     }
 
-    // Formulario de Sugerencia------------------------------------------------------------------------------------
+    // Formulario de
+    // Sugerencia------------------------------------------------------------------------------------
     @GetMapping("/sugerencia")
     public String mostrarSugerencia(Model model) {
         model.addAttribute("sugerencia", new Sugerencia());
@@ -111,7 +91,8 @@ public class HomeController {
         return "envioSugerencia";
     }
 
-    //Formulario de devolucion-------------------------------------------------------------------------------------
+    // Formulario de
+    // devolucion-------------------------------------------------------------------------------------
     @GetMapping("/formularioDevolucion")
     public String mostrarDevolucion(Model model) {
         model.addAttribute("devolucion", new Devolucion());
@@ -124,7 +105,8 @@ public class HomeController {
         return "envioDevolucion";
     }
 
-    //Formulario del Libro de Reclamaciones--------------------------------------------------------------------------
+    // Formulario del Libro de
+    // Reclamaciones--------------------------------------------------------------------------
     @GetMapping("/libroReclamaciones")
     public String mostrarFormulario(Model model) {
         model.addAttribute("libroReclamaciones", new LibroReclamaciones());
@@ -137,7 +119,7 @@ public class HomeController {
         return "envioLibroReclamaciones";
     }
 
-    //Formulario para contactanos
+    // Formulario para contactanos
     @GetMapping("/contactanos")
     public String mostrarContactanos(Model model) {
         model.addAttribute("contacto", new Contactanos());
@@ -150,25 +132,17 @@ public class HomeController {
         return "envioContactanos"; // Nombre de la vista de resultado
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // Galeria de Productos
     @GetMapping("/galeria")
     public String galeriaProductos(Model model) {
         List<Producto> lista = productoService.listarProductos();
         model.addAttribute("productos", lista);
         return "galeria";
+    }
+
+    // Administrador
+    @GetMapping("/ADM")
+    public String abirAdministrador() {
+        return "ADM_index";
     }
 }

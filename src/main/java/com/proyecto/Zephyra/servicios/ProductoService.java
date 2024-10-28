@@ -39,11 +39,12 @@ public class ProductoService {
         productoRepository.deleteById(id);
     }
 
-    // metodo para obtener un producto de la base de datos
+    // Obtener un Producto segun su ID
     public Producto obtenerProductoPorId(Long id) {
         return productoRepository.findById(id).orElse(null);
     }
 
+    // Guardar un Producto y su Categoria
     public void guardarProductoConCategorias(Producto producto, List<Long> categoriaIds) {
         // Busca las categorías por sus IDs
         List<Categoria> categorias = categoriaRepository.findAllById(categoriaIds);
@@ -55,7 +56,7 @@ public class ProductoService {
         productoRepository.save(producto);
     }
 
-    // Método para actualizar un producto con sus categorías
+    // Actualiar un Producto y su Categoria
     public void actualizarProductoConCategorias(Long id, Producto productoActualizado, List<Long> categoriaIds) {
         // Busca el producto existente por su ID
         Producto productoExistente = productoRepository.findById(id).orElse(null);
@@ -76,11 +77,14 @@ public class ProductoService {
         }
     }
 
-
-
-
     // R - Read (Leer):
     public List<Categoria> listarCategorias() {
         return categoriaRepository.findAll();
+    }
+
+    // Productos de una misma Categoria
+    public List<Producto> listarProductosPorCategoria(Long categoriaId) {
+        // Lógica para obtener productos de la categoría específica
+        return productoRepository.findByCategoriasId(categoriaId); // Supone que tienes este método en tu repositorio
     }
 }

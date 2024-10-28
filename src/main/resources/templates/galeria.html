@@ -207,19 +207,27 @@
                                 <a th:href="@{/detalleProducto/{id}(id=${producto.id})}">
                                     <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
                                 </a>
-                                <span class="sold-out position-absolute bg-dark text-white p-1">SOLD OUT</span>
+                                <span class="sold-out position-absolute bg-dark text-white p-1"
+                                    th:if="${producto.stock == 0}">
+                                    SOLD OUT
+                                </span>
                             </div>
                             <div class="card-body product-info p-0">
                                 <h3 class="card-title">
-                                    <a class="text-decoration-none product-title" th:href="@{/detalleProducto/{id}(id=${producto.id})}" th:text="${producto.nombre}">_nombre_del_producto_</a>
+                                    <a class="text-decoration-none product-title"
+                                        th:href="@{/detalleProducto/{id}(id=${producto.id})}"
+                                        th:text="${producto.nombre}">_nombre_del_producto_</a>
                                 </h3>
                                 <p>$<span th:text="${producto.precio}">_Precio_</span></p>
                                 <div class="list-colors mb-3">
                                     <span data-color="purple" class="color-option"
                                         style="background-color: #800080;"></span>
-                                    <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
-                                    <span data-color="black" class="color-option" style="background-color: #000000;"></span>
-                                    <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                                    <span data-color="white" class="color-option"
+                                        style="background-color: #FFFFFF;"></span>
+                                    <span data-color="black" class="color-option"
+                                        style="background-color: #000000;"></span>
+                                    <span data-color="brown" class="color-option"
+                                        style="background-color: #A52A2A;"></span>
                                 </div>
                                 <div class="star-rating">
                                     <i class="far fa-star"></i>

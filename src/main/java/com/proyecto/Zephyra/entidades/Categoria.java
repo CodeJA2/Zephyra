@@ -1,14 +1,12 @@
 package com.proyecto.Zephyra.entidades;
 
 import jakarta.persistence.*;
-
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "categorias")
 public class Categoria {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -46,6 +44,5 @@ public class Categoria {
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
-
 
 }

@@ -27,8 +27,8 @@
                                 HOMBRES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/galeria" th:text="#{hombres-1}">Polos</a></li>
-                                <li><a class="dropdown-item" href="/galeria" th:text="#{hombres-2}">Shorts</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=1)}" th:text="#{hombres-1}">Polos</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=2)}" th:text="#{hombres-2}">Shorts</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
@@ -37,9 +37,9 @@
                                 MUJERES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownForHer">
-                                <li><a class="dropdown-item" href="/galeria" th:text="#{mujeres-1}">Tops</a></li>
-                                <li><a class="dropdown-item" href="/galeria" th:text="#{mujeres-2}">Pantalones</a></li>
-                                <li><a class="dropdown-item" href="/galeria" th:text="#{mujeres-3}">Leggings</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=3)}" th:text="#{mujeres-1}">Tops</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=4)}" th:text="#{mujeres-2}">Pantalones</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=5)}" th:text="#{mujeres-3}">Leggings</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
@@ -49,9 +49,9 @@
                                 NUEVO
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownNewDrop">
-                                <a class="dropdown-item" href="/galeria" th:text="#{proximo}">Próximo Lanzamiento</a>
-                                <a class="dropdown-item" href="/galeria" th:text="#{destacado}">Destacado</a>
-                                <a class="dropdown-item" href="/galeria"
+                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=6)}" th:text="#{proximo}">Próximo Lanzamiento</a>
+                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=7)}" th:text="#{destacado}">Destacado</a>
+                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=8)}"
                                     th:text="#{reabastecimiento}">Reabastecimiento</a>
                             </div>
                         </li>

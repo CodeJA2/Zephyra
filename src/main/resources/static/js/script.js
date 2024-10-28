@@ -29,6 +29,21 @@ document.querySelectorAll('.color-option').forEach(color => {
     });
 });
 
+// Accion cuando seleccionas el COLOR
+document.querySelectorAll('.color-circle').forEach(circle => {
+    circle.addEventListener('click', function () {
+        document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+    });
+});
+// Accion cuando seleccionas el TALLA
+document.querySelectorAll('.size-product-item').forEach(btn => {
+    btn.addEventListener('click', function () {
+        document.querySelectorAll('.size-product-item').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+    });
+});
+
 // Funcionalidad de calificación por estrellas
 document.querySelectorAll('.star-rating').forEach(rating => {
     let isLocked = false; // Para bloquear la selección de estrellas después del primer clic

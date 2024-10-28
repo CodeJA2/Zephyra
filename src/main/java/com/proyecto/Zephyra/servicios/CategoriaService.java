@@ -34,7 +34,7 @@ public class CategoriaService {
         categoriaRepository.deleteById(id);
     }
 
-    // metodo para obtener un producto de la base de datos
+    // Obtener un Categoria segun su ID
     public Categoria obtenerCategoriaPorId(Long id) {
         return categoriaRepository.findById(id).orElse(null);
     }

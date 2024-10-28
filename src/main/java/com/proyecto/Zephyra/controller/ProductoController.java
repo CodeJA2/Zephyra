@@ -12,16 +12,12 @@ import com.proyecto.Zephyra.servicios.ProductoService;
 import java.util.List;
 
 @Controller
-// @RequestMapping("/productos")
 public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
-    // @Autowired
-    // private CategoriaService categoriaService;
-
     // C - Create (Crear):
-    @GetMapping("/productos/nuevo")
+    @GetMapping("/ADM/productos/nuevo")
     public String crearProducto(Model model) {
         model.addAttribute("producto", new Producto());
         List<Categoria> listaCategorias = productoService.listarCategorias();
@@ -30,27 +26,22 @@ public class ProductoController {
     }
 
     // R - Read (Leer):
-    @GetMapping("/productos")
-    public String listarProductos(Model model) {
+    @GetMapping("/ADM/productos")
+    public String allProductos(Model model) {
         List<Producto> lista = productoService.listarProductos();
         model.addAttribute("productos", lista);
         return "ADM_listarProductos";
     }
 
-    // @PostMapping("/productos")
-    // public String guardarProducto(@ModelAttribute("producto") Producto producto) {
-    //     productoService.guardarProducto(producto);
-    //     return "redirect:/productos";
-    // }
-
-    @PostMapping("/productos")
-    public String guardarProducto(@ModelAttribute("producto") Producto producto, @RequestParam("categoriaIds") List<Long> categoriaIds) {
+    @PostMapping("/ADM/productos")
+    public String guardarProducto(@ModelAttribute("producto") Producto producto,
+            @RequestParam("categoriaIds") List<Long> categoriaIds) {
         productoService.guardarProductoConCategorias(producto, categoriaIds);
-        return "redirect:/productos";
+        return "redirect:/ADM/productos";
     }
 
     // U - Update (Actualizar):
-    @GetMapping("/productos/editar/{id}")
+    @GetMapping("/ADM/productos/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
         Producto producto = productoService.obtenerProductoPorId(id);
         if (producto != null) {
@@ -59,36 +50,39 @@ public class ProductoController {
             model.addAttribute("categorias", listaCategorias); // Añadir todas las categorías
             return "ADM_editarProducto";
         } else {
-            return "redirect:/productos"; // Redirige si no se encuentra el producto
+            return "redirect:/ADM/productos"; // Redirige si no se encuentra el producto
         }
     }
 
-    @PostMapping("/productos/actualizar/{id}")
+    @PostMapping("/ADM/productos/actualizar/{id}")
     public String actualizarProducto(@PathVariable("id") Long id,
-                                    @ModelAttribute("producto") Producto productoActualizado,
-                                    @RequestParam("categoriaIds") List<Long> categoriaIds) {
+            @ModelAttribute("producto") Producto productoActualizado,
+            @RequestParam("categoriaIds") List<Long> categoriaIds) {
         productoService.actualizarProductoConCategorias(id, productoActualizado, categoriaIds);
-        return "redirect:/productos";
+        return "redirect:/ADM/productos";
     }
-
-    // @PostMapping("/productos/actualizar/{id}")
-    // public String actualizarProducto(@PathVariable("id") Long id,
-    //         @ModelAttribute("producto") Producto productoActualizado) {
-    //     Producto productoExistente = productoService.obtenerProductoPorId(id);
-    //     if (productoExistente != null) {
-    //         productoExistente.setNombre(productoActualizado.getNombre());
-    //         productoExistente.setPrecio(productoActualizado.getPrecio());
-    //         productoExistente.setDescripcion(productoActualizado.getDescripcion());
-    //         productoService.actualizarProducto(productoExistente);
-    //     }
-    //     return "redirect:/productos";
-    // }
 
     // D - Delete (Eliminar):
-    @GetMapping("/productos/eliminar/{id}")
+    @GetMapping("/ADM/productos/eliminar/{id}")
     public String eliminarProducto(@PathVariable("id") Long id) {
         productoService.eliminarProducto(id);
-        return "redirect:/productos";
+        return "redirect:/ADM/productos";
     }
-    
+
+    // Mostrar Productos de una misma Categoria
+    @GetMapping("/ADM/productos/categoria/{id}")
+    public String listarProductosPorCategoria(@PathVariable Long id, Model model) {
+        List<Producto> productosPorCategoria = productoService.listarProductosPorCategoria(id);
+        model.addAttribute("productos", productosPorCategoria);
+        return "ADM_listarProductosPorCategoria"; // Devuelve la vista correspondiente
+    }
+
+    // Mostrar Productos de una misma Categoria
+    @GetMapping("/productos/categoria/{id}")
+    public String productosPorCategoria(@PathVariable Long id, Model model) {
+        List<Producto> productosPorCategoria = productoService.listarProductosPorCategoria(id);
+        model.addAttribute("productos", productosPorCategoria);
+        return "galeria"; // Devuelve la vista correspondiente
+    }
+
 }
