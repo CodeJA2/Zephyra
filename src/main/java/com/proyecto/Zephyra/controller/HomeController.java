@@ -5,6 +5,9 @@ import com.proyecto.Zephyra.model.Contactanos;
 import com.proyecto.Zephyra.model.Devolucion;
 import com.proyecto.Zephyra.model.LibroReclamaciones;
 import com.proyecto.Zephyra.model.Sugerencia;
+import com.proyecto.Zephyra.repositorios.CategoriaRepository;
+import com.proyecto.Zephyra.repositorios.MarcaRepository;
+import com.proyecto.Zephyra.repositorios.ProductoRepository;
 import com.proyecto.Zephyra.servicios.ProductoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,8 +142,39 @@ public class HomeController {
     }
 
     // Administrador
+    // @GetMapping("/ADM")
+    // public String abirAdministrador() {
+    //     return "ADM_index";
+    // }
+
+
+
+
+
+
+
+
+
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private MarcaRepository marcaRepository;
+
     @GetMapping("/ADM")
-    public String abirAdministrador() {
-        return "ADM_index";
+    public String mostrarDashboard(Model model) {
+        long totalProductos = productoRepository.count();
+        long totalCategorias = categoriaRepository.count();
+        long totalMarcas = marcaRepository.count();
+
+        model.addAttribute("totalProductos", totalProductos);
+        model.addAttribute("totalCategorias", totalCategorias);
+        model.addAttribute("totalMarcas", totalMarcas);
+        
+        return "ADM_index"; // Nombre de la vista
     }
 }

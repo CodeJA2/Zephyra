@@ -32,7 +32,7 @@ public class CategoriaService {
         categoriaRepository.deleteById(id);
     }
 
-    // Obtener un Categoria segun su ID
+    // Obtener una Categoria segun su ID
     public Categoria obtenerCategoriaPorId(Long id) {
         return categoriaRepository.findById(id).orElse(null);
     }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.proyecto.Zephyra.entidades.Categoria;
+import com.proyecto.Zephyra.entidades.Marca;
 import com.proyecto.Zephyra.entidades.Producto;
 import com.proyecto.Zephyra.servicios.ProductoService;
 import java.util.List;
@@ -20,6 +21,8 @@ public class ProductoController {
         model.addAttribute("producto", new Producto());
         List<Categoria> listaCategorias = productoService.listarCategorias();
         model.addAttribute("listaCategorias", listaCategorias); // Añadir todas las categorías
+        List<Marca> marcas = productoService.listarMarcas();
+        model.addAttribute("listaMarcas", marcas);  // Añadir todas las marcas
         return "ADM_crearProducto";
     }
 
@@ -32,9 +35,10 @@ public class ProductoController {
     }
 
     @PostMapping("/ADM/productos")
-    public String guardarProducto(@ModelAttribute("producto") Producto producto,
-            @RequestParam("categoriaIds") List<Long> categoriaIds) {
-        productoService.guardarProductoConCategorias(producto, categoriaIds);
+    public String guardarProducto(@ModelAttribute("producto") Producto producto,  // Capturar el producto desde el formulario
+                                  @RequestParam("categoriaIds") List<Long> categoriaIds,  // Capturar las categorias desde el formulario
+                                  @RequestParam("marcaId") Long marcaId) { // Capturar marcaId desde el formulario
+        productoService.guardarProductoConCategoriasYMarca(producto, categoriaIds, marcaId);
         return "redirect:/ADM/productos";
     }
 
@@ -44,19 +48,25 @@ public class ProductoController {
         Producto producto = productoService.obtenerProductoPorId(id);
         if (producto != null) {
             model.addAttribute("producto", producto);
+
             List<Categoria> listaCategorias = productoService.listarCategorias();
-            model.addAttribute("categorias", listaCategorias); // Añadir todas las categorías
+            model.addAttribute("listaCategorias", listaCategorias); // Añadir todas las categorías
+            
+            List<Marca> marcas = productoService.listarMarcas();
+            model.addAttribute("listaMarcas", marcas); // Añadir todas las marcas
+            
             return "ADM_editarProducto";
         } else {
-            return "redirect:/ADM/productos"; // Redirige si no se encuentra el producto
+            return "redirect:/ADM/productos";
         }
     }
 
     @PostMapping("/ADM/productos/actualizar/{id}")
     public String actualizarProducto(@PathVariable("id") Long id,
-            @ModelAttribute("producto") Producto productoActualizado,
-            @RequestParam("categoriaIds") List<Long> categoriaIds) {
-        productoService.actualizarProductoConCategorias(id, productoActualizado, categoriaIds);
+                                     @ModelAttribute("producto") Producto productoActualizado,
+                                     @RequestParam("categoriaIds") List<Long> categoriaIds,
+                                     @RequestParam("marcaId") Long marcaId) { // Capturar marcaId
+        productoService.actualizarProductoConCategoriasYMarca(id, productoActualizado, categoriaIds, marcaId); // Manejar marca también
         return "redirect:/ADM/productos";
     }
 
@@ -67,7 +77,7 @@ public class ProductoController {
         return "redirect:/ADM/productos";
     }
 
-    // Mostrar Productos de una misma Categoria
+    // Mostrar Productos de una misma Categoria (Administrador)
     @GetMapping("/ADM/productos/categoria/{id}")
     public String listarProductosPorCategoria(@PathVariable Long id, Model model) {
         List<Producto> productosPorCategoria = productoService.listarProductosPorCategoria(id);

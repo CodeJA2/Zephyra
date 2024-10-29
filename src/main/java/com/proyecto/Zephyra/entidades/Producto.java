@@ -14,7 +14,9 @@ public class Producto {
     @Column(nullable = false)
     private String nombre;
 
-    private String marca;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "marca_id", nullable = false)
+    private Marca marca;
 
     @Column(nullable = false)
     private double precio;
@@ -29,10 +31,11 @@ public class Producto {
     @JoinTable(name = "producto_categoria", joinColumns = @JoinColumn(name = "producto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private List<Categoria> categorias;
 
-    // Getters, setters, constructores
+    // Constructor
     public Producto() {
     }
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -49,11 +52,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getMarca() {
+    public Marca getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(Marca marca) {
         this.marca = marca;
     }
 

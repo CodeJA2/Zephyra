@@ -42,7 +42,7 @@ public class CategoriaController {
             model.addAttribute("categoria", categoria);
             return "ADM_editarCategoria";
         } else {
-            return "redirect:/ADM/categorias"; // Redirige si no se encuentra el colaborador
+            return "redirect:/ADM/categorias";
         }
     }
 

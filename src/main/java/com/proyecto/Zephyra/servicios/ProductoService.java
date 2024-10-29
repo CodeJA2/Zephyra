@@ -3,8 +3,10 @@ package com.proyecto.Zephyra.servicios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.proyecto.Zephyra.entidades.Categoria;
+import com.proyecto.Zephyra.entidades.Marca;
 import com.proyecto.Zephyra.entidades.Producto;
 import com.proyecto.Zephyra.repositorios.CategoriaRepository;
+import com.proyecto.Zephyra.repositorios.MarcaRepository;
 import com.proyecto.Zephyra.repositorios.ProductoRepository;
 import java.util.List;
 
@@ -16,6 +18,9 @@ public class ProductoService {
 
     @Autowired
     private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private MarcaRepository marcaRepository;
 
     // C - Create (Crear):
     public Producto guardarProducto(Producto producto) {
@@ -42,20 +47,22 @@ public class ProductoService {
         return productoRepository.findById(id).orElse(null);
     }
 
-    // Guardar un Producto y su Categoria
-    public void guardarProductoConCategorias(Producto producto, List<Long> categoriaIds) {
+    // Guardar un Producto, su Marca y sus Categorías
+    public void guardarProductoConCategoriasYMarca(Producto producto, List<Long> categoriaIds, Long marcaId) {
         // Busca las categorías por sus IDs
         List<Categoria> categorias = categoriaRepository.findAllById(categoriaIds);
-        
         // Asigna las categorías al producto
         producto.setCategorias(categorias);
-
+        // Busca la marca por su ID
+        Marca marca = marcaRepository.findById(marcaId).orElse(null);
+        // Asigna la marca al producto
+        producto.setMarca(marca);
         // Guarda el producto
         productoRepository.save(producto);
     }
 
-    // Actualiar un Producto y su Categoria
-    public void actualizarProductoConCategorias(Long id, Producto productoActualizado, List<Long> categoriaIds) {
+   // Actualizar un Producto, su Marca y sus Categorías
+    public void actualizarProductoConCategoriasYMarca(Long id, Producto productoActualizado, List<Long> categoriaIds, Long marcaId) {
         // Busca el producto existente por su ID
         Producto productoExistente = productoRepository.findById(id).orElse(null);
         if (productoExistente != null) {
@@ -64,18 +71,19 @@ public class ProductoService {
             productoExistente.setPrecio(productoActualizado.getPrecio());
             productoExistente.setDescripcion(productoActualizado.getDescripcion());
             productoExistente.setStock(productoActualizado.getStock());
-
             // Busca las categorías por sus IDs
             List<Categoria> categorias = categoriaRepository.findAllById(categoriaIds);
             // Asigna las categorías al producto
             productoExistente.setCategorias(categorias);
-
+            // Busca la marca por su ID
+            Marca marca = marcaRepository.findById(marcaId).orElse(null);
+            productoExistente.setMarca(marca);
             // Guarda el producto actualizado en la base de datos
             productoRepository.save(productoExistente);
         }
     }
 
-    // R - Read (Leer):
+    // R - Read (Leer) categorías:
     public List<Categoria> listarCategorias() {
         return categoriaRepository.findAll();
     }
@@ -83,6 +91,11 @@ public class ProductoService {
     // Productos de una misma Categoria
     public List<Producto> listarProductosPorCategoria(Long categoriaId) {
         // Lógica para obtener productos de la categoría específica
-        return productoRepository.findByCategoriasId(categoriaId); // Supone que tienes este método en tu repositorio
+        return productoRepository.findByCategoriasId(categoriaId);
+    }
+
+    // R - Read (Leer) marcas:
+    public List<Marca> listarMarcas() {
+        return marcaRepository.findAll();
     }
 }
