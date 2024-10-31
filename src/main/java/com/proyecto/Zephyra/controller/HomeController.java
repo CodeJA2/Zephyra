@@ -5,9 +5,6 @@ import com.proyecto.Zephyra.model.Contactanos;
 import com.proyecto.Zephyra.model.Devolucion;
 import com.proyecto.Zephyra.model.LibroReclamaciones;
 import com.proyecto.Zephyra.model.Sugerencia;
-import com.proyecto.Zephyra.repositorios.CategoriaRepository;
-import com.proyecto.Zephyra.repositorios.MarcaRepository;
-import com.proyecto.Zephyra.repositorios.ProductoRepository;
 import com.proyecto.Zephyra.servicios.ProductoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +19,7 @@ import org.springframework.ui.Model;
 public class HomeController {
     @Autowired
     private ProductoService productoService;
+
 
     @GetMapping({ "/", "/index" })
     public String listarProductos(Model model) {
@@ -49,36 +47,35 @@ public class HomeController {
 
     @GetMapping("/editarCarrito")
     public String editarCarrito() {
-        return "editarCarrito"; // Muestra la pagina html
+        return "editarCarrito";
     }
 
     @GetMapping("/paginaPago")
     public String paginaPago() {
-        return "paginaPago"; // Muestra la pagina html
+        return "paginaPago";
     }
 
     @GetMapping("/politicaEnvios")
     public String politicaEnvios() {
-        return "politicaEnvios"; // Muestra la pagina html
+        return "politicaEnvios";
     }
 
     @GetMapping("/politicaDevoluciones")
     public String politicaDevoluciones() {
-        return "politicaDevoluciones"; // Muestra la pagina html
+        return "politicaDevoluciones";
     }
 
     @GetMapping("/preguntasFrecuentes")
     public String preguntasFrecuentes() {
-        return "preguntasFrecuentes"; // Muestra la pagina html
+        return "preguntasFrecuentes";
     }
 
     @GetMapping("/servicioEntrega")
     public String servicioEntrega() {
-        return "servicioEntrega"; // Muestra la pagina html
+        return "servicioEntrega";
     }
 
-    // Formulario de
-    // Sugerencia------------------------------------------------------------------------------------
+    // Formulario de Sugerencia
     @GetMapping("/sugerencia")
     public String mostrarSugerencia(Model model) {
         model.addAttribute("sugerencia", new Sugerencia());
@@ -92,8 +89,7 @@ public class HomeController {
         return "envioSugerencia";
     }
 
-    // Formulario de
-    // devolucion-------------------------------------------------------------------------------------
+    // Formulario de devolucion
     @GetMapping("/formularioDevolucion")
     public String mostrarDevolucion(Model model) {
         model.addAttribute("devolucion", new Devolucion());
@@ -106,8 +102,7 @@ public class HomeController {
         return "envioDevolucion";
     }
 
-    // Formulario del Libro de
-    // Reclamaciones--------------------------------------------------------------------------
+    // Formulario del Libro de Reclamaciones
     @GetMapping("/libroReclamaciones")
     public String mostrarFormulario(Model model) {
         model.addAttribute("libroReclamaciones", new LibroReclamaciones());
@@ -124,13 +119,13 @@ public class HomeController {
     @GetMapping("/contactanos")
     public String mostrarContactanos(Model model) {
         model.addAttribute("contacto", new Contactanos());
-        return "contactanos"; // Nombre de la vista del formulario
+        return "contactanos";
     }
 
     @PostMapping("/enviarConsulta")
     public String enviarConsulta(@ModelAttribute Contactanos consulta, Model model) {
         model.addAttribute("contacto", consulta);
-        return "envioContactanos"; // Nombre de la vista de resultado
+        return "envioContactanos";
     }
 
     // Galeria de Productos
@@ -139,42 +134,5 @@ public class HomeController {
         List<Producto> lista = productoService.listarProductos();
         model.addAttribute("productos", lista);
         return "galeria";
-    }
-
-    // Administrador
-    // @GetMapping("/ADM")
-    // public String abirAdministrador() {
-    //     return "ADM_index";
-    // }
-
-
-
-
-
-
-
-
-
-
-    @Autowired
-    private ProductoRepository productoRepository;
-
-    @Autowired
-    private CategoriaRepository categoriaRepository;
-
-    @Autowired
-    private MarcaRepository marcaRepository;
-
-    @GetMapping("/ADM")
-    public String mostrarDashboard(Model model) {
-        long totalProductos = productoRepository.count();
-        long totalCategorias = categoriaRepository.count();
-        long totalMarcas = marcaRepository.count();
-
-        model.addAttribute("totalProductos", totalProductos);
-        model.addAttribute("totalCategorias", totalCategorias);
-        model.addAttribute("totalMarcas", totalMarcas);
-        
-        return "ADM_index"; // Nombre de la vista
     }
 }

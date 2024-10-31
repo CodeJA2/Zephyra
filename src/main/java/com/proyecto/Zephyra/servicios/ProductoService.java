@@ -98,4 +98,9 @@ public class ProductoService {
     public List<Marca> listarMarcas() {
         return marcaRepository.findAll();
     }
+
+    // conteo de todas los productos registradas:
+    public long contarProductos() {
+        return productoRepository.count();
+    }
 }

@@ -37,4 +37,9 @@ public class MarcaService {
     public Marca obtenerMarcaPorId(Long id) {
         return marcaRepository.findById(id).orElse(null);
     }
+
+    // conteo de todas las marcas registradas:
+    public long contarMarcas() {
+        return marcaRepository.count();
+    }
 }

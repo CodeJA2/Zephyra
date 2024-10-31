@@ -17,20 +17,14 @@ public class MarcaController {
     @Autowired
     private MarcaService marcaService;
 
-    // C - Create (Crear):
+    // C - CREATE (Crear marca):
     @GetMapping("/ADM/marcas/nuevo")
     public String crearMarcaForm(Model model) {
         model.addAttribute("marca", new Marca());
         return "/ADM_crearMarca";
     }
 
-    // R - Read (Leer):
-    @GetMapping("/ADM/marcas")
-    public String listarMarcas(Model model) {
-        List<Marca> lista = marcaService.listarMarcas();
-        model.addAttribute("marcas", lista);
-        return "ADM_listarMarcas";
-    }
+    
 
     @PostMapping("/ADM/marcas")
     public String guardarMarca(@ModelAttribute("marca") Marca marca) {
@@ -38,7 +32,15 @@ public class MarcaController {
         return "redirect:/ADM/marcas";
     }
 
-    // U - Update (Actualizar):
+    // R - READ (Leer marca):
+    @GetMapping("/ADM/marcas")
+    public String listarMarcas(Model model) {
+        List<Marca> lista = marcaService.listarMarcas();
+        model.addAttribute("listaMarcas", lista);
+        return "ADM_listarMarcas";
+    }
+
+    // U - UPDATE (Actualizar marca):
     @GetMapping("/ADM/marcas/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
         Marca marca = marcaService.obtenerMarcaPorId(id);
@@ -61,7 +63,7 @@ public class MarcaController {
         return "redirect:/ADM/marcas";
     }
 
-    // D - Delete (Eliminar):
+    // D - DELETE (Eliminar marca):
     @GetMapping("/ADM/marcas/eliminar/{id}")
     public String eliminarMarca(@PathVariable("id") Long id) {
         marcaService.eliminarMarca(id);

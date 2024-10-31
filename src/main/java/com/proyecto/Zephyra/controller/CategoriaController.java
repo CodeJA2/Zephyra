@@ -10,22 +10,15 @@ import java.util.List;
 
 @Controller
 public class CategoriaController {
+
     @Autowired
     private CategoriaService categoriaService;
 
-    // C - Create (Crear):
+    // C - CREATE (Crear categoria):
     @GetMapping("/ADM/categorias/nuevo")
     public String crearCategoria(Model model) {
         model.addAttribute("categoria", new Categoria());
         return "ADM_crearCategoria";
-    }
-
-    // R - Read (Leer):
-    @GetMapping("/ADM/categorias")
-    public String listarCategorias(Model model) {
-        List<Categoria> lista = categoriaService.listarCategorias();
-        model.addAttribute("categorias", lista);
-        return "ADM_listarCategorias";
     }
 
     @PostMapping("/ADM/categorias")
@@ -34,9 +27,17 @@ public class CategoriaController {
         return "redirect:/ADM/categorias";
     }
 
-    // U - Update (Actualizar):
+    // R - READ (Leer categoria):
+    @GetMapping("/ADM/categorias")
+    public String listarCategorias(Model model) {
+        List<Categoria> lista = categoriaService.listarCategorias();
+        model.addAttribute("listaCategorias", lista);
+        return "ADM_listarCategorias";
+    }
+
+    // U - UPDATE (Actualizar categoria):
     @GetMapping("/ADM/categorias/editar/{id}")
-    public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
+    public String editarCategoria(@PathVariable("id") Long id, Model model) {
         Categoria categoria = categoriaService.obtenerCategoriaPorId(id);
         if (categoria != null) {
             model.addAttribute("categoria", categoria);
@@ -57,7 +58,7 @@ public class CategoriaController {
         return "redirect:/ADM/categorias";
     }
 
-    // D - Delete (Eliminar):
+    // D - DELETE (Eliminar categoria):
     @GetMapping("/ADM/categorias/eliminar/{id}")
     public String eliminarCategoria(@PathVariable("id") Long id) {
         categoriaService.eliminarCategoria(id);

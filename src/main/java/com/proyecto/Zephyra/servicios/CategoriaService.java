@@ -36,4 +36,9 @@ public class CategoriaService {
     public Categoria obtenerCategoriaPorId(Long id) {
         return categoriaRepository.findById(id).orElse(null);
     }
+
+    // conteo de todas las categorias registradas:
+    public long contarCategorias() {
+        return categoriaRepository.count();
+    }
 }

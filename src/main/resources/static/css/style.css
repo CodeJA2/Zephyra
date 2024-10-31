@@ -175,8 +175,8 @@ body {
 /* Modal */
 .modal-content {
     background-color: #fff;
-    color: #000;
-    border: 1px solid #000000;
+    color: #000000;
+    border: 1px solid #ffffff;
     border-radius: 0;
 }
 
@@ -413,7 +413,7 @@ body {
 .slide-product .carousel-item img {
     width: 100%;
     /* Hacer que la imagen ocupe todo el ancho del contenedor */
-    height: 700px;
+    height: 800px;
     /* Altura fija para todas las imágenes */
     object-fit: cover;
     /* Recortar la imagen para llenar el contenedor sin deformar */
@@ -558,7 +558,6 @@ body {
     background-color: rgba(255, 255, 255, 0.801);
     padding: 0px;
     text-align: center;
-    /* border: 0px solid #000000; */
     border-radius: 0px;
     transition: box-shadow 0.3s;
 }
@@ -566,40 +565,35 @@ body {
 /* Altura de la imagen para pantallas extra grandes (xl) */
 @media (min-width: 1200px) {
     .product-card {
-        height: 550px;
-        /* Cuadrado de 300x300px */
+        height: 900px;
     }
 }
 
 /* Altura de la imagen para pantallas grandes (lg) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .product-card {
-        height: 500px;
-        /* Cuadrado de 250x250px */
+        height: 550px;
     }
 }
 
 /* Altura de la imagen para pantallas medianas (md) */
 @media (min-width: 768px) and (max-width: 991.98px) {
     .product-card {
-        height: 500px;
-        /* Cuadrado de 200x200px */
+        height: 550px;
     }
 }
 
 /* Altura de la imagen para pantallas pequeñas (sm) */
 @media (min-width: 576px) and (max-width: 767.98px) {
     .product-card {
-        height: 600px;
-        /* Cuadrado de 180x180px */
+        height: 1050px;
     }
 }
 
 /* Altura de la imagen para pantallas extra pequeñas (xs) */
 @media (max-width: 575.98px) {
     .product-card {
-        height: 550px;
-        /* Cuadrado de 150x150px */
+        height: 1050px;
     }
 }
 
@@ -695,40 +689,35 @@ body {
 /* Altura de la imagen para pantallas extra grandes (xl) */
 @media (min-width: 1200px) {
     .card-img-top {
-        height: 300px;
-        /* Cuadrado de 300x300px */
+        height: 650px;
     }
 }
 
 /* Altura de la imagen para pantallas grandes (lg) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .card-img-top {
-        height: 250px;
-        /* Cuadrado de 250x250px */
+        height: 300px;
     }
 }
 
 /* Altura de la imagen para pantallas medianas (md) */
 @media (min-width: 768px) and (max-width: 991.98px) {
     .card-img-top {
-        height: 200px;
-        /* Cuadrado de 200x200px */
+        height: 300px;
     }
 }
 
 /* Altura de la imagen para pantallas pequeñas (sm) */
 @media (min-width: 576px) and (max-width: 767.98px) {
     .card-img-top {
-        height: 350px;
-        /* Cuadrado de 180x180px */
+        height: 800px;
     }
 }
 
 /* Altura de la imagen para pantallas extra pequeñas (xs) */
 @media (max-width: 575.98px) {
     .card-img-top {
-        height: 300px;
-        /* Cuadrado de 150x150px */
+        height: 800px;
     }
 }
 
