@@ -16,35 +16,40 @@
                     </div>
                     <ul class="navbar-nav justify-content-evenly mx-3">
                         <li class="nav-item dropdown p-1 py-md-1">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.hombres}">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false" th:text="#{nav.hombres}">
                                 HOMBRES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#" th:text="#{hombres-1}">Polos</a></li>
-                                <li><a class="dropdown-item" href="#" th:text="#{hombres-2}">Shorts</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=1)}" th:text="#{hombres-1}">Polos</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=2)}" th:text="#{hombres-2}">Shorts</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
-                            <a class="nav-link" href="#" id="navbarDropdownForHer" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.mujeres}">
+                            <a class="nav-link" href="#" id="navbarDropdownForHer" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.mujeres}">
                                 MUJERES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownForHer">
-                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-1}">Tops</a></li>
-                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-2}">Pantalones</a></li>
-                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-3}">Leggings</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=3)}" th:text="#{mujeres-1}">Tops</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=4)}" th:text="#{mujeres-2}">Pantalones</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=5)}" th:text="#{mujeres-3}">Leggings</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
-                            <a class="nav-link" href="#" id="navbarDropdownNewDrop" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{nav.nuevo}">
+                            <a class="nav-link" href="#" id="navbarDropdownNewDrop" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                th:text="#{nav.nuevo}">
                                 NUEVO
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownNewDrop">
-                                <a class="dropdown-item" href="#" th:text="#{proximo}">Próximo Lanzamiento</a>
-                                <a class="dropdown-item" href="#" th:text="#{destacado}">Destacado</a>
-                                <a class="dropdown-item" href="#" th:text="#{reabastecimiento}">Reabastecimiento</a>
+                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=6)}" th:text="#{proximo}">Próximo Lanzamiento</a>
+                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=7)}" th:text="#{destacado}">Destacado</a>
+                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=8)}"
+                                    th:text="#{reabastecimiento}">Reabastecimiento</a>
                             </div>
                         </li>
-                    </ul>
+                    </ul>
                 </section>
             </div>
             <a class="nav justify-content-center" th:href="@{/index}">
