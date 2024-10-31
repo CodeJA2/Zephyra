@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador | Editar Producto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Header -->
+    <div th:replace="fragments/ADM_header"></div>
+    
+    <div class="container mt-5">
+        <h1 class="text-center">Editar Producto</h1>
+        <form th:action="@{/ADM/productos/actualizar/{id}(id=${producto.id})}" th:object="${producto}" method="post" class="mt-4">
+            <div class="form-group mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="marcas" class="form-label">Marca:</label>
+                <select id="marcas" name="marcaId" class="form-control" required>
+                    <option th:each="marcaI : ${listaMarcas}" th:value="${marcaI.id}" th:text="${marcaI.nombre}" 
+                    th:selected="${producto.marca != null && producto.marca.id == marcaI.id}"></option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="precio" class="form-label">Precio:</label>
+                <input type="number" step="0.01" class="form-control" id="precio" th:field="*{precio}" placeholder="Ingrese precio"required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="descripcion" class="form-label">Descripcion:</label>
+                <textarea type="text" class="form-control" id="descripcion" rows="5" th:field="*{descripcion}"
+                    placeholder="Ingrese la descripcion" required></textarea>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="stock" class="form-label">Stock:</label>
+                <input type="number" step="0" class="form-control" id="stock" th:field="*{stock}" placeholder="Ingrese stock" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="categorias" class="form-label">Categorías:</label>
+                <select id="categorias" name="categoriaIds" multiple class="form-control" style="height: 200px" required> 
+                    <option th:each="categoria : ${listaCategorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"
+                        th:selected="${producto.categorias.contains(categoria)}">
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a href="/ADM/productos" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

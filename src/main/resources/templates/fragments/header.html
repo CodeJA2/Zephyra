@@ -1,47 +1,58 @@
-<!-- Header con menú de navegación -->
-<header class="main-header">   
+<!-- Header Start -->
+<header class="main-header">
+
+    <!-- Topbar Start -->
     <div class="top-bar">
         <a th:text="#{topBar}">ENVÍO A TODO EL PERÚ 🚚</a>
     </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-white bg-white">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="row row-cols-3">                
+            <div class="row row-cols-3">
                 <section class="offcanvas offcanvas-start pt-5 pt-lg-0" id="menuLateral" tabindex="-1">
                     <div class="offcanvas-header">
-                        <img src="/img\Logos\logo_principal2.png" class="rounded mx-0 d-block" alt="Zephyra Logo" style="width: 50px;">
+                        <img src="/img\Logos\logo_principal2.png" class="rounded mx-0 d-block" alt="Zephyra Logo"
+                            style="width: 50px;">
                         <button class="btn-close" type="button" aria-label="close" data-bs-dismiss="offcanvas"></button>
                     </div>
                     <ul class="navbar-nav justify-content-evenly mx-3">
                         <li class="nav-item dropdown p-1 py-md-1">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.hombres}">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false" th:text="#{nav.hombres}">
                                 HOMBRES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#" th:text="#{hombres-1}">Polos</a></li>
-                                <li><a class="dropdown-item" href="#" th:text="#{hombres-2}">Shorts</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=1)}" th:text="#{hombres-1}">Polos</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=2)}" th:text="#{hombres-2}">Shorts</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
-                            <a class="nav-link" href="#" id="navbarDropdownForHer" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.mujeres}">
+                            <a class="nav-link" href="#" id="navbarDropdownForHer" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.mujeres}">
                                 MUJERES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownForHer">
-                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-1}">Tops</a></li>
-                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-2}">Pantalones</a></li>
-                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-3}">Leggings</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=3)}" th:text="#{mujeres-1}">Tops</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=4)}" th:text="#{mujeres-2}">Pantalones</a></li>
+                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=5)}" th:text="#{mujeres-3}">Leggings</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
-                            <a class="nav-link" href="#" id="navbarDropdownNewDrop" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{nav.nuevo}">
+                            <a class="nav-link" href="#" id="navbarDropdownNewDrop" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                th:text="#{nav.nuevo}">
                                 NUEVO
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownNewDrop">
-                                <a class="dropdown-item" href="#" th:text="#{proximo}">Próximo Lanzamiento</a>
-                                <a class="dropdown-item" href="#" th:text="#{destacado}">Destacado</a>
-                                <a class="dropdown-item" href="#" th:text="#{reabastecimiento}">Reabastecimiento</a>
+                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=6)}" th:text="#{proximo}">Próximo Lanzamiento</a>
+                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=7)}" th:text="#{destacado}">Destacado</a>
+                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=8)}"
+                                    th:text="#{reabastecimiento}">Reabastecimiento</a>
                             </div>
                         </li>
                     </ul>
@@ -52,20 +63,31 @@
             </a>
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link clickeable" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a class="nav-link clickeable" data-bs-toggle="modal" data-bs-target="#searchModal"><i
+                            class="fa-solid fa-magnifying-glass"></i></a>
                 </li>
                 <li class="nav-item d-none d-md-block">
-                    <a class="nav-link" href="https://l.instagram.com/?u=https%3A%2F%2Fwa.link%2Ff1vdzy&e=AT0MkH1DY8S9eyfVkbN9SwWYXvRai-rs7t_w4ORpbHknu8Ypztbty8SrCEH8G7J_up_ex5VdmSezYtB_cLmjuJz2Az9VtUpTRUZy4PoFNxKz8MbBFSe8zA"><i class="fa-brands fa-whatsapp fa-beat"></i> (818) 206-8764</a>
+                    <a class="nav-link"
+                        href="https://l.instagram.com/?u=https%3A%2F%2Fwa.link%2Ff1vdzy&e=AT0MkH1DY8S9eyfVkbN9SwWYXvRai-rs7t_w4ORpbHknu8Ypztbty8SrCEH8G7J_up_ex5VdmSezYtB_cLmjuJz2Az9VtUpTRUZy4PoFNxKz8MbBFSe8zA"><i
+                            class="fa-brands fa-whatsapp fa-beat"></i> (818) 206-8764</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link clickeable" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="fas fa-user"></i></a>
+                    <a class="nav-link clickeable" data-bs-toggle="modal" data-bs-target="#modalLogin"><i
+                            class="fas fa-user"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link clickeable" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"><i class="fas fa-shopping-bag"></i></a>
+                    <a class="nav-link clickeable position-relative" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasCart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span id="cart-count" class="position-absolute top-5 start-95 translate-middle">
+                            0
+                        </span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <div class="dropdown">
-                        <a href="#" class="nav-link" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="nav-link" id="languageDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fas fa-globe"></i> <span id="languageText" th:text="#{idioma}">ES</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="languageDropdown">
@@ -77,8 +99,9 @@
             </ul>
         </div>
     </nav>
+    <!-- Navbar End -->
 </header>
-<!-- Header con menú de navegación -->
+<!-- Header End -->
 
 <!-- Modal del login-->
 <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
@@ -90,16 +113,21 @@
             </div>
             <div class="modal-body">
                 <!-- Logo de la empresa -->
-                <div class="logo">
+                <div class="login-logo">
                     <img src="\img\Logos\logo_principal.png" alt="Logo de la Empresa">
                 </div>
                 <!-- Pestañas de navegación -->
                 <ul class="nav nav-login nav-tabs" id="authTab" role="tablist">
                     <li class="nav-item w-50 h-100" role="presentation">
-                        <button class="nav-link active w-100 h-100 d-flex align-items-center justify-content-center" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true" th:text="#{iniciar-sesion}">Iniciar Sesión</button>
+                        <button class="nav-link active w-100 h-100 d-flex align-items-center justify-content-center"
+                            id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab"
+                            aria-controls="login" aria-selected="true" th:text="#{iniciar-sesion}">Iniciar
+                            Sesión</button>
                     </li>
                     <li class="nav-item w-50 h-100" role="presentation">
-                        <button class="nav-link w-100 h-100 d-flex align-items-center justify-content-center" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false" th:text="#{registrarse}">Registrarse</button>
+                        <button class="nav-link w-100 h-100 d-flex align-items-center justify-content-center"
+                            id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab"
+                            aria-controls="register" aria-selected="false" th:text="#{registrarse}">Registrarse</button>
                     </li>
                 </ul>
                 <div class="tab-content mt-3" id="authTabContent">
@@ -107,14 +135,18 @@
                     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                         <form>
                             <div class="mb-3">
-                                <label for="loginEmail" class="form-label" th:text="#{correo}">Correo electrónico</label>
-                                <input type="email" class="form-control" id="loginEmail" th:placeholder="#{ejemplo.correo}">
+                                <label for="loginEmail" class="form-label" th:text="#{correo}">Correo
+                                    electrónico</label>
+                                <input type="email" class="form-control" id="loginEmail"
+                                    th:placeholder="#{ejemplo.correo}">
                             </div>
                             <div class="mb-3">
                                 <label for="loginPassword" class="form-label" th:text="#{contra}">Contraseña</label>
-                                <input type="password" class="form-control" id="loginPassword" th:placeholder="#{ejemplo.contra}">
+                                <input type="password" class="form-control" id="loginPassword"
+                                    th:placeholder="#{ejemplo.contra}">
                             </div>
-                            <button type="submit" class="btn btn-custom w-100" th:text="#{botonlogin}">Iniciar Sesión</button>
+                            <button type="submit" class="btn btn-custom w-100" th:text="#{botonlogin}">Iniciar
+                                Sesión</button>
                             <!-- Opciones de iniciar sesión con Google y Facebook -->
                             <div class="text-center my-3" th:text="#{opciones-login}">o inicia sesión con</div>
                             <button type="button" class="btn btn-outline-custom btn-social w-100">
@@ -123,24 +155,30 @@
                             <button type="button" class="btn btn-outline-custom btn-social w-100">
                                 <img src="https://img.icons8.com/color/48/000000/facebook.png" alt="Facebook">Facebook
                             </button>
-                        </form>      
+                        </form>
                     </div>
                     <!-- Formulario de Registro -->
                     <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                         <form>
                             <div class="mb-3">
-                                <label for="registerName" class="form-label" th:text="#{nombre.completo}">Nombre completo</label>
-                                <input type="text" class="form-control" id="registerName" th:placeholder="#{ejemplo.nombre}">
+                                <label for="registerName" class="form-label" th:text="#{nombre.completo}">Nombre
+                                    completo</label>
+                                <input type="text" class="form-control" id="registerName"
+                                    th:placeholder="#{ejemplo.nombre}">
                             </div>
                             <div class="mb-3">
-                                <label for="registerEmail" class="form-label" th:text="#{correo}">Correo electrónico</label>
-                                <input type="email" class="form-control" id="registerEmail" th:placeholder="#{ejemplo.correo}">
+                                <label for="registerEmail" class="form-label" th:text="#{correo}">Correo
+                                    electrónico</label>
+                                <input type="email" class="form-control" id="registerEmail"
+                                    th:placeholder="#{ejemplo.correo}">
                             </div>
                             <div class="mb-3">
                                 <label for="registerPassword" class="form-label" th:text="#{contra}">Contraseña</label>
-                                <input type="password" class="form-control" id="registerPassword" th:placeholder="#{ejemplo.contra}">
+                                <input type="password" class="form-control" id="registerPassword"
+                                    th:placeholder="#{ejemplo.contra}">
                             </div>
-                            <button type="submit" class="btn btn-custom w-100" th:text="#{registrarse}">Registrarse</button>
+                            <button type="submit" class="btn btn-custom w-100"
+                                th:text="#{registrarse}">Registrarse</button>
                             <!-- Opciones de registrarse con Google y Facebook -->
                             <div class="text-center my-3" th:text="#{opciones-regis}">o regístrate con</div>
                             <button type="button" class="btn btn-outline-custom btn-social w-100">
@@ -168,12 +206,13 @@
             </div>
             <div class="modal-body">
                 <!-- Campo de búsqueda -->
-                <form>
+                <form id="search-form">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar en Zephyra.com" aria-label="Buscar" aria-describedby="button-search">
-                        <button class="btn btn-custom" type="button" id="button-search" th:text="#{busqueda}">Buscar</button>
+                        <input type="text" id="search-query" class="form-control" placeholder="Buscar en Zephyra.com"
+                            aria-label="Buscar" aria-describedby="button-search">
+                        <button class="btn btn-custom" type="button" id="button-search">Buscar</button>
                     </div>
-                </form>  
+                </form>
                 <!-- Resultados de búsqueda simulados -->
                 <!-- <div class="search-result">
                     <h6>Resultado 1</h6>
@@ -194,90 +233,23 @@
 <!-- Modal de busqueda-->
 
 <!-- Offcanvas del Carrito -->
-<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart"
+    aria-labelledby="offcanvasCartLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasCartLabel" th:text="#{carrito}">Carrito de compras</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <!-- Encabezado de columnas -->
-        <div class="row mb-2 px-4">
-            <div class="col-6 col-lg-8" th:text="#{producto}"><strong>Producto</strong></div>
-            <div class="col-4 col-lg-2 text-center" th:text="#{cantidad}"><strong>Cantidad</strong></div>
+        <div class="row mb-2 px-2">
+            <div class="col-6 " th:text="#{producto}"><strong>Producto</strong></div>
+            <div class="col-4  text-center" th:text="#{cantidad}"><strong>Cantidad</strong></div>
             <div class="col-2 text-end" th:text="#{sub-total}"><strong>Subtotal</strong></div>
         </div>
         <!-- Lista de productos en el carrito -->
         <ul class="list-group mb-3">
-            <!-- Producto 1 -->
-            <li class="list-group-item">
-                <div class="row align-items-center">
-                    <!-- Columna Imagen -->
-                    <div class="col-3">
-                        <img src="/img/Polos/Polo_1.png" alt="Producto 1" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
-                    </div>
-                    <!-- Columna Nombre y Precio Unitario -->
-                    <div class="col-5">
-                        <h6 class="my-0">Producto 1</h6>
-                        <small class="text-muted">Precio unitario: $10.00</small>
-                    </div>
-                    <!-- Columna Cantidad -->
-                    <div class="col-2 text-center">
-                        <small class="text-muted">2</small>
-                    </div>
-                    <!-- Columna Subtotal -->
-                    <div class="col-2 text-end">
-                        <span class="text-muted">$20.00</span>
-                    </div>
-                </div>
-            </li>
-        
-            <!-- Producto 2 -->
-            <li class="list-group-item">
-                <div class="row align-items-center">
-                    <!-- Columna Imagen -->
-                    <div class="col-3">
-                        <img src="/img/Polos/Polo_2.png" alt="Producto 2" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
-                    </div>
-                    <!-- Columna Nombre y Precio Unitario -->
-                    <div class="col-5">
-                        <h6 class="my-0">Producto 2</h6>
-                        <small class="text-muted">Precio unitario: $15.00</small>
-                    </div>
-                    <!-- Columna Cantidad -->
-                    <div class="col-2 text-center">
-                        <small class="text-muted">1</small>
-                    </div>
-                    <!-- Columna Subtotal -->
-                    <div class="col-2 text-end">
-                        <span class="text-muted">$15.00</span>
-                    </div>
-                </div>
-            </li>
-            
-            <!-- Producto 3 -->
-            <li class="list-group-item">
-                <div class="row align-items-center">
-                    <!-- Columna Imagen -->
-                    <div class="col-3">
-                        <img src="/img/Polos/Polo_3.png" alt="Producto 3" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
-                    </div>
-                    <!-- Columna Nombre y Precio Unitario -->
-                    <div class="col-5">
-                        <h6 class="my-0">Producto 3</h6>
-                        <small class="text-muted">Precio unitario: $5.00</small>
-                    </div>
-                    <!-- Columna Cantidad -->
-                    <div class="col-2 text-center">
-                        <small class="text-muted">3</small>
-                    </div>
-                    <!-- Columna Subtotal -->
-                    <div class="col-2 text-end">
-                        <span class="text-muted">$15.00</span>
-                    </div>
-                </div>
-            </li>
+            <!-- Los elementos del carrito se agregarán aquí dinámicamente -->
         </ul>
-
         <!-- Total del Carrito -->
         <div class="d-flex justify-content-between mb-3">
             <h5>Total a Pagar</h5>
@@ -287,7 +259,8 @@
         <!-- Botón para Continuar la Compra -->
         <a th:href="@{/paginaPago}" class="btn btn-custom w-100 mb-2" th:text="#{terminar-compra}">Terminar Compra</a>
         <!-- Enlace para Editar Carrito -->
-        <a th:href="@{/editarCarrito}" class="btn btn-outline-custom w-100 mb-2" th:text="#{editar-carrito}">Editar carrito</a>
+        <a th:href="@{/editarCarrito}" class="btn btn-outline-custom w-100 mb-2" th:text="#{editar-carrito}">Editar
+            carrito</a>
     </div>
 </div>
 <!-- Offcanvas del Carrito -->
