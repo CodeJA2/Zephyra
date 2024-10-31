@@ -55,5 +55,27 @@ public class AuthController {
     }
 
 
+     // Registro para administradores
+     @PostMapping(value = "/ADM/usuarios/register")
+     public String registerAdmin(
+             @RequestParam String username,
+             @RequestParam String dni,
+             @RequestParam String password,
+             @RequestParam String fullName,
+             @RequestParam String address,
+             @RequestParam String phoneNumber,
+             Model model) {
+ 
+         RegisterRequest request = new RegisterRequest(username, dni, password, fullName, address, phoneNumber);
+         AuthResponse authResponse = authService.register(request);
+ 
+         if (authResponse != null) {
+             model.addAttribute("user", authResponse); // Guarda el usuario en la sesión
+             return "redirect:/ADM/usuarios"; // Redirige a la lista de usuarios del administrador
+         } else {
+             return "redirect:/ADM/usuarios/register?error"; // Redirige de nuevo a registro con un parámetro de error
+         }
+     }
+
     
 }

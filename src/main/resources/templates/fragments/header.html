@@ -11,11 +11,39 @@
             <div class="row row-cols-3">
                 <section class="offcanvas offcanvas-start pt-5 pt-lg-0" id="menuLateral" tabindex="-1">
                     <div class="offcanvas-header">
-                        <img src="/img/Logos/logo_principal2.png" class="rounded mx-0 d-block" alt="Zephyra Logo" style="width: 50px;">
+                        <img src="/img\Logos\logo_principal2.png" class="rounded mx-0 d-block" alt="Zephyra Logo" style="width: 50px;">
                         <button class="btn-close" type="button" aria-label="close" data-bs-dismiss="offcanvas"></button>
                     </div>
                     <ul class="navbar-nav justify-content-evenly mx-3">
-                        <!-- Aquí van tus elementos del menú lateral -->
+                        <li class="nav-item dropdown p-1 py-md-1">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.hombres}">
+                                HOMBRES
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#" th:text="#{hombres-1}">Polos</a></li>
+                                <li><a class="dropdown-item" href="#" th:text="#{hombres-2}">Shorts</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown p-1 py-md-1">
+                            <a class="nav-link" href="#" id="navbarDropdownForHer" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.mujeres}">
+                                MUJERES
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownForHer">
+                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-1}">Tops</a></li>
+                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-2}">Pantalones</a></li>
+                                <li><a class="dropdown-item" href="#" th:text="#{mujeres-3}">Leggings</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown p-1 py-md-1">
+                            <a class="nav-link" href="#" id="navbarDropdownNewDrop" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{nav.nuevo}">
+                                NUEVO
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownNewDrop">
+                                <a class="dropdown-item" href="#" th:text="#{proximo}">Próximo Lanzamiento</a>
+                                <a class="dropdown-item" href="#" th:text="#{destacado}">Destacado</a>
+                                <a class="dropdown-item" href="#" th:text="#{reabastecimiento}">Reabastecimiento</a>
+                            </div>
+                        </li>
                     </ul>
                 </section>
             </div>

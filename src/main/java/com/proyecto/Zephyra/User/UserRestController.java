@@ -16,11 +16,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(value = "/api/v1/user")
 @RequiredArgsConstructor
-public class UserController {
+public class UserRestController {
 
     private final UserService userService;
 
-    /* Implementaciones nuevas */
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {
@@ -45,10 +44,9 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
-    @PutMapping(value = "{id}")
-    public ResponseEntity<UserResponse> updateUser(@RequestBody UserRequest userRequest) {
+    @PutMapping(value = "{id}") 
+    public ResponseEntity<UserResponse> updateUser(@PathVariable Integer id, @RequestBody UserRequest userRequest) {
+        userRequest.setId(id); 
         return ResponseEntity.ok(userService.updateUser(userRequest));
     }
-
 }
-
