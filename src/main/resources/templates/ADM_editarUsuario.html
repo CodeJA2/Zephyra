@@ -9,27 +9,39 @@
         <h1 class="mb-4">Editar Usuario</h1>
         <form th:action="@{/ADM/usuarios/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
             <div class="form-group">
-                <label for="fullName">Nombre Completo</label>
-                <input type="text" id="fullName" class="form-control" th:field="*{fullName}" required>
+                <label for="id">Id: </label>
+                <input type="text" id="id" class="form-control" th:field="*{id}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="username">Correo Electrónico</label>
+                <input type="text" id="username" name="username" class="form-control" th:field="*{username}" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" class="form-control" th:field="*{password}" required>
             </div>
             <div class="form-group">
                 <label for="dni">DNI</label>
-                <input type="text" id="dni" class="form-control" th:field="*{dni}" required>
+                <input type="text" id="dni" name="dni" class="form-control" th:field="*{dni}" required>
+            </div>
+            <div class="form-group">
+                <label for="fullName">Nombre Completo</label>
+                <input type="text" id="fullName" name="fullName" class="form-control" th:field="*{fullName}" required>
             </div>
             <div class="form-group">
                 <label for="address">Dirección</label>
-                <input type="text" id="address" class="form-control" th:field="*{address}" required>
+                <input type="text" id="address" name="address" class="form-control" th:field="*{address}" required>
             </div>
             <div class="form-group">
                 <label for="phoneNumber">Teléfono</label>
-                <input type="text" id="phoneNumber" class="form-control" th:field="*{phoneNumber}" required>
+                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" th:field="*{phoneNumber}" required>
             </div>
             <div class="form-group">
-                <label for="role">Rol</label>
-                <select id="role" class="form-control" th:field="*{role}">
-                    <option value="USER">USER</option>
-                    <option value="ADMIN">ADMIN</option>
-                </select>
+            <label for="role">Rol:</label>
+            <select id="role" name="role" th:field="*{role}" required>
+                <option value="USER">Usuario</option>
+                <option value="ADMIN">Administrador</option>
+            </select>
             </div>
             <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
             <a href="/ADM/usuarios" class="btn btn-secondary">Cancelar</a>

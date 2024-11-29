@@ -79,12 +79,4 @@ public class ProductoController {
         return "redirect:/ADM/productos";
     }
 
-    // Mostrar Productos de una misma Categoria
-    @GetMapping("/productos/categoria/{id}")
-    public String productosPorCategoria(@PathVariable Long id, Model model) {
-        List<Producto> productosPorCategoria = productoService.listarProductosPorCategoria(id);
-        model.addAttribute("productos", productosPorCategoria);
-        return "galeria";
-    }
-
 }

@@ -28,8 +28,7 @@
 
 <body>
     <!-- Header -->
-    <div th:replace="fragments/header"></div>
-
+    <div th:replace="~{fragments/header}"></div>
     <!-- Carousel -->
     <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel"
         data-bs-interval="5000">
@@ -198,7 +197,7 @@
     </div>
 
     <!-- Footer -->
-    <div th:replace="fragments/footer"></div>
+    <div th:replace="~{fragments/footer}"></div>
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

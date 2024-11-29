@@ -1,7 +1,7 @@
-package com.proyecto.Zephyra.User;
+package com.proyecto.Zephyra.model;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -26,37 +24,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="user", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 public class User implements UserDetails {
     @Id
     @GeneratedValue
-    Integer id;
+    private Integer id;
+
     @Basic
     @Column(nullable = false)
-    String username;
-    String dni;
-    String password;
-    String fullName;
-    String address;
-    String phoneNumber;
+    private String username;
 
-    @Enumerated(EnumType.STRING) 
-    Role role;
-
+    private String dni;
+    private String password;
+    private String fullName;
+    private String address;
+    private String phoneNumber;
+    private String role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-      return List.of(new SimpleGrantedAuthority((role.name())));
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()));
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return true; // Ajusta si es necesario
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return true; // Ajusta si es necesario
     }
 
     @Override
@@ -65,7 +62,8 @@ public class User implements UserDetails {
     }
 
     @Override
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return true;
     }
 }
+

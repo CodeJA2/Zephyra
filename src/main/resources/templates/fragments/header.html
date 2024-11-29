@@ -21,8 +21,8 @@
                                 HOMBRES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=1)}" th:text="#{hombres-1}">Polos</a></li>
-                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=2)}" th:text="#{hombres-2}">Shorts</a></li>
+                                <li><a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=1)}" th:text="#{hombres-1}">Polos</a></li>
+                                <li><a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=2)}" th:text="#{hombres-2}">Shorts</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
@@ -31,9 +31,9 @@
                                 MUJERES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownForHer">
-                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=3)}" th:text="#{mujeres-1}">Tops</a></li>
-                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=4)}" th:text="#{mujeres-2}">Pantalones</a></li>
-                                <li><a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=5)}" th:text="#{mujeres-3}">Leggings</a></li>
+                                <li><a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=3)}" th:text="#{mujeres-1}">Tops</a></li>
+                                <li><a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=4)}" th:text="#{mujeres-2}">Pantalones</a></li>
+                                <li><a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=5)}" th:text="#{mujeres-3}">Leggings</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
@@ -43,29 +43,55 @@
                                 NUEVO
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownNewDrop">
-                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=6)}" th:text="#{proximo}">Próximo Lanzamiento</a>
-                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=7)}" th:text="#{destacado}">Destacado</a>
-                                <a class="dropdown-item" th:href="@{/productos/categoria/{id}(id=8)}"
+                                <a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=6)}" th:text="#{proximo}">Próximo Lanzamiento</a>
+                                <a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=7)}" th:text="#{destacado}">Destacado</a>
+                                <a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=8)}"
                                     th:text="#{reabastecimiento}">Reabastecimiento</a>
                             </div>
                         </li>
                     </ul>
                 </section>
             </div>
-            <a class="nav justify-content-center" th:href="@{/index}">
+            <a class="nav justify-content-center" th:href="@{/}">
                 <img src="/img/Logos/logo_principal2.png" class="nav-logo rounded mx-auto d-block" alt="Zephyra Logo">
             </a>
             <ul class="nav justify-content-end">
+
+                <li class="nav-item dropdown" th:if="${usuario != null}">
+                    <!-- Nombre del usuario que despliega el menú -->
+                    <a class="nav-link dropdown-toggle clickeable" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Bienvenido, <span th:text="${usuario.fullName}"></span>
+                    </a>
+                    
+                    <!-- Menú desplegable -->
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <!-- Opción de cerrar sesión -->
+                        <li>
+                            <a class="dropdown-item" href="/logout">
+                                <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item d-none d-md-block">
+                <a  class="nav-link clickeable" th:if="${usuario != null and usuario.role == 'ADMIN'}" href="/ADM">Administrar</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link clickeable" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </li>
                 <li class="nav-item d-none d-md-block">
                     <a class="nav-link" href="https://l.instagram.com/?u=https%3A%2F%2Fwa.link%2Ff1vdzy&e=AT0MkH1DY8S9eyfVkbN9SwWYXvRai-rs7t_w4ORpbHknu8Ypztbty8SrCEH8G7J_up_ex5VdmSezYtB_cLmjuJz2Az9VtUpTRUZy4PoFNxKz8MbBFSe8zA"><i class="fa-brands fa-whatsapp fa-beat"></i> (818) 206-8764</a>
                 </li>
-    
-                <li class="nav-item">
-                    <a class="nav-link clickeable" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="fas fa-user"></i></a>
+
+                <!-- Botón de login solo si el usuario no está autenticado -->
+                <li class="nav-item" th:if="${usuario == null}">
+                    <a class="nav-link clickeable" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                        <i class="fas fa-user"></i> Ingresar
+                    </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link clickeable" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"><i class="fas fa-shopping-bag"></i></a>
                 </li>

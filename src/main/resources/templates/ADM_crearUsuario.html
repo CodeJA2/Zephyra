@@ -14,12 +14,12 @@
                 <input type="text" id="username" name="username" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="dni">DNI</label>
-                <input type="text" id="dni" name="dni" class="form-control" required>
-            </div>
-            <div class="form-group">
                 <label for="password">Contraseña</label>
                 <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="dni">DNI</label>
+                <input type="text" id="dni" name="dni" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="fullName">Nombre Completo</label>
@@ -32,6 +32,13 @@
             <div class="form-group">
                 <label for="phoneNumber">Teléfono</label>
                 <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required>
+            </div>
+            <div class="form-group">
+            <label for="role">Rol:</label>
+            <select id="role" name="role" required>
+                <option value="USER">Usuario</option>
+                <option value="ADMIN">Administrador</option>
+            </select>
             </div>
             <button type="submit" class="btn btn-primary">Registrarse</button>
             <a href="/ADM/usuarios" class="btn btn-secondary">Cancelar</a>

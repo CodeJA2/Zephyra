@@ -3,42 +3,51 @@ package com.proyecto.Zephyra.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import com.proyecto.Zephyra.jwt.JwtAuthenticationFilter;
-
-import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
 
-        private final JwtAuthenticationFilter jwtAuthenticationFilter;
-        private final AuthenticationProvider authProvider;
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+                return new BCryptPasswordEncoder();
+        }
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 return http
                                 .csrf(csrf -> csrf
-                                                .disable())
+                                                .disable()) // Desactiva CSRF si no es necesario
                                 .authorizeHttpRequests(authRequest -> authRequest
-                                                .requestMatchers(HttpMethod.GET).permitAll()
                                                 .requestMatchers(HttpMethod.POST).permitAll()
-                                                .requestMatchers(HttpMethod.PUT).permitAll()
-                                                .requestMatchers(HttpMethod.DELETE).permitAll()
+                                                .requestMatchers(HttpMethod.PUT).hasRole("ADMIN")
+                                                .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                                                 .requestMatchers(HttpMethod.OPTIONS).permitAll()
-                                                .requestMatchers("/auth/**").permitAll()
+                                                .requestMatchers("/").permitAll()
+                                                .requestMatchers("/public/**", "/css/**", "/js/**", "/img/**")
+                                                .permitAll()
+                                                .requestMatchers("/ADM/**").hasRole("ADMIN")
                                                 .anyRequest().authenticated())
-                                .sessionManagement(sessionManager -> sessionManager
-                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                .authenticationProvider(authProvider)
-                                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                                .formLogin(form -> form
+                                                .defaultSuccessUrl("/", true) // URL de éxito después de iniciar sesión
+                                                .failureHandler((request, response, exception) -> {
+                                                        response.sendRedirect("/"); // Redirige en caso
+                                                                                    // de error
+                                                }))
+                                .logout(logout -> logout
+                                                .logoutUrl("/logout") // URL de logout
+                                                .logoutSuccessUrl("/"))
+
+                                .exceptionHandling(exception -> exception
+                                                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                                                        response.sendRedirect("/"); // Redirige a la página
+                                                                                                
+                                                }))
                                 .build();
         }
-
 }

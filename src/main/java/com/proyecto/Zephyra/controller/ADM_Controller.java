@@ -55,22 +55,5 @@ public class ADM_Controller {
         return ResponseEntity.ok(lista);
     }
 
-    // Cabecera (Headers):
-
-        //  Código de estado: 200 OK
-        //  Content-Type: application/json
-
-    // Cuerpo (Body):
-
-        //      [
-        //          {
-        //              "id": 1,
-        //              "nombre": "Marca A"
-        //          },
-        //          {
-        //              "id": 2,
-        //              "nombre": "Marca B"
-        //          }
-        //      ]
     
 }
