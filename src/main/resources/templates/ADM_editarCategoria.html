@@ -21,6 +21,13 @@
                 <label for="nombre" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
             </div>
+            <div class="form-group mb-3">
+                <label for="para" class="form-label">Para (Género):</label>
+                <select class="form-select" id="para" th:field="*{para}" required>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary">Actualizar</button>
             <a href="/ADM/categorias" class="btn btn-secondary">Cancelar</a>
         </form>

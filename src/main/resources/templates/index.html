@@ -105,44 +105,23 @@
     <!-- Carousel -->
 
     <!-- Productos Destacados-->
-    <div class="pt-3">
+    <div class="container mt-5">
         <div class="mt-3">
-            <h2 class="text-center" th:text="#{productos.destacados}">Productos destacados</h2>
+            <h2 class="text-center" th:text="#{productos.destacados}">Productos Destacados</h2>
+            <br>
         </div>
-        <div class="m-3 m-sm-5">
-            <div class="row">
-                <div th:each="producto : ${productosDestacados}" class="col-lg-3 col-md-4 mb-4">
-                    <div class="card product-card">
-                        <div class="image position-relative overflow-hidden clickeable">
-                            <a th:href="@{/detalleProducto/{id}(id=${producto.id})}">
-                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
-                            </a>
-                            <span class="sold-out position-absolute bg-dark text-white p-1"
-                                th:if="${producto.stock == 0}">
-                                SOLD OUT
-                            </span>
-                        </div>
-                        <div class="card-body product-info p-0">
-                            <h3 class="card-title">
-                                <a class="text-decoration-none product-title"
-                                    th:href="@{/detalleProducto/{id}(id=${producto.id})}"
-                                    th:text="${producto.nombre}">_nombre_del_producto_</a>
-                            </h3>
-                            <p>$<span th:text="${producto.precio}">_Precio_</span></p>
-                            <div class="list-colors mb-3">
-                                <span data-color="purple" class="color-option"
-                                    style="background-color: #800080;"></span>
-                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
-                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
-                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
-                            </div>
-                            <div class="star-rating">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
+        <div class="row justify-content-center">
+            <!-- Iterar sobre la lista de productos y mostrar solo los destacados -->
+            <div class="col-md-3 mb-4" th:each="producto : ${productos}" th:if="${producto.destacado}">
+                <div>
+                    <div class="card" style="width: 250px;">
+                        <!-- Imagen con altura de 300px y objeto recortado -->
+                        <img th:src="@{${producto.imageUrl}}" class="card-img-top img-fluid" alt="Imagen del producto" style="height: 350px; object-fit: cover;">
+                        <div class="card-body text-dark">
+                            <h5 class="card-title" th:text="${producto.nombre}"></h5>
+                            <p class="card-text" th:text="'Precio: $' + ${producto.precio}"></p>
+                            <!-- Botón con estilo en negro y texto blanco -->
+                            <a th:href="@{/public/detalleProducto/{id}(id=${producto.id})}" class="btn btn-dark">Ver más</a>
                         </div>
                     </div>
                 </div>
@@ -151,44 +130,24 @@
     </div>
 
     <!-- Productos Nuevos-->
-    <div class="bg-light pt-3">
+    <div class="container mt-5">
         <div class="mt-3">
-            <h2 class="text-center">Próximos Lanzamientos</h2>
+            <h2 class="text-center">Productos en Oferta</h2>
+            <br>
         </div>
-        <div class="m-5">
-            <div class="row">
-                <div th:each="producto : ${proximosLanzamientos}" class="col-lg-3 col-md-4 mb-4">
-                    <div class="card product-card">
-                        <div class="image position-relative overflow-hidden clickeable">
-                            <a th:href="@{/detalleProducto/{id}(id=${producto.id})}">
-                                <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
-                            </a>
-                            <span class="sold-out position-absolute bg-dark text-white p-1"
-                                th:if="${producto.stock == 0}">
-                                SOLD OUT
-                            </span>
-                        </div>
-                        <div class="card-body product-info p-0">
-                            <h3 class="card-title">
-                                <a class="text-decoration-none product-title"
-                                    th:href="@{/detalleProducto/{id}(id=${producto.id})}"
-                                    th:text="${producto.nombre}">_nombre_del_producto_</a>
-                            </h3>
-                            <p>$<span th:text="${producto.precio}">_Precio_</span></p>
-                            <div class="list-colors mb-3">
-                                <span data-color="purple" class="color-option"
-                                    style="background-color: #800080;"></span>
-                                <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
-                                <span data-color="black" class="color-option" style="background-color: #000000;"></span>
-                                <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
-                            </div>
-                            <div class="star-rating">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
+        <div class="row justify-content-center">
+            <!-- Iterar sobre la lista de productos y mostrar solo los que están en oferta -->
+            <div class="col-md-3 mb-4" th:each="producto : ${productos}" th:if="${producto.enOferta}">
+                <div>
+                    <div class="card" style="width: 250px;">
+                        <!-- Imagen con altura de 300px y objeto recortado -->
+                        <img th:src="@{${producto.imageUrl}}" class="card-img-top img-fluid" alt="Imagen del producto" style="height: 350px; object-fit: cover;">
+                        <div class="card-body text-dark">
+                            <h5 class="card-title" th:text="${producto.nombre}"></h5>
+                            <p class="card-text" th:text="'Precio regular: $' + ${producto.precio}" style="text-decoration: line-through; color: gray;"></p>
+                            <p class="card-text" th:text="'Precio oferta: $' + ${producto.precioOferta}" style="color: red;"></p>
+                            <!-- Botón con estilo en negro y texto blanco -->
+                            <a th:href="@{/public/detalleProducto/{id}(id=${producto.id})}" class="btn btn-dark">Ver más</a>
                         </div>
                     </div>
                 </div>

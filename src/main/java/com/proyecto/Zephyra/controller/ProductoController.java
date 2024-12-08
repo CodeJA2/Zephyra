@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.proyecto.Zephyra.entidades.Categoria;
-import com.proyecto.Zephyra.entidades.Marca;
-import com.proyecto.Zephyra.entidades.Producto;
+
+import com.proyecto.Zephyra.model.Categoria;
+import com.proyecto.Zephyra.model.Producto;
+import com.proyecto.Zephyra.servicios.CategoriaService;
 import com.proyecto.Zephyra.servicios.ProductoService;
 import java.util.List;
 
@@ -16,23 +17,21 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
+    @Autowired
+    private CategoriaService categoriaService;
+
     // C - CREATE (Crear producto):
     @GetMapping("/ADM/productos/nuevo")
     public String crearProducto(Model model) {
         model.addAttribute("producto", new Producto());
         List<Categoria> listaCategorias = productoService.listarCategorias();
         model.addAttribute("listaCategorias", listaCategorias); // Añadir todas las categorías
-        List<Marca> marcas = productoService.listarMarcas();
-        model.addAttribute("listaMarcas", marcas); // Añadir todas las marcas
         return "ADM_crearProducto";
     }
 
     @PostMapping("/ADM/productos")
-    public String guardarProducto(@ModelAttribute("producto") Producto producto, // Capturar el producto desde el
-                                                                                 // formulario
-            @RequestParam("categoriaIds") List<Long> categoriaIds, // Capturar las categorias desde el formulario
-            @RequestParam("marcaId") Long marcaId) { // Capturar marcaId desde el formulario
-        productoService.guardarProductoConCategoriasYMarca(producto, categoriaIds, marcaId);
+    public String guardarProducto(@ModelAttribute("producto") Producto producto) { 
+        productoService.guardarProducto(producto);
         return "redirect:/ADM/productos";
     }
 
@@ -54,8 +53,6 @@ public class ProductoController {
             List<Categoria> listaCategorias = productoService.listarCategorias();
             model.addAttribute("listaCategorias", listaCategorias);
 
-            List<Marca> marcas = productoService.listarMarcas();
-            model.addAttribute("listaMarcas", marcas);
 
             return "ADM_editarProducto";
         } else {
@@ -65,10 +62,8 @@ public class ProductoController {
 
     @PostMapping("/ADM/productos/actualizar/{id}")
     public String actualizarProducto(@PathVariable("id") Long id,
-            @ModelAttribute("producto") Producto productoActualizado,
-            @RequestParam("categoriaIds") List<Long> categoriaIds,
-            @RequestParam("marcaId") Long marcaId) {
-        productoService.actualizarProductoConCategoriasYMarca(id, productoActualizado, categoriaIds, marcaId);
+            @ModelAttribute("producto") Producto productoActualizado) {
+        productoService.actualizarProductoConCategoria(id, productoActualizado);
         return "redirect:/ADM/productos";
     }
 
@@ -77,6 +72,17 @@ public class ProductoController {
     public String eliminarProducto(@PathVariable("id") Long id) {
         productoService.eliminarProducto(id);
         return "redirect:/ADM/productos";
+    }
+
+    @GetMapping("/formulario")
+    public String mostrarFormulario(Model model) {
+        // Obtener todas las categorías
+        List<Categoria> listaCategorias = categoriaService.listarCategorias();
+        model.addAttribute("listaCategorias", listaCategorias);
+
+        // Pasar un objeto Producto vacío para el formulario
+        model.addAttribute("producto", new Producto());
+        return "formularioProducto"; // Nombre de la plantilla HTML
     }
 
 }

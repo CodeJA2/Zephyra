@@ -1,15 +1,13 @@
-package com.proyecto.Zephyra.entidades;
+package com.proyecto.Zephyra.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.util.List;
 
-@Getter
-@Setter
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -23,7 +21,7 @@ public class Categoria {
     @Column(nullable = false)
     private String nombre;
 
-    @ManyToMany(mappedBy = "categorias", fetch = FetchType.LAZY)
-    private List<Producto> productos;
+    @Column(nullable = false)
+    private String para;
 
 }

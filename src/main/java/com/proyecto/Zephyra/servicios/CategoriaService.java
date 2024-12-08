@@ -2,7 +2,8 @@ package com.proyecto.Zephyra.servicios;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.proyecto.Zephyra.entidades.Categoria;
+
+import com.proyecto.Zephyra.model.Categoria;
 import com.proyecto.Zephyra.repositorios.CategoriaRepository;
 import java.util.List;
 

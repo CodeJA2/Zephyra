@@ -2,11 +2,11 @@ package com.proyecto.Zephyra.servicios;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.proyecto.Zephyra.entidades.Categoria;
-import com.proyecto.Zephyra.entidades.Marca;
-import com.proyecto.Zephyra.entidades.Producto;
+
+import com.proyecto.Zephyra.model.Categoria;
+import com.proyecto.Zephyra.model.Producto;
 import com.proyecto.Zephyra.repositorios.CategoriaRepository;
-import com.proyecto.Zephyra.repositorios.MarcaRepository;
+
 import com.proyecto.Zephyra.repositorios.ProductoRepository;
 import java.util.List;
 
@@ -19,8 +19,7 @@ public class ProductoService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    @Autowired
-    private MarcaRepository marcaRepository;
+ 
 
     // C - Create (Crear):
     public Producto guardarProducto(Producto producto) {
@@ -47,40 +46,28 @@ public class ProductoService {
         return productoRepository.findById(id).orElse(null);
     }
 
-    // Guardar un Producto, su Marca y sus Categorías
-    public void guardarProductoConCategoriasYMarca(Producto producto, List<Long> categoriaIds, Long marcaId) {
-        // Busca las categorías por sus IDs
-        List<Categoria> categorias = categoriaRepository.findAllById(categoriaIds);
-        // Asigna las categorías al producto
-        producto.setCategorias(categorias);
-        // Busca la marca por su ID
-        Marca marca = marcaRepository.findById(marcaId).orElse(null);
-        // Asigna la marca al producto
-        producto.setMarca(marca);
-        // Guarda el producto
-        productoRepository.save(producto);
-    }
 
-   // Actualizar un Producto, su Marca y sus Categorías
-    public void actualizarProductoConCategoriasYMarca(Long id, Producto productoActualizado, List<Long> categoriaIds, Long marcaId) {
-        // Busca el producto existente por su ID
-        Producto productoExistente = productoRepository.findById(id).orElse(null);
-        if (productoExistente != null) {
-            // Actualiza los atributos del producto
-            productoExistente.setNombre(productoActualizado.getNombre());
-            productoExistente.setPrecio(productoActualizado.getPrecio());
-            productoExistente.setDescripcion(productoActualizado.getDescripcion());
-            productoExistente.setStock(productoActualizado.getStock());
-            // Busca las categorías por sus IDs
-            List<Categoria> categorias = categoriaRepository.findAllById(categoriaIds);
-            // Asigna las categorías al producto
-            productoExistente.setCategorias(categorias);
-            // Busca la marca por su ID
-            Marca marca = marcaRepository.findById(marcaId).orElse(null);
-            productoExistente.setMarca(marca);
-            // Guarda el producto actualizado en la base de datos
-            productoRepository.save(productoExistente);
-        }
+
+    public void actualizarProductoConCategoria(Long id, Producto productoActualizado) {
+        Producto productoExistente = productoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("El producto con el ID especificado no existe."));
+        
+        // Mapear las propiedades desde el producto actualizado al existente
+        actualizarCamposProducto(productoExistente, productoActualizado);
+    
+        productoRepository.save(productoExistente);
+    }
+    
+    private void actualizarCamposProducto(Producto productoExistente, Producto productoActualizado) {
+        productoExistente.setNombre(productoActualizado.getNombre());
+        productoExistente.setPrecio(productoActualizado.getPrecio());
+        productoExistente.setColor(productoActualizado.getColor());
+        productoExistente.setImageUrl(productoActualizado.getImageUrl());
+        productoExistente.setDescripcion(productoActualizado.getDescripcion());
+        productoExistente.setEnOferta(productoActualizado.getEnOferta());
+        productoExistente.setPrecioOferta(productoActualizado.getPrecioOferta());
+        productoExistente.setDestacado(productoActualizado.getDestacado());
+        productoExistente.setCategoria(productoActualizado.getCategoria());
     }
 
     // R - Read (Leer) categorías:
@@ -91,16 +78,16 @@ public class ProductoService {
     // Productos de una misma Categoria
     public List<Producto> listarProductosPorCategoria(Long categoriaId) {
         // Lógica para obtener productos de la categoría específica
-        return productoRepository.findByCategoriasId(categoriaId);
+        return productoRepository.findByCategoriaId(categoriaId);
     }
 
-    // R - Read (Leer) marcas:
-    public List<Marca> listarMarcas() {
-        return marcaRepository.findAll();
-    }
 
     // conteo de todas los productos registradas:
     public long contarProductos() {
         return productoRepository.count();
+    }
+
+    public List<Producto> obtenerProductosDestacados() {
+        return productoRepository.findByDestacadoTrue();
     }
 }

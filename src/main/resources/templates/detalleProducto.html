@@ -19,174 +19,120 @@
     <link rel="stylesheet" href="/css/style.css">
     <!-- Google Fonts - Afacad Flux -->
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        .product-image {
+            height: 100%; /* Ocupa todo el alto del contenedor */
+            object-fit: cover;
+            width: 100%;
+        }
+        .product-card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            height: 550px;
+            flex-direction: column;
+            height: auto;
+        }
+        .product-card-header {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .price {
+            font-size: 1.25rem;
+            color: #28a745;
+            font-weight: bold;
+        }
+        .price-strikethrough {
+            text-decoration: line-through;
+            color: gray;
+        }
+        .price-offer {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .product-details {
+            padding: 1rem;
+        }
+        .product-image-container {
+            height: 400px; /* Ajusta la altura para mayor visibilidad */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Header -->
     <div th:replace="fragments/header"></div>
 
-    <!-- Sección de detalle del producto -->
-    <section class="container my-5">
-        <div class="row">
-            <!-- Imagen del producto con carousel -->
-            <div class="col-lg-6">
-                <div id="productCarousel" class="carousel slide slide-product" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="/img/Polos/Polo_1.png" class="d-block w-100" alt="Producto 1">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/Polos/Polo_2.png" class="d-block w-100" alt="Producto 2">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/Polos/Polo_3.png" class="d-block w-100" alt="Producto 3">
-                        </div>
-                        <span class="position-absolute bg-dark text-white p-1 m-3" th:if="${producto.stock == 0}">
-                            SOLD OUT
-                        </span>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="product-card">
+                    <div class="product-card-header">
+                        <h2 class="product-title" th:text="${producto.nombre}"></h2>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Siguiente</span>
-                    </button>
-                </div>
-            </div>
-            <!-- Información del producto -->
-            <div class="col-lg-6 ps-lg-5">
-
-                <p class="d-flex align-items-center">
-                <div class="mt-3 mt-lg-0 d-flex align-items-center fs-5 fw-light" th:text="${producto.marca.nombre}">
-                    _nombre_de_la_marca_</div>
-                <!-- If -->
-                <div th:if="${producto.stock == 0}">
-                    <span class="fs-2 fw-normal" th:text="${producto.nombre}">_nombre_del_producto_</span>
-                    <span class="bg-dark text-white p-2 ms-3">SOLD OUT</span>
-                </div>
-                <!-- Else -->
-                <div th:unless="${producto.stock == 0}">
-                    <span class="fs-2 fw-normal" th:text="${producto.nombre}">_nombre_del_producto_</span>
-                </div>
-                </p>
-
-                <p class="text-muted">SKU: OP3128V/M32</p>
-                <p class="discount-price fs-4">S/. <span th:text="${producto.precio}"></span>
-                    <span class="original-price ms-3">S/. <span th:text="${producto.precio}">_precio_</span></span>
-                </p>
-                <ul class="list-unstyled">
-                    <li class="check-item">
-                        <i class="fa-solid fa-circle-check check-icon"></i>
-                        <span class="check-text">Llévatelo en <strong>3</strong> cuotas de
-                            <strong>S/.
-                                <span th:text="${#numbers.formatDecimal(producto.precio / 3, 2, 2)}"></span>
-                            </strong> sin intereses
-                        </span>
-                    </li>
-                    <li class="check-item">
-                        <i class="fa-solid fa-circle-check check-icon"></i>
-                        <span class="check-text">Pago contra-entrega y en 24 horas SOLO para Lima</span>
-                    </li>
-                    <li class="check-item">
-                        <i class="fa-solid fa-circle-check check-icon"></i>
-                        <span class="check-text">Entregas rápidas y garantía de 10 días</span>
-                    </li>
-                </ul>
-                <hr>
-                <p class="mt-4">
-                    <strong>Descripción:</strong>&nbsp;
-                    <span th:text="${producto.descripcion}">_descripcion_</span>
-                </p>
-                <hr>
-                <!-- Escoger el color -->
-                <div class="mt-4">
-                    <label class="form-label">Color:</label>
-                    <div>
-                        <div class="color-product-item black" data-color="black"></div>
-                        <div class="color-product-item blue" data-color="blue"></div>
-                        <div class="color-product-item red disabled" data-color="red"></div>
-                    </div>
-                </div>
-                <!-- Escoger la talla -->
-                <div class="mt-4">
-                    <label class="form-label">Talla:</label>
-                    <div>
-                        <button class="size-product-item" data-size="S">S</button>
-                        <button class="size-product-item" data-size="M">M</button>
-                        <button class="size-product-item" data-size="L">L</button>
-                        <button class="size-product-item disabled" disabled>XL</button>
-                    </div>
-                </div>
-                <!-- Botón "Añadir al carrito" -->
-                <button class="btn btn-custom mt-4 w-100 d-flex-center"
-                    th:attr="onclick='agregarProducto(\'' + ${producto.nombre} + '\', ' + ${producto.precio} + ')'"
-                    th:disabled="${producto.stock == 0}">
-                    <span>Añadir al carrito</span>
-                    <span class="mx-3"> • </span>
-                    <span id="price">S/. <span th:text="${producto.precio}">_precio_</span></span>
-                </button>
-
-                <!-- Botón "Comprar ahora" -->
-                <button class="btn btn-outline-custom mt-2 w-100" onclick="window.location.href='/paginaPago';"
-                    th:disabled="${producto.stock == 0}">
-                    Comprar ahora
-                </button>
-                <!-- Unidades restantes -->
-                <!-- Si el stock es igual a 0, muestra el mensaje "Proximamente añadiremos más stock" -->
-                <p class="mt-3" th:if="${producto.stock == 0}">
-                    Proximamente añadiremos más stock.
-                </p>
-
-                <!-- Si el stock es mayor que 0, muestra cuántas unidades quedan -->
-                <p class="mt-3" th:unless="${producto.stock == 0}">
-                    ¡Solo quedan <strong id="cantidad" th:text="${producto.stock}">5</strong> unidades en stock!
-                </p>
-            </div>
-        </div>
-    </section>
-    <!-- Productos recomendados -->
-    <div class="container">
-        <h2 class="mt-5">Productos Recomendados</h2>
-        <div class="slider-container-related-products">
-            <div class="slider-item-related-products" th:each="producto : ${productosDestacados}">
-                <div class="card product-card">
-                    <div class="image position-relative overflow-hidden clickeable">
-                        <a th:href="@{/detalleProducto/{id}(id=${producto.id})}">
-                            <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
-                        </a>
-                        <span class="sold-out position-absolute bg-dark text-white p-1" th:if="${producto.stock == 0}">
-                            SOLD OUT
-                        </span>
-                    </div>
-                    <div class="card-body product-info p-0">
-                        <h3 class="card-title">
-                            <a class="text-decoration-none product-title"
-                                th:href="@{/detalleProducto/{id}(id=${producto.id})}"
-                                th:text="${producto.nombre}">_nombre_del_producto_</a>
-                        </h3>
-                        <p>$<span th:text="${producto.precio}">_Precio_</span></p>
-                        <div class="list-colors mb-3">
-                            <span data-color="purple" class="color-option" style="background-color: #800080;"></span>
-                            <span data-color="white" class="color-option" style="background-color: #FFFFFF;"></span>
-                            <span data-color="black" class="color-option" style="background-color: #000000;"></span>
-                            <span data-color="brown" class="color-option" style="background-color: #A52A2A;"></span>
+                    <div class="row g-4 product-details">
+                        <div class="col-md-6">
+                            <!-- Imagen del producto -->
+                            <div class="product-image-container">
+                                <img th:src="@{${producto.imageUrl}}" class="product-image" alt="Imagen del producto">
+                            </div>
                         </div>
-                        <div class="star-rating">
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
+                        <div class="col-md-6">
+                            <!-- Descripción del producto -->
+                            <h5>Descripción</h5>
+                            <p th:text="${producto.descripcion}"></p>
+                            
+                            <!-- Precio y oferta -->
+                            <h5>Precio</h5>
+                            <div th:if="${producto.enOferta}">
+                                <p class="price-strikethrough" th:text="'Precio regular: $' + ${producto.precio}"></p>
+                                <p class="price-offer" th:text="'Precio oferta: $' + ${producto.precioOferta}"></p>
+                            </div>
+                            <p th:if="${!producto.enOferta}" class="price" th:text="'$' + ${producto.precio}"></p>
+                            
+                            <!-- Detalles adicionales -->
+                            <h5>Detalles adicionales</h5>
+                            <p th:text="'Color: ' + ${producto.color}"></p>
+                            <p th:text="'Categoría: ' + ${producto.categoria.nombre}"></p>
+                            
+                            <h5>Tallas disponibles</h5>
+                            <div th:each="talla : ${producto.tallas}">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="talla_${talla.id}" name="tallaSeleccionada" 
+                                    th:value="${talla.id}" th:checked="${talla.stock > 0}" 
+                                    th:disabled="${talla.stock == 0}" />
+                                <label class="form-check-label" th:for="'talla_' + ${talla.id}">
+                                    <span th:text="${talla.tamaño}"></span> - 
+                                    <span th:text="'Stock: ' + ${talla.stock}"></span>
+                                </label>
+                            </div>
+                            </div>
+
+                            <!-- Botón de acción -->
+                            <button class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center mt-3" style="font-weight: bold;">
+                                <span class="me-2"><i class="bi bi-cart-plus"></i></span> Añadir al carrito
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
     <!-- Footer -->
     <div th:replace="fragments/footer"></div>

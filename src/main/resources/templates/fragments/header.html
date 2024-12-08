@@ -21,8 +21,9 @@
                                 HOMBRES
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=1)}" th:text="#{hombres-1}">Polos</a></li>
-                                <li><a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=2)}" th:text="#{hombres-2}">Shorts</a></li>
+                                <li th:each="categoria : ${categoriasHombre}">
+                                    <a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=${categoria.id})}" th:text="${categoria.nombre}"></a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">
@@ -30,10 +31,10 @@
                                 data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.mujeres}">
                                 MUJERES
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownForHer">
-                                <li><a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=3)}" th:text="#{mujeres-1}">Tops</a></li>
-                                <li><a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=4)}" th:text="#{mujeres-2}">Pantalones</a></li>
-                                <li><a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=5)}" th:text="#{mujeres-3}">Leggings</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li th:each="categoria : ${categoriasMujer}">
+                                    <a class="dropdown-item" th:href="@{/public/productos/categoria/{id}(id=${categoria.id})}" th:text="${categoria.nombre}"></a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown p-1 py-md-1">

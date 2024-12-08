@@ -1,13 +1,17 @@
 package com.proyecto.Zephyra.controller;
 
-import com.proyecto.Zephyra.entidades.Producto;
+import com.proyecto.Zephyra.model.Categoria;
 import com.proyecto.Zephyra.model.Contactanos;
 import com.proyecto.Zephyra.model.Devolucion;
 import com.proyecto.Zephyra.model.LibroReclamaciones;
+import com.proyecto.Zephyra.model.Producto;
 import com.proyecto.Zephyra.model.Sugerencia;
 import com.proyecto.Zephyra.model.User;
+import com.proyecto.Zephyra.servicios.CategoriaService;
 import com.proyecto.Zephyra.servicios.ProductoService;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,14 +28,31 @@ public class HomeController {
     @Autowired
     private ProductoService productoService;
 
+    @Autowired
+    private CategoriaService categoriaService;
+
+   @ModelAttribute("categoriasHombre")
+    public List<Categoria> categoriasHombre() {
+        return categoriaService.listarCategorias().stream()
+                .filter(c -> "Hombre".equalsIgnoreCase(c.getPara()))
+                .collect(Collectors.toList());
+    }
+
+    @ModelAttribute("categoriasMujer")
+    public List<Categoria> categoriasMujer() {
+        return categoriaService.listarCategorias().stream()
+                .filter(c -> "Mujer".equalsIgnoreCase(c.getPara()))
+                .collect(Collectors.toList());
+    }
+
     @GetMapping({"/"})
     public String listarProductos(Model model) {
         List<Producto> lista = productoService.listarProductos();
-        List<Producto> productosDestacados = productoService.listarProductosPorCategoria((long) 7);
-        List<Producto> proximosLanzamientos = productoService.listarProductosPorCategoria((long) 6);
+        List<Producto> productosDestacados = productoService.obtenerProductosDestacados();
+      
+        model.addAttribute("productos", productosDestacados);
         model.addAttribute("productos", lista);
-        model.addAttribute("productosDestacados", productosDestacados);
-        model.addAttribute("proximosLanzamientos", proximosLanzamientos);
+
         return "index";
     }
 
@@ -50,8 +71,6 @@ public class HomeController {
         Producto producto = productoService.obtenerProductoPorId(id);
         if (producto != null) {
             model.addAttribute("producto", producto);
-            List<Producto> productosDestacados = productoService.listarProductosPorCategoria((long) 7);
-            model.addAttribute("productosDestacados", productosDestacados);
             return "detalleProducto";
         } else {
             return "redirect:/"; // Redirige si no se encuentra el colaborador

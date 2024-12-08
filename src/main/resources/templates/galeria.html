@@ -78,52 +78,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Filtro por color -->
-                    <div class="custom-accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                                aria-controls="panelsStayOpen-collapseTwo">
-                                Filtro por color
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                            <div class="p-4">
-                                <form>
-                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
-                                        <input type="checkbox" class="hidden-checkbox" id="color-all" checked>
-                                        <label class="custom-label" for="color-all">Todos los colores</label>
-                                        <span class="badge">1000</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
-                                        <input type="checkbox" class="hidden-checkbox" id="color-1">
-                                        <label class="custom-label" for="color-1">Negro</label>
-                                        <span class="badge">150</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
-                                        <input type="checkbox" class="hidden-checkbox" id="color-2">
-                                        <label class="custom-label" for="color-2">Blanco</label>
-                                        <span class="badge">295</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
-                                        <input type="checkbox" class="hidden-checkbox" id="color-3">
-                                        <label class="custom-label" for="color-3">Rojo</label>
-                                        <span class="badge">246</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
-                                        <input type="checkbox" class="hidden-checkbox" id="color-4">
-                                        <label class="custom-label" for="color-4">Azul</label>
-                                        <span class="badge">145</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-3 px-3 py-2">
-                                        <input type="checkbox" class="hidden-checkbox" id="color-5">
-                                        <label class="custom-label" for="color-5">Verde</label>
-                                        <span class="badge">168</span>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Filtro por tamaño -->
                     <div class="custom-accordion-item">
                         <h2 class="accordion-header">
@@ -174,90 +128,31 @@
             </div>
             <!-- Shop Sidebar End -->
 
-            <!-- Shop Product Start -->
-            <div class="col-lg-9 col-md-8">
-                <div class="row pb-3">
-                    <div class="col-12 pb-1">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div>
-                                <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
-                                <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
-                            </div>
-                            <div class="ml-2">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                                        data-toggle="dropdown">Sorting</button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Latest</a>
-                                        <a class="dropdown-item" href="#">Popularity</a>
-                                        <a class="dropdown-item" href="#">Best Rating</a>
-                                    </div>
-                                </div>
-                                <div class="btn-group ml-2">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                                        data-toggle="dropdown">Showing</button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">10</a>
-                                        <a class="dropdown-item" href="#">20</a>
-                                        <a class="dropdown-item" href="#">30</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+           
                     <!-- Productos -->
-                    <div th:each="producto : ${productos}" class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="card product-card mb-4">
-                            <div class="image position-relative overflow-hidden clickeable">
-                                <a th:href="@{/detalleProducto/{id}(id=${producto.id})}">
-                                    <img src="/img/Polos/Polo_1.png" class="card-img-top product-img" alt="Producto 1">
-                                </a>
-                                <span class="sold-out position-absolute bg-dark text-white p-1"
-                                    th:if="${producto.stock == 0}">
-                                    SOLD OUT
-                                </span>
-                            </div>
-                            <div class="card-body product-info p-0">
-                                <h3 class="card-title">
-                                    <a class="text-decoration-none product-title"
-                                        th:href="@{/detalleProducto/{id}(id=${producto.id})}"
-                                        th:text="${producto.nombre}">_nombre_del_producto_</a>
-                                </h3>
-                                <p>$<span th:text="${producto.precio}">_Precio_</span></p>
-                                <div class="list-colors mb-3">
-                                    <span data-color="purple" class="color-option"
-                                        style="background-color: #800080;"></span>
-                                    <span data-color="white" class="color-option"
-                                        style="background-color: #FFFFFF;"></span>
-                                    <span data-color="black" class="color-option"
-                                        style="background-color: #000000;"></span>
-                                    <span data-color="brown" class="color-option"
-                                        style="background-color: #A52A2A;"></span>
-                                </div>
-                                <div class="star-rating">
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
+    
+                    <div class="container mt-5">
+                        <div class="row justify-content-center">
+                           
+                            <div class="col-md-3 mb-4" th:each="producto : ${productos}">
+                                <div class="producto">
+                                    <div class="card" style="width: 250px;">
+                                        <!-- Imagen con altura de 300px y objeto recortado -->
+                                        <img th:src="@{${producto.imageUrl}}" class="card-img-top img-fluid" alt="Imagen del producto" style="height: 350px; object-fit: cover;">
+                                        <div class="card-body text-dark">
+                                            <h5 class="card-title" th:text="${producto.nombre}"></h5>
+                                            <p class="card-text" th:text="'Precio regular: $' + ${producto.precio}" style="text-decoration: line-through; color: gray;" th:if="${producto.enOferta}"></p>
+                                            <p class="card-text" th:text="'Precio oferta: $' + ${producto.precioOferta}" style="color: red;" th:if="${producto.enOferta}"></p>
+                                            <p class="card-text" th:text="'Precio: $' + ${producto.precio}" 
+                                             th:if="${!producto.enOferta}"></p>
+                                            <!-- Botón con estilo en negro y texto blanco -->
+                                            <a th:href="@{/public/detalleProducto/{id}(id=${producto.id})}" class="btn btn-dark">Ver más</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <nav>
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
             <!-- Shop Product End -->
         </div>
     </div>
