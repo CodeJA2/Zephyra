@@ -68,6 +68,11 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="text-right mt-3">
+                    <h3>Total: $<span th:text="${total}"></span></h3>
+                </div>
+                 <!-- Botón de pago de PayPal -->
+                 <div id="paypal-button-container"></div>
             </div>
         </div>
     </div>
@@ -87,6 +92,33 @@
         crossorigin="anonymous"></script>
     <!-- Custom javascript -->
     <script src="/js/script.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AZI4NjEvyLgQYTTZ1s_EmTmo-HAp4DtKaVnzc7h8Ea30gAmLH4aNs35yJYtYmJIH_CBjh3O9d2oBQCy-&currency=USD"></script>\
+
+    <script th:inline="javascript">
+        var totalAmount = /*[[${total}]]*/ 0;  // Valor por defecto para evitar errores si total no está definido
+        console.log('Total Amount:', totalAmount);
+    
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: totalAmount.toFixed(2),
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Pago realizado por ' + details.payer.name.given_name);
+                    window.location.href = '/pagoExitoso';
+                });
+            },
+            onCancel: function(data) {
+                alert('El pago ha sido cancelado');
+            }
+        }).render('#paypal-button-container');
+    </script>
 </body>
 
 </html>

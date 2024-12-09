@@ -162,4 +162,16 @@ public class CarritoService {
             throw new RuntimeException("Producto no encontrado en el carrito");
         }
     }
+
+    public double calcularTotalCarrito(User usuario) {
+        Carrito carrito = obtenerCarritoPorUsuario(usuario);
+        if (carrito != null) {
+            double total = 0;
+            for (CarritoItem item : carrito.getItems()) {
+                total += item.getPrecio() * item.getCantidad();
+            }
+            return total;
+        }
+        return 0.0;
+    }
 }
