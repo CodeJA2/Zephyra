@@ -69,16 +69,20 @@ public class CarritoService {
             carritoItem.setTalla(talla);
             carritoItem.setCantidad(cantidad);
             // Asignar el precio basado en si está en oferta
-            if (producto.isEnOferta()) {
+            if (producto.isEnOferta() && producto.getPrecioOferta() != null) {
                 carritoItem.setPrecio(producto.getPrecioOferta());
-            } else {
+            } else if (!producto.isEnOferta()) {
                 carritoItem.setPrecio(producto.getPrecio());
+            } else {
+                throw new RuntimeException("Producto en oferta con precio no válido");
             }
 
             carritoItemRepository.save(carritoItem);
         }
 
     }
+
+
 
     public Carrito obtenerCarritoPorUsuario(User usuario) {
         // Obtiene el carrito asociado al usuario
@@ -92,16 +96,16 @@ public class CarritoService {
         if (carrito != null) {
             List<CarritoItem> items = carrito.getItems();
             for (CarritoItem item : items) {
-                // Verifica si el producto tiene un precio de oferta y lo asigna
+                
                 if (item.getProducto().getPrecioOferta() != null) {
-                    item.setPrecio(item.getProducto().getPrecioOferta()); // Usa el precio de oferta si está disponible
+                    item.setPrecio(item.getProducto().getPrecioOferta()); 
                 } else {
-                    item.setPrecio(item.getProducto().getPrecio()); // Usa el precio normal si no hay oferta
+                    item.setPrecio(item.getProducto().getPrecio()); 
                 }
             }
-            return items; // Devuelve la lista de ítems con los precios actualizados
+            return items; 
         }
-        return Collections.emptyList(); // Devuelve una lista vacía si no se encuentra el carrito
+        return Collections.emptyList(); 
     }
     
 
@@ -114,6 +118,8 @@ public class CarritoService {
             throw new RuntimeException("Producto no encontrado en el carrito");
         }
     }
+
+
 
     public void disminuirCantidadProducto(Integer itemId) {
         CarritoItem item = carritoItemRepository.findById(itemId).orElse(null);
@@ -128,7 +134,9 @@ public class CarritoService {
             throw new RuntimeException("Producto no encontrado en el carrito");
         }
     }
+
     
+
     public void aumentarCantidadProducto(Integer itemId) {
         CarritoItem item = carritoItemRepository.findById(itemId).orElse(null);
         if (item != null) {

@@ -12,7 +12,6 @@ import com.proyecto.Zephyra.model.User;
 import com.proyecto.Zephyra.servicios.CategoriaService;
 import com.proyecto.Zephyra.servicios.ProductoService;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +27,7 @@ import org.springframework.ui.Model;
 
 @Controller
 public class HomeController {
-    
+
     @Autowired
     private ProductoService productoService;
 
@@ -36,7 +35,7 @@ public class HomeController {
     private CategoriaService categoriaService;
 
 
-   @ModelAttribute("categoriasHombre")
+    @ModelAttribute("categoriasHombre")
     public List<Categoria> categoriasHombre() {
         return categoriaService.listarCategorias().stream()
                 .filter(c -> "Hombre".equalsIgnoreCase(c.getPara()))
@@ -51,11 +50,11 @@ public class HomeController {
     }
 
 
-    @GetMapping({"/"})
+    @GetMapping({ "/" })
     public String listarProductos(Model model) {
         List<Producto> lista = productoService.listarProductos();
         List<Producto> productosDestacados = productoService.obtenerProductosDestacados();
-      
+
         model.addAttribute("productos", productosDestacados);
         model.addAttribute("productos", lista);
 

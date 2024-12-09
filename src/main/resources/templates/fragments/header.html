@@ -90,9 +90,11 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link clickeable" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"><i class="fas fa-shopping-bag"></i></a>
+                <li class="nav-item" th:if="${usuario != null}">
+                    <a href="/public/carrito/ver" class="nav-link clickeable"><i class="fas fa-shopping-bag"></i></a>
                 </li>
+                
+
                 <li class="nav-item">
                     <div class="dropdown">
                         <a href="#" class="nav-link" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -198,73 +200,5 @@
     </div>
 </div>
 <!-- Modal del login-->
-<!-- Modal de búsqueda -->
-<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="searchModalLabel" th:text="#{busqueda}">Busqueda</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Campo de búsqueda -->
-                <form>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar en Zephyra.com" aria-label="Buscar" aria-describedby="button-search">
-                        <button class="btn btn-custom" type="button" id="button-search" th:text="#{busqueda}">Buscar</button>
-                    </div>
-                </form>  
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal de busqueda-->
 
-<!-- Offcanvas del Carrito -->
-<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasCartLabel" th:text="#{carrito}">Carrito de compras</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <!-- Encabezado de columnas -->
-        <div class="row mb-2 px-4">
-            <div class="col-6 col-lg-8" th:text="#{producto}"><strong>Producto</strong></div>
-            <div class="col-4 col-lg-2 text-center" th:text="#{cantidad}"><strong>Cantidad</strong></div>
-            <div class="col-2 text-end" th:text="#{sub-total}"><strong>Subtotal</strong></div>
-        </div>
-        <!-- Lista de productos en el carrito -->
-        <ul class="list-group mb-3">
-            <li class="list-group-item" th:each="item : ${itemsCarrito}">
-                <div class="row align-items-center">
-                    <div class="col-3">
-                        <img th:src="@{${item.producto.imageUrl}}" alt="Imagen de producto" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
-                    </div>
-                    <div class="col-5">
-                        <h6 class="my-0" th:text="${item.producto.nombre}">Nombre del producto</h6>
-                        <small class="text-muted" th:text="'Precio unitario: $' + ${item.precio}">Precio unitario</small>
-                    </div>
-                    <div class="col-2 text-center">
-                        <small class="text-muted" th:text="${item.cantidad}">Cantidad</small>
-                    </div>
-                    <div class="col-2 text-end">
-                        <span class="text-muted" th:text="'$' + (${item.precio} * ${item.cantidad})">Subtotal</span>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        
-        <!-- Total del Carrito -->
-        <div class="d-flex justify-content-between mb-3">
-            <h5>Total a Pagar</h5>
-            <h5>$50.00</h5>
-        </div>
 
-        <!-- Botón para Continuar la Compra -->
-        <a th:href="@{/paginaPago}" class="btn btn-custom w-100 mb-2" th:text="#{terminar-compra}">Terminar Compra</a>
-        <!-- Enlace para Editar Carrito -->
-        <a href="/public/carrito/ver" class="btn btn-outline-custom w-100 mb-2" th:text="#{editar-carrito}">Editar carrito</a>
-
-    </div>
-</div>
-<!-- Offcanvas del Carrito -->
