@@ -37,18 +37,18 @@ public class ProductoService {
     }
 
     // D - Delete (Eliminar):
-    public void eliminarProducto(Long id) {
+    public void eliminarProducto(Integer id) {
         productoRepository.deleteById(id);
     }
 
     // Obtener un Producto segun su ID
-    public Producto obtenerProductoPorId(Long id) {
+    public Producto obtenerProductoPorId(Integer id) {
         return productoRepository.findById(id).orElse(null);
     }
 
 
 
-    public void actualizarProductoConCategoria(Long id, Producto productoActualizado) {
+    public void actualizarProductoConCategoria(Integer id, Producto productoActualizado) {
         Producto productoExistente = productoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("El producto con el ID especificado no existe."));
         
@@ -76,7 +76,7 @@ public class ProductoService {
     }
 
     // Productos de una misma Categoria
-    public List<Producto> listarProductosPorCategoria(Long categoriaId) {
+    public List<Producto> listarProductosPorCategoria(Integer categoriaId) {
         // Lógica para obtener productos de la categoría específica
         return productoRepository.findByCategoriaId(categoriaId);
     }

@@ -34,7 +34,7 @@ public class ADM_Controller {
 
     // Mostrar Productos de una misma Categoria
     @GetMapping("/ADM/productos/categoria/{id}")
-    public String listarProductosPorCategoria(@PathVariable Long id, Model model) {
+    public String listarProductosPorCategoria(@PathVariable Integer id, Model model) {
         List<Producto> productosPorCategoria = productoService.listarProductosPorCategoria(id);
         model.addAttribute("productos", productosPorCategoria);
         return "ADM_listarProductosPorCategoria";

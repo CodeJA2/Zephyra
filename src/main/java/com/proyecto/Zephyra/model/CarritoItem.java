@@ -1,7 +1,5 @@
 package com.proyecto.Zephyra.model;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,15 +13,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "detalle_carrito")
-public class DetalleCarrito {
+@Table(name = "carrito_items")
+@AllArgsConstructor
+@NoArgsConstructor
+public class CarritoItem {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idDetalle;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "carrito_id", nullable = false)
@@ -33,10 +31,13 @@ public class DetalleCarrito {
     @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
 
+    @ManyToOne
+    @JoinColumn(name = "talla_id", nullable = false)
+    private Talla talla;
+
     @Column(nullable = false)
     private int cantidad;
 
     @Column(nullable = false)
-    private BigDecimal precio;
-
+    private double precio; // Precio del producto al momento de la compra
 }

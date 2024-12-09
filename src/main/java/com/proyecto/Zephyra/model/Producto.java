@@ -2,7 +2,6 @@ package com.proyecto.Zephyra.model;
 
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false)
     private String nombre;
@@ -41,7 +40,7 @@ public class Producto {
     private Boolean enOferta = false;
 
     @Column(nullable = true)
-    private BigDecimal precioOferta; 
+    private Double precioOferta; 
 
     @Column(nullable = false)
     private Boolean destacado = true;
@@ -53,5 +52,10 @@ public class Producto {
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Talla> tallas = new ArrayList<>();
 
+    public boolean isEnOferta() {
+        return enOferta;
+    }
+
+    
 
 }

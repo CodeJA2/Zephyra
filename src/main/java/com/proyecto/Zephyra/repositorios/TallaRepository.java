@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.proyecto.Zephyra.model.Talla;
 
-public interface TallaRepository extends JpaRepository<Talla, Long>{
+public interface TallaRepository extends JpaRepository<Talla, Integer>{
     
 }

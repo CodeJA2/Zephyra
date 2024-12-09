@@ -45,7 +45,7 @@ public class ProductoController {
 
     // U - UPDATE (Actualizar producto):
     @GetMapping("/ADM/productos/editar/{id}")
-    public String editarProducto(@PathVariable("id") Long id, Model model) {
+    public String editarProducto(@PathVariable("id") Integer id, Model model) {
         Producto producto = productoService.obtenerProductoPorId(id);
         if (producto != null) {
             model.addAttribute("producto", producto);
@@ -61,7 +61,7 @@ public class ProductoController {
     }
 
     @PostMapping("/ADM/productos/actualizar/{id}")
-    public String actualizarProducto(@PathVariable("id") Long id,
+    public String actualizarProducto(@PathVariable("id") Integer id,
             @ModelAttribute("producto") Producto productoActualizado) {
         productoService.actualizarProductoConCategoria(id, productoActualizado);
         return "redirect:/ADM/productos";
@@ -69,7 +69,7 @@ public class ProductoController {
 
     // D - DELETE (Eliminar producto):
     @GetMapping("/ADM/productos/eliminar/{id}")
-    public String eliminarProducto(@PathVariable("id") Long id) {
+    public String eliminarProducto(@PathVariable("id") Integer id) {
         productoService.eliminarProducto(id);
         return "redirect:/ADM/productos";
     }

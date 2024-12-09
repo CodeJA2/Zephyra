@@ -79,9 +79,6 @@
                 <a  class="nav-link clickeable" th:if="${usuario != null and usuario.role == 'ADMIN'}" href="/ADM">Administrar</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link clickeable" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa-solid fa-magnifying-glass"></i></a>
-                </li>
                 <li class="nav-item d-none d-md-block">
                     <a class="nav-link" href="https://l.instagram.com/?u=https%3A%2F%2Fwa.link%2Ff1vdzy&e=AT0MkH1DY8S9eyfVkbN9SwWYXvRai-rs7t_w4ORpbHknu8Ypztbty8SrCEH8G7J_up_ex5VdmSezYtB_cLmjuJz2Az9VtUpTRUZy4PoFNxKz8MbBFSe8zA"><i class="fa-brands fa-whatsapp fa-beat"></i> (818) 206-8764</a>
                 </li>
@@ -217,19 +214,6 @@
                         <button class="btn btn-custom" type="button" id="button-search" th:text="#{busqueda}">Buscar</button>
                     </div>
                 </form>  
-                <!-- Resultados de búsqueda simulados -->
-                <!-- <div class="search-result">
-                    <h6>Resultado 1</h6>
-                    <p>Descripción breve del resultado de búsqueda.</p>
-                </div>
-                <div class="search-result">
-                    <h6>Resultado 2</h6>
-                    <p>Descripción breve del resultado de búsqueda.</p>
-                </div>
-                <div class="search-result">
-                    <h6>Resultado 3</h6>
-                    <p>Descripción breve del resultado de búsqueda.</p>
-                </div> -->
             </div>
         </div>
     </div>
@@ -251,76 +235,25 @@
         </div>
         <!-- Lista de productos en el carrito -->
         <ul class="list-group mb-3">
-            <!-- Producto 1 -->
-            <li class="list-group-item">
+            <li class="list-group-item" th:each="item : ${itemsCarrito}">
                 <div class="row align-items-center">
-                    <!-- Columna Imagen -->
                     <div class="col-3">
-                        <img src="/img/Polos/Polo_1.png" alt="Producto 1" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
+                        <img th:src="@{${item.producto.imageUrl}}" alt="Imagen de producto" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
                     </div>
-                    <!-- Columna Nombre y Precio Unitario -->
                     <div class="col-5">
-                        <h6 class="my-0">Producto 1</h6>
-                        <small class="text-muted">Precio unitario: $10.00</small>
+                        <h6 class="my-0" th:text="${item.producto.nombre}">Nombre del producto</h6>
+                        <small class="text-muted" th:text="'Precio unitario: $' + ${item.precio}">Precio unitario</small>
                     </div>
-                    <!-- Columna Cantidad -->
                     <div class="col-2 text-center">
-                        <small class="text-muted">2</small>
+                        <small class="text-muted" th:text="${item.cantidad}">Cantidad</small>
                     </div>
-                    <!-- Columna Subtotal -->
                     <div class="col-2 text-end">
-                        <span class="text-muted">$20.00</span>
-                    </div>
-                </div>
-            </li>
-        
-            <!-- Producto 2 -->
-            <li class="list-group-item">
-                <div class="row align-items-center">
-                    <!-- Columna Imagen -->
-                    <div class="col-3">
-                        <img src="/img/Polos/Polo_2.png" alt="Producto 2" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
-                    </div>
-                    <!-- Columna Nombre y Precio Unitario -->
-                    <div class="col-5">
-                        <h6 class="my-0">Producto 2</h6>
-                        <small class="text-muted">Precio unitario: $15.00</small>
-                    </div>
-                    <!-- Columna Cantidad -->
-                    <div class="col-2 text-center">
-                        <small class="text-muted">1</small>
-                    </div>
-                    <!-- Columna Subtotal -->
-                    <div class="col-2 text-end">
-                        <span class="text-muted">$15.00</span>
-                    </div>
-                </div>
-            </li>
-            
-            <!-- Producto 3 -->
-            <li class="list-group-item">
-                <div class="row align-items-center">
-                    <!-- Columna Imagen -->
-                    <div class="col-3">
-                        <img src="/img/Polos/Polo_3.png" alt="Producto 3" class="img-fluid" style="width: 64px; height: 64px; object-fit: cover;">
-                    </div>
-                    <!-- Columna Nombre y Precio Unitario -->
-                    <div class="col-5">
-                        <h6 class="my-0">Producto 3</h6>
-                        <small class="text-muted">Precio unitario: $5.00</small>
-                    </div>
-                    <!-- Columna Cantidad -->
-                    <div class="col-2 text-center">
-                        <small class="text-muted">3</small>
-                    </div>
-                    <!-- Columna Subtotal -->
-                    <div class="col-2 text-end">
-                        <span class="text-muted">$15.00</span>
+                        <span class="text-muted" th:text="'$' + (${item.precio} * ${item.cantidad})">Subtotal</span>
                     </div>
                 </div>
             </li>
         </ul>
-
+        
         <!-- Total del Carrito -->
         <div class="d-flex justify-content-between mb-3">
             <h5>Total a Pagar</h5>
@@ -330,7 +263,8 @@
         <!-- Botón para Continuar la Compra -->
         <a th:href="@{/paginaPago}" class="btn btn-custom w-100 mb-2" th:text="#{terminar-compra}">Terminar Compra</a>
         <!-- Enlace para Editar Carrito -->
-        <a th:href="@{/editarCarrito}" class="btn btn-outline-custom w-100 mb-2" th:text="#{editar-carrito}">Editar carrito</a>
+        <a href="/public/carrito/ver" class="btn btn-outline-custom w-100 mb-2" th:text="#{editar-carrito}">Editar carrito</a>
+
     </div>
 </div>
 <!-- Offcanvas del Carrito -->

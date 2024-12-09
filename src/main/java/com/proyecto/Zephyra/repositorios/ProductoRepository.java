@@ -5,9 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.proyecto.Zephyra.model.Producto;
 
-public interface ProductoRepository extends JpaRepository<Producto, Long> {
+public interface ProductoRepository extends JpaRepository<Producto, Integer> {
     // Obtener Productos de la misma Categoria en la Base de Datos
     List<Producto> findByDestacadoTrue();
-    List<Producto> findByCategoriaId(Long categoriaId);
+    List<Producto> findByCategoriaId(Integer categoriaId);
 }
 

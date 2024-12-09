@@ -1,5 +1,6 @@
 package com.proyecto.Zephyra.controller;
 
+
 import com.proyecto.Zephyra.model.Categoria;
 import com.proyecto.Zephyra.model.Contactanos;
 import com.proyecto.Zephyra.model.Devolucion;
@@ -7,8 +8,11 @@ import com.proyecto.Zephyra.model.LibroReclamaciones;
 import com.proyecto.Zephyra.model.Producto;
 import com.proyecto.Zephyra.model.Sugerencia;
 import com.proyecto.Zephyra.model.User;
+
 import com.proyecto.Zephyra.servicios.CategoriaService;
 import com.proyecto.Zephyra.servicios.ProductoService;
+
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +35,7 @@ public class HomeController {
     @Autowired
     private CategoriaService categoriaService;
 
+
    @ModelAttribute("categoriasHombre")
     public List<Categoria> categoriasHombre() {
         return categoriaService.listarCategorias().stream()
@@ -44,6 +49,7 @@ public class HomeController {
                 .filter(c -> "Mujer".equalsIgnoreCase(c.getPara()))
                 .collect(Collectors.toList());
     }
+
 
     @GetMapping({"/"})
     public String listarProductos(Model model) {
@@ -67,7 +73,7 @@ public class HomeController {
     }
 
     @GetMapping("/public/detalleProducto/{id}")
-    public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
+    public String mostrarFormularioEdicion(@PathVariable("id") Integer id, Model model) {
         Producto producto = productoService.obtenerProductoPorId(id);
         if (producto != null) {
             model.addAttribute("producto", producto);
@@ -170,7 +176,7 @@ public class HomeController {
 
     // Mostrar Productos de una misma Categoria
     @GetMapping("/public/productos/categoria/{id}")
-    public String productosPorCategoria(@PathVariable Long id, Model model) {
+    public String productosPorCategoria(@PathVariable Integer id, Model model) {
         List<Producto> productosPorCategoria = productoService.listarProductosPorCategoria(id);
         model.addAttribute("productos", productosPorCategoria);
         return "galeria";

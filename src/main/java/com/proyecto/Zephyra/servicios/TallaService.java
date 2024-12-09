@@ -31,12 +31,12 @@ public class TallaService {
     }
 
     // D - Delete (Eliminar):
-    public void eliminarTalla(Long id) {
+    public void eliminarTalla(Integer id) {
         tallaRepository.deleteById(id);
     }
 
     // Obtener una Talla segun su ID
-    public Talla obtenerTallaPorId(Long id) {
+    public Talla obtenerTallaPorId(Integer id) {
         return tallaRepository.findById(id).orElse(null);
     }
 

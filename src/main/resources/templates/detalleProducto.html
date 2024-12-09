@@ -1,149 +1,237 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
+  <head>
     <title>Zephyra | Detalle del producto</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Logo en el navegador -->
-    <link rel="apple-touch-icon" href="/img/Logos/logo_principal2.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/img/Logos/logo_Zephyra.ico">
+    <link rel="apple-touch-icon" href="/img/Logos/logo_principal2.png" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/img/Logos/logo_Zephyra.ico"
+    />
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
     <!-- Cloudflare -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <!-- Custom css -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" />
     <!-- Google Fonts - Afacad Flux -->
-    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 
     <style>
-        .product-image {
-            height: 100%; /* Ocupa todo el alto del contenedor */
-            object-fit: cover;
-            width: 100%;
-        }
-        .product-card {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            height: 550px;
-            flex-direction: column;
-            height: auto;
-        }
-        .product-card-header {
-            background-color: #f8f9fa;
-            padding: 1rem;
-            border-bottom: 1px solid #dee2e6;
-        }
-        .product-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .price {
-            font-size: 1.25rem;
-            color: #28a745;
-            font-weight: bold;
-        }
-        .price-strikethrough {
-            text-decoration: line-through;
-            color: gray;
-        }
-        .price-offer {
-            color: #dc3545;
-            font-weight: bold;
-        }
-        .product-details {
-            padding: 1rem;
-        }
-        .product-image-container {
-            height: 400px; /* Ajusta la altura para mayor visibilidad */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      .product-image {
+        height: 100%; /* Ocupa todo el alto del contenedor */
+        object-fit: cover;
+        width: 100%;
+      }
+      .product-card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        height: 550px;
+        flex-direction: column;
+        height: auto;
+      }
+      .product-card-header {
+        background-color: #f8f9fa;
+        padding: 1rem;
+        border-bottom: 1px solid #dee2e6;
+      }
+      .product-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      .price {
+        font-size: 1.25rem;
+        color: #28a745;
+        font-weight: bold;
+      }
+      .price-strikethrough {
+        text-decoration: line-through;
+        color: gray;
+      }
+      .price-offer {
+        color: #dc3545;
+        font-weight: bold;
+      }
+      .product-details {
+        padding: 1rem;
+      }
+      .product-image-container {
+        height: 400px; /* Ajusta la altura para mayor visibilidad */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Header -->
     <div th:replace="fragments/header"></div>
 
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="product-card">
-                    <div class="product-card-header">
-                        <h2 class="product-title" th:text="${producto.nombre}"></h2>
-                    </div>
-                    <div class="row g-4 product-details">
-                        <div class="col-md-6">
-                            <!-- Imagen del producto -->
-                            <div class="product-image-container">
-                                <img th:src="@{${producto.imageUrl}}" class="product-image" alt="Imagen del producto">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- Descripción del producto -->
-                            <h5>Descripción</h5>
-                            <p th:text="${producto.descripcion}"></p>
-                            
-                            <!-- Precio y oferta -->
-                            <h5>Precio</h5>
-                            <div th:if="${producto.enOferta}">
-                                <p class="price-strikethrough" th:text="'Precio regular: $' + ${producto.precio}"></p>
-                                <p class="price-offer" th:text="'Precio oferta: $' + ${producto.precioOferta}"></p>
-                            </div>
-                            <p th:if="${!producto.enOferta}" class="price" th:text="'$' + ${producto.precio}"></p>
-                            
-                            <!-- Detalles adicionales -->
-                            <h5>Detalles adicionales</h5>
-                            <p th:text="'Color: ' + ${producto.color}"></p>
-                            <p th:text="'Categoría: ' + ${producto.categoria.nombre}"></p>
-                            
-                            <h5>Tallas disponibles</h5>
-                            <div th:each="talla : ${producto.tallas}">
-                            <div class="form-check">
-                                <input type="radio" class="form-check-input" id="talla_${talla.id}" name="tallaSeleccionada" 
-                                    th:value="${talla.id}" th:checked="${talla.stock > 0}" 
-                                    th:disabled="${talla.stock == 0}" />
-                                <label class="form-check-label" th:for="'talla_' + ${talla.id}">
-                                    <span th:text="${talla.tamaño}"></span> - 
-                                    <span th:text="'Stock: ' + ${talla.stock}"></span>
-                                </label>
-                            </div>
-                            </div>
-
-                            <!-- Botón de acción -->
-                            <button class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center mt-3" style="font-weight: bold;">
-                                <span class="me-2"><i class="bi bi-cart-plus"></i></span> Añadir al carrito
-                            </button>
-                        </div>
-                    </div>
-                </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="product-card">
+            <div class="product-card-header">
+              <h2
+                class="product-title"
+                th:text="${producto.nombre} + ${producto.id}"
+              ></h2>
             </div>
+            <div class="row g-4 product-details">
+              <div class="col-md-6">
+                <!-- Imagen del producto -->
+                <div class="product-image-container">
+                  <img
+                    th:src="@{${producto.imageUrl}}"
+                    class="product-image"
+                    alt="Imagen del producto"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <!-- Descripción del producto -->
+                <h5>Descripción</h5>
+                <p th:text="${producto.descripcion}"></p>
+
+                <!-- Precio y oferta -->
+                <h5>Precio</h5>
+                <div th:if="${producto.enOferta}">
+                  <p
+                    class="price-strikethrough"
+                    th:text="'Precio regular: $' + ${producto.precio}"
+                  ></p>
+                  <p
+                    class="price-offer"
+                    th:text="'Precio oferta: $' + ${producto.precioOferta}"
+                  ></p>
+                </div>
+                <p
+                  th:if="${!producto.enOferta}"
+                  class="price"
+                  th:text="'$' + ${producto.precio}"
+                ></p>
+
+                <!-- Detalles adicionales -->
+                <h5>Detalles adicionales</h5>
+                <p th:text="'Color: ' + ${producto.color}"></p>
+                <p th:text="'Categoría: ' + ${producto.categoria.nombre}"></p>
+
+                <h5>Tallas disponibles</h5>
+                <div th:each="talla : ${producto.tallas}">
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      id="talla_${talla.id}"
+                      name="tallaSeleccionada"
+                      th:value="${talla.id}"
+                      th:checked="${talla.stock > 0}"
+                      th:disabled="${talla.stock == 0}"
+                    />
+                    <label
+                      class="form-check-label"
+                      th:for="'talla_' + ${talla.id}"
+                    >
+                      <span th:text="${talla.tamaño}"></span> -
+                      <span th:text="'Stock: ' + ${talla.stock}"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Botón de acción -->
+                <button
+                  class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center mt-3"
+                  style="font-weight: bold"
+                  th:onclick="'agregarAlCarrito(' + ${producto.id} + ')'"
+                >
+                  <span class="me-2"><i class="bi bi-cart-plus"></i></span>
+                  Añadir al carrito
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
+    <!-- JavaScript para la funcionalidad de añadir al carrito -->
+    <script>
+      function agregarAlCarrito(productoId) {
+        const tallaSeleccionada = document.querySelector(
+          'input[name="tallaSeleccionada"]:checked'
+        );
+        if (!tallaSeleccionada) {
+          alert("Por favor, selecciona una talla.");
+          return;
+        }
+
+        const tallaId = tallaSeleccionada.value;
+        const cantidad = 1; // Puedes ajustar esto si es necesario
+
+        const requestBody = {
+          productoId: parseInt(productoId, 10), // Convierte a Integer si es necesario
+          tallaId: parseInt(tallaId, 10), // Convierte a Integer si es necesario
+          cantidad: cantidad,
+        };
+
+        fetch("/public/carrito/agregar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Producto añadido al carrito.");
+            } else {
+              response.text().then((errorMessage) => {
+                alert("Error: " + errorMessage);
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error al agregar al carrito:", error);
+            alert("Hubo un problema al agregar el producto al carrito.");
+          });
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
 
     <!-- Footer -->
     <div th:replace="fragments/footer"></div>
 
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
     <!-- Custom javascript -->
     <script src="/js/script.js"></script>
-
-</body>
-
+  </body>
 </html>

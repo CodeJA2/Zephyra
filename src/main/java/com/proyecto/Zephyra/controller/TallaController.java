@@ -42,7 +42,7 @@ public class TallaController {
 
     // U - UPDATE (Actualizar talla):
     @GetMapping("/ADM/tallas/editar/{id}")
-    public String editarTalla(@PathVariable("id") Long id, Model model) {
+    public String editarTalla(@PathVariable("id") Integer id, Model model) {
         Talla talla = tallaService.obtenerTallaPorId(id);
         if (talla != null) {
             model.addAttribute("talla", talla);
@@ -53,7 +53,7 @@ public class TallaController {
     }
 
     @PostMapping("/ADM/tallas/actualizar/{id}")
-    public String actualizarTalla(@PathVariable("id") Long id,
+    public String actualizarTalla(@PathVariable("id") Integer id,
             @ModelAttribute("talla") Talla tallaActualizada) {
         Talla tallaExistente = tallaService.obtenerTallaPorId(id);
         if (tallaExistente != null) {
@@ -67,7 +67,7 @@ public class TallaController {
 
     // D - DELETE (Eliminar talla):
     @GetMapping("/ADM/tallas/eliminar/{id}")
-    public String eliminarTalla(@PathVariable("id") Long id) {
+    public String eliminarTalla(@PathVariable("id") Integer id) {
         tallaService.eliminarTalla(id);
         return "redirect:/ADM/tallas";
     }

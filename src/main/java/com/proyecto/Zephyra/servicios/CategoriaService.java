@@ -29,12 +29,12 @@ public class CategoriaService {
     }
 
     // D - Delete (Eliminar):
-    public void eliminarCategoria(Long id) {
+    public void eliminarCategoria(Integer id) {
         categoriaRepository.deleteById(id);
     }
 
     // Obtener una Categoria segun su ID
-    public Categoria obtenerCategoriaPorId(Long id) {
+    public Categoria obtenerCategoriaPorId(Integer id) {
         return categoriaRepository.findById(id).orElse(null);
     }
 

@@ -38,7 +38,7 @@ public class CategoriaController {
 
     // U - UPDATE (Actualizar categoria):
     @GetMapping("/ADM/categorias/editar/{id}")
-    public String editarCategoria(@PathVariable("id") Long id, Model model) {
+    public String editarCategoria(@PathVariable("id") Integer id, Model model) {
         Categoria categoria = categoriaService.obtenerCategoriaPorId(id);
         if (categoria != null) {
             model.addAttribute("categoria", categoria);
@@ -49,7 +49,7 @@ public class CategoriaController {
     }
 
     @PostMapping("/ADM/categorias/actualizar/{id}")
-    public String actualizarCategoria(@PathVariable("id") Long id,
+    public String actualizarCategoria(@PathVariable("id") Integer id,
             @ModelAttribute("categoria") Categoria categoriaActualizado) {
         Categoria categoriaExistente = categoriaService.obtenerCategoriaPorId(id);
         if (categoriaExistente != null) {
@@ -62,7 +62,7 @@ public class CategoriaController {
 
     // D - DELETE (Eliminar categoria):
     @GetMapping("/ADM/categorias/eliminar/{id}")
-    public String eliminarCategoria(@PathVariable("id") Long id) {
+    public String eliminarCategoria(@PathVariable("id") Integer id) {
         categoriaService.eliminarCategoria(id);
         return "redirect:/ADM/categorias";
     }
