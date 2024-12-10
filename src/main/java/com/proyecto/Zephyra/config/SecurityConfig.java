@@ -37,7 +37,7 @@ public class SecurityConfig {
                                                 .requestMatchers("/").permitAll()
                                                 .requestMatchers("/public/**", "/css/**", "/js/**", "/img/**")
                                                 .permitAll()
-                                                .requestMatchers("/ADM/**").permitAll()//hasRole("ADMIN")
+                                                .requestMatchers("/ADM/**").hasRole("ADMIN")
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
                                                 .defaultSuccessUrl("/ADM", true) // URL de éxito después de iniciar
