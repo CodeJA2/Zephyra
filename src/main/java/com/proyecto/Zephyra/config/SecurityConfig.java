@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
 @EnableWebSecurity
@@ -16,6 +17,11 @@ public class SecurityConfig {
         @Bean
         public PasswordEncoder passwordEncoder() {
                 return new BCryptPasswordEncoder();
+        }
+
+        @Bean
+        public HttpSessionEventPublisher httpSessionEventPublisher() {
+                return new HttpSessionEventPublisher();
         }
 
         @Bean
@@ -34,19 +40,20 @@ public class SecurityConfig {
                                                 .requestMatchers("/ADM/**").permitAll()//hasRole("ADMIN")
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
-                                                .defaultSuccessUrl("/", true) // URL de éxito después de iniciar sesión
+                                                .defaultSuccessUrl("/ADM", true) // URL de éxito después de iniciar
+                                                                                 // sesión
                                                 .failureHandler((request, response, exception) -> {
                                                         response.sendRedirect("/"); // Redirige en caso
                                                                                     // de error
                                                 }))
                                 .logout(logout -> logout
                                                 .logoutUrl("/logout") // URL de logout
-                                                .logoutSuccessUrl("/"))
+                                                .logoutSuccessUrl("/login"))
 
                                 .exceptionHandling(exception -> exception
                                                 .accessDeniedHandler((request, response, accessDeniedException) -> {
                                                         response.sendRedirect("/"); // Redirige a la página
-                                                                                                
+
                                                 }))
                                 .build();
         }

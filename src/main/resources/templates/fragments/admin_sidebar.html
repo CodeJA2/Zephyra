@@ -1,0 +1,90 @@
+<!-- Pantalla de carga -->
+<div id="loading-screen" class="loading-screen">
+  <div class="spinner"></div>
+  <p>Cargando...</p>
+</div>
+
+<!-- Contenedor de Alertas centrado y responsivo -->
+<div id="alertContainer" style="
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 9999;
+"></div>
+
+<aside id="sidebar">
+  <div class="d-flex">
+    <button class="toggle-btn" type="button">
+      <i class="bi bi-grid-fill"></i>
+    </button>
+    <div class="sidebar-logo">
+      <a href="/ADM">Zephyra</a>
+    </div>
+  </div>
+  <ul class="sidebar-nav">
+    <!-- Dashboard -->
+    <li class="sidebar-item">
+      <a href="/ADM" class="sidebar-link" title="Dashboard">
+        <i class="bi bi-speedometer"></i>
+        <span class="span-collapse">Dashboard</span>
+      </a>
+    </li>
+    <!-- Perfil -->
+    <li class="sidebar-item">
+      <a href="/ADM/usuarios" class="sidebar-link" title="Perfil">
+        <i class="bi bi-person"></i>
+        <span class="span-collapse">Perfil</span>
+      </a>
+    </li>
+    <!-- Inventario -->
+    <li class="sidebar-item">
+      <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#descuentos"
+        aria-expanded="false" aria-controls="descuentos" title="Inventario">
+        <i class="bi bi-shop"></i>
+        <span class="span-collapse">Inventario</span>
+      </a>
+      <ul id="descuentos" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+          <a href="/ADM/productos" class="sidebar-link sidebar-sub-link" title="Productos">
+            <i class="bi bi-cart"></i>
+            <span>Productos</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/ADM/categorias" class="sidebar-link sidebar-sub-link" title="Categorias">
+            <i class="bi bi-bookmark-check"></i>
+            <span>Categorias</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/ADM/tallas" class="sidebar-link sidebar-sub-link" title="Tallas">
+            <i class="bi bi-arrows-angle-expand"></i>
+            <span>Tallas</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <!-- Notificaciones -->
+    <li class="sidebar-item">
+      <a href="/ADM/ventas" class="sidebar-link" title="Notificaciones">
+        <i class="bi bi-bell"></i>
+        <span class="span-collapse">Ventas</span>
+      </a>
+    </li>
+  </ul>
+  <!-- Salir -->
+  <div class="sidebar-footer">
+    <a href="#" class="sidebar-link" title="Salir">
+      <form action="/logout" method="post" style="display: inline;">
+        <button type="submit" class="sidebar-link" title="Salir"
+          style="background: none; border: none; padding: 0; cursor: pointer;">
+          <i class="bi bi-box-arrow-left"></i>
+          <span class="span-collapse">Salir</span>
+        </button>
+      </form>
+    </a>
+  </div>
+</aside>
