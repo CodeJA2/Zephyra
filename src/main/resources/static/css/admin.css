@@ -176,8 +176,8 @@ a.sidebar-link {
 }
 
 a.sidebar-link:hover {
-  background-color: #ff0000;
-  border-left: 3px solid #ff0000;
+  background-color: #d4d4d493;
+  border-left: 3px solid #5396ce;
 }
 
 .sidebar-item {

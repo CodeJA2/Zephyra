@@ -1,20 +1,23 @@
 package com.proyecto.Zephyra.controller;
 
-
 import com.proyecto.Zephyra.servicios.UsuarioService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class LoginController {
 
-    private final UsuarioService usuarioService;
+    @Autowired
+    private UsuarioService usuarioService;
 
-    public LoginController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
+    @GetMapping("/custom-login")
+    public String showLoginPage() {
+        return "admin_login"; // Nombre del archivo HTML para la página de login
     }
 
     // Método para registrar al usuario y redirigir a la página de inicio
@@ -40,7 +43,5 @@ public class LoginController {
             return "register"; // Redirige de vuelta al formulario de registro con un error
         }
     }
-
-
 
 }

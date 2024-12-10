@@ -26,7 +26,6 @@ import com.proyecto.Zephyra.servicios.CarritoService;
 @Controller
 @RequestMapping("/public/carrito")
 public class CarritoController {
-    
 
     @Autowired
     private CarritoService carritoService;
@@ -43,15 +42,16 @@ public class CarritoController {
 
     @PostMapping("/agregar")
     public ResponseEntity<String> agregarProductoAlCarrito(
-        @RequestBody CarritoRequest carritoRequest,
-        @ModelAttribute("usuario") User usuario) {
-    try {
-        carritoService.agregarProductoAlCarrito(usuario, carritoRequest.getProductoId(), carritoRequest.getTallaId(), carritoRequest.getCantidad());
-        return ResponseEntity.ok("Producto agregado al carrito exitosamente");
-    } catch (RuntimeException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            @RequestBody CarritoRequest carritoRequest,
+            @ModelAttribute("usuario") User usuario) {
+        try {
+            carritoService.agregarProductoAlCarrito(usuario, carritoRequest.getProductoId(),
+                    carritoRequest.getTallaId(), carritoRequest.getCantidad());
+            return ResponseEntity.ok("Producto agregado al carrito exitosamente");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
-}
 
     @GetMapping("/ver")
     public String verCarrito(Model model, @ModelAttribute("usuario") User usuario) {
@@ -70,7 +70,7 @@ public class CarritoController {
         return "carrito";
     }
 
-     @PostMapping("/eliminar/{itemId}")
+    @PostMapping("/eliminar/{itemId}")
     public String eliminarProductoDelCarrito(@PathVariable Integer itemId, @ModelAttribute("usuario") User usuario) {
         try {
             carritoService.eliminarProductoDelCarrito(itemId);
@@ -102,7 +102,5 @@ public class CarritoController {
             return "redirect:/public/carrito/ver";
         }
     }
-
-    
 
 }

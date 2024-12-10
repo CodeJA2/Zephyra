@@ -1,8 +1,8 @@
 package com.proyecto.Zephyra.servicios;
 
-
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioService {
 
+    @Autowired
     private final UserRepository userRepository;
+
+    @Autowired
     private final PasswordEncoder passwordEncoder;
+
+    @Autowired
     private final CarritoRepository carritoRepository;
 
     public void createUser(String username, String password, String role, String dni, String fullName, String address,

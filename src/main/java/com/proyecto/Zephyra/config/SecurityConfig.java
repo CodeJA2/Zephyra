@@ -37,9 +37,14 @@ public class SecurityConfig {
                                                 .requestMatchers("/").permitAll()
                                                 .requestMatchers("/public/**", "/css/**", "/js/**", "/img/**")
                                                 .permitAll()
+                                                .requestMatchers("/custom-login").permitAll()
                                                 .requestMatchers("/ADM/**").hasRole("ADMIN")
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
+                                                .loginPage("/custom-login") // URL de tu página de login
+                                                // personalizada
+                                                .loginProcessingUrl("/process-login") // Ruta para procesar el
+                                                                                      // formulario
                                                 .defaultSuccessUrl("/ADM", true) // URL de éxito después de iniciar
                                                                                  // sesión
                                                 .failureHandler((request, response, exception) -> {
@@ -48,7 +53,7 @@ public class SecurityConfig {
                                                 }))
                                 .logout(logout -> logout
                                                 .logoutUrl("/logout") // URL de logout
-                                                .logoutSuccessUrl("/login"))
+                                                .logoutSuccessUrl("/"))
 
                                 .exceptionHandling(exception -> exception
                                                 .accessDeniedHandler((request, response, accessDeniedException) -> {

@@ -25,7 +25,7 @@
     <!-- Usar el header -->
     <div th:replace="fragments/header"></div>
 
-    <h1 class="text-center my-4">Carrito de Compras</h1>
+    <h1 class="text-center my-4" th:text="#{carritoCompras}">Carrito de Compras</h1>
     <div th:if="${items != null && !items.isEmpty()}">
         <div class="container">
             <div class="row">
@@ -33,13 +33,13 @@
                     <table class="table table-bordered table-striped">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Imagen</th>
-                                <th>Producto</th>
-                                <th>Talla</th>
-                                <th>Cantidad</th>
-                                <th>Precio Unitario</th>
-                                <th>Total</th>
-                                <th>Acciones</th>
+                                <th th:text="#{imagen}">Imagen</th>
+                                <th th:text="#{producto}">Producto</th>
+                                <th th:text="#{talla}">Talla</th>
+                                <th th:text="#{cantidad}">Cantidad</th>
+                                <th th:text="#{precioUnitario}">Precio Unitario</th>
+                                <th th:text="#{total}">Total</th>
+                                <th th:text="#{acciones}">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,7 +48,7 @@
                                     <img th:src="${item.producto.imageUrl}" alt="Imagen de producto" class="img-fluid"
                                         style="width: 100px; height: auto" />
                                 </td>
-                                <td th:data-producto-id="${item.producto.id}" th:text="${item.producto.nombre}"></td>>
+                                <td th:data-producto-id="${item.producto.id}" th:text="${item.producto.nombre}"></td>
                                 <td th:text="${item.talla.tamaño}"></td>
                                 <td>
                                     <form th:action="@{/public/carrito/disminuir/{itemId}(itemId=${item.id})}"
@@ -58,7 +58,7 @@
                                         </button>
                                     </form>
                                     <span th:text="${item.cantidad}" class="btn btn-light border-0"
-                                    th:data-cantidad="${item.cantidad}"></span>
+                                        th:data-cantidad="${item.cantidad}"></span>
                                     <form th:action="@{/public/carrito/aumentar/{itemId}(itemId=${item.id})}"
                                         method="post" style="display: inline">
                                         <button type="submit" class="btn btn-outline-secondary">
@@ -71,7 +71,7 @@
                                 <td>
                                     <form th:action="@{/public/carrito/eliminar/{itemId}(itemId=${item.id})}"
                                         method="post" style="display: inline">
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-danger" th:text="#{eliminar}">
                                             Eliminar
                                         </button>
                                     </form>
@@ -89,7 +89,7 @@
         </div>
     </div>
     <div th:if="${items == null || items.isEmpty()}">
-        <div class="alert alert-warning text-center" role="alert">
+        <div class="alert alert-warning text-center" role="alert" th:text="#{noHayProductos}">
             No hay productos en el carrito.
         </div>
     </div>
@@ -106,141 +106,141 @@
     <script
         src="https://www.paypal.com/sdk/js?client-id=AZI4NjEvyLgQYTTZ1s_EmTmo-HAp4DtKaVnzc7h8Ea30gAmLH4aNs35yJYtYmJIH_CBjh3O9d2oBQCy-&currency=USD"></script>
 
-        <script th:inline="javascript">
-            var totalAmount = /*[[${total}]]*/ 0; // Valor predeterminado
-            console.log("Total Amount:", totalAmount);
-        
-            paypal
-                .Buttons({
-                    createOrder: function (data, actions) {
-                        try {
-                            return actions.order.create({
-                                purchase_units: [
-                                    {
-                                        amount: {
-                                            value: totalAmount.toFixed(2), // Formatea el total a dos decimales
-                                        },
-                                    },
-                                ],
-                            });
-                        } catch (error) {
-                            console.error("Error al crear la orden:", error);
-                            alert(
-                                "Ocurrió un error al procesar tu orden. Por favor, intenta nuevamente."
-                            );
-                        }
-                    },
-                    onApprove: function (data, actions) {
-                        return actions.order
-                            .capture()
-                            .then(function (details) {
-                                alert("Pago realizado por " + details.payer.name.given_name);
+    <script th:inline="javascript">
+        var totalAmount = /*[[${total}]]*/ 0; // Valor predeterminado
+        console.log("Total Amount:", totalAmount);
 
-                                document.querySelectorAll("tr").forEach((row) => {
-    console.log("Fila:", row);
-});
-        
-                                // Recopilar los detalles de la compra
-                                var items = [];
-                                document.querySelectorAll("tr[data-item-id]").forEach((row) => {
-        
-                                    // Obtén y muestra los valores de los atributos de datos en la consola
-                                    console.log("Producto ID:", row.querySelector("[data-producto-id]").dataset.productoId);
-                                    console.log("Cantidad:", row.querySelector("[data-cantidad]").dataset.cantidad);
-                                    console.log("Precio Unitario:", row.querySelector("[data-precio]").dataset.precio);
-        
-                                    // Conversión de valores a números y manejo de errores
-                                    const productoId = parseInt(
-                                        row.querySelector("[data-producto-id]").dataset.productoId,
-                                        10 // Base decimal explícita
-                                    );
-                                    const cantidad = parseInt(
-                                        row.querySelector("[data-cantidad]").dataset.cantidad,
-                                        10 // Base decimal explícita
-                                    );
-                                    const precio = parseFloat(
-                                        row.querySelector("[data-precio]").dataset.precio
-                                    );
-        
-                                    // Verifica que los valores no sean NaN
-                                    if (
-                                        isNaN(productoId) ||
-                                        isNaN(cantidad) ||
-                                        isNaN(precio)
-                                    ) {
-                                        console.error("Error: uno o más valores son NaN", {
-                                            productoId,
-                                            cantidad,
-                                            precio,
-                                        });
-                                        return; // Evita seguir procesando si hay un error
-                                    }
-        
-                                    items.push({
-                                        productoId: productoId,
-                                        cantidad: cantidad,
-                                        precio: precio,
+        paypal
+            .Buttons({
+                createOrder: function (data, actions) {
+                    try {
+                        return actions.order.create({
+                            purchase_units: [
+                                {
+                                    amount: {
+                                        value: totalAmount.toFixed(2), // Formatea el total a dos decimales
+                                    },
+                                },
+                            ],
+                        });
+                    } catch (error) {
+                        console.error("Error al crear la orden:", error);
+                        alert(
+                            "Ocurrió un error al procesar tu orden. Por favor, intenta nuevamente."
+                        );
+                    }
+                },
+                onApprove: function (data, actions) {
+                    return actions.order
+                        .capture()
+                        .then(function (details) {
+                            alert("Pago realizado por " + details.payer.name.given_name);
+
+                            document.querySelectorAll("tr").forEach((row) => {
+                                console.log("Fila:", row);
+                            });
+
+                            // Recopilar los detalles de la compra
+                            var items = [];
+                            document.querySelectorAll("tr[data-item-id]").forEach((row) => {
+
+                                // Obtén y muestra los valores de los atributos de datos en la consola
+                                console.log("Producto ID:", row.querySelector("[data-producto-id]").dataset.productoId);
+                                console.log("Cantidad:", row.querySelector("[data-cantidad]").dataset.cantidad);
+                                console.log("Precio Unitario:", row.querySelector("[data-precio]").dataset.precio);
+
+                                // Conversión de valores a números y manejo de errores
+                                const productoId = parseInt(
+                                    row.querySelector("[data-producto-id]").dataset.productoId,
+                                    10 // Base decimal explícita
+                                );
+                                const cantidad = parseInt(
+                                    row.querySelector("[data-cantidad]").dataset.cantidad,
+                                    10 // Base decimal explícita
+                                );
+                                const precio = parseFloat(
+                                    row.querySelector("[data-precio]").dataset.precio
+                                );
+
+                                // Verifica que los valores no sean NaN
+                                if (
+                                    isNaN(productoId) ||
+                                    isNaN(cantidad) ||
+                                    isNaN(precio)
+                                ) {
+                                    console.error("Error: uno o más valores son NaN", {
+                                        productoId,
+                                        cantidad,
+                                        precio,
                                     });
+                                    return; // Evita seguir procesando si hay un error
+                                }
+
+                                items.push({
+                                    productoId: productoId,
+                                    cantidad: cantidad,
+                                    precio: precio,
                                 });
-        
-                                // Preparar el cuerpo de la solicitud
-                                const payload = {
+                            });
+
+                            // Preparar el cuerpo de la solicitud
+                            const payload = {
+                                total: totalAmount.toFixed(2),
+                                items: items,
+                            };
+
+                            // Mostrar los datos en la consola para depuración
+                            console.log("Datos enviados al backend:", payload);
+
+                            // Enviar los datos al backend
+                            fetch("/crear", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
                                     total: totalAmount.toFixed(2),
                                     items: items,
-                                };
-        
-                                // Mostrar los datos en la consola para depuración
-                                console.log("Datos enviados al backend:", payload);
-        
-                                // Enviar los datos al backend
-                                fetch("/crear", {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                    },
-                                    body: JSON.stringify({
-                                        total: totalAmount.toFixed(2),
-                                        items: items,
-                                    }),
-                                })
-                                    .then((response) => {
-                                        if (response.ok) {
-                                            return response.json();
-                                        } else {
-                                            throw new Error("Error en la respuesta del servidor");
-                                        }
-                                    })
-                                    .then((data) => {
-                                        console.log("Venta registrada:", data);
-                                        window.location.href = "/pagoExitoso";
-                                    })
-                                    .catch((error) => {
-                                        console.error("Error al registrar la venta:", error);
-                                        alert(
-                                            "Venta generada exitosamente"
-                                        );
-                                        window.location.href = "/pagoExitoso";
-                                    });
+                                }),
                             })
-                            .catch(function (error) {
-                                console.error("Error al capturar la orden:", error);
-                                alert(
-                                    "Ocurrió un error al capturar tu pago. Por favor, intenta nuevamente."
-                                );
-                            });
-                    },
-                    onCancel: function (data) {
-                        alert("El pago ha sido cancelado");
-                    },
-                    onError: function (error) {
-                        console.error("Error en el proceso de pago:", error);
-                        alert(
-                            "Ocurrió un error en el proceso de pago. Por favor, intenta nuevamente."
-                        );
-                    },
-                })
-                .render("#paypal-button-container");
-        </script>
+                                .then((response) => {
+                                    if (response.ok) {
+                                        return response.json();
+                                    } else {
+                                        throw new Error("Error en la respuesta del servidor");
+                                    }
+                                })
+                                .then((data) => {
+                                    console.log("Venta registrada:", data);
+                                    window.location.href = "/pagoExitoso";
+                                })
+                                .catch((error) => {
+                                    console.error("Error al registrar la venta:", error);
+                                    alert(
+                                        "Venta generada exitosamente"
+                                    );
+                                    window.location.href = "/pagoExitoso";
+                                });
+                        })
+                        .catch(function (error) {
+                            console.error("Error al capturar la orden:", error);
+                            alert(
+                                "Ocurrió un error al capturar tu pago. Por favor, intenta nuevamente."
+                            );
+                        });
+                },
+                onCancel: function (data) {
+                    alert("El pago ha sido cancelado");
+                },
+                onError: function (error) {
+                    console.error("Error en el proceso de pago:", error);
+                    alert(
+                        "Ocurrió un error en el proceso de pago. Por favor, intenta nuevamente."
+                    );
+                },
+            })
+            .render("#paypal-button-container");
+    </script>
 </body>
 
 </html>

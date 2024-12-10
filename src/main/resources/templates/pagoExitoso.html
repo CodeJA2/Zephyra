@@ -25,13 +25,14 @@
     <!-- Header -->
     <div th:replace="fragments/header"></div>
 
-    
+
     <div class="container d-flex justify-content-center align-items-center min-vh-90 bg-light py-5">
         <div class="card text-center shadow-lg border-0" style="width: 100%; max-width: 500px;">
             <div class="card-body">
-                <h2 class="card-title text-success mb-3">¡Pago Realizado con Éxito!</h2>
-                <p class="card-text mb-4">Tu pago se ha procesado correctamente. Gracias por tu compra.</p>
-                <a href="/" class="btn btn-success">Volver a la Página Principal</a>
+                <h2 class="card-title text-success mb-3" th:text="#{pagoRealizado}">¡Pago Realizado con Éxito!</h2>
+                <p class="card-text mb-4" th:text="#{pagoProcesado}">Tu pago se ha procesado correctamente. Gracias por
+                    tu compra.</p>
+                <a href="/" class="btn btn-success" th:text="#{volverPaginaPrincipal}">Volver a la Página Principal</a>
             </div>
         </div>
     </div>
