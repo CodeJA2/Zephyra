@@ -40,14 +40,15 @@ public class SecurityConfig {
                                                 .requestMatchers("/ADM/**").hasRole("ADMIN")
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
-                                                .defaultSuccessUrl("/", true) // URL de éxito después de iniciar sesión
+                                                .defaultSuccessUrl("/ADM", true) // URL de éxito después de iniciar
+                                                                                 // sesión
                                                 .failureHandler((request, response, exception) -> {
                                                         response.sendRedirect("/"); // Redirige en caso
                                                                                     // de error
                                                 }))
                                 .logout(logout -> logout
                                                 .logoutUrl("/logout") // URL de logout
-                                                .logoutSuccessUrl("/"))
+                                                .logoutSuccessUrl("/login"))
 
                                 .exceptionHandling(exception -> exception
                                                 .accessDeniedHandler((request, response, accessDeniedException) -> {

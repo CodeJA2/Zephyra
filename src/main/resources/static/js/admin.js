@@ -9,3 +9,10 @@ window.addEventListener("load", function() {
         
     }, 1000); // Espera el tiempo de la animación
 });
+
+// Sidebar - expandir
+const hamBurger = document.querySelector(".toggle-btn");
+
+hamBurger.addEventListener("click", function () {
+  document.querySelector("#sidebar").classList.toggle("expand");
+});
