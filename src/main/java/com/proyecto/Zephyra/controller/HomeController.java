@@ -127,17 +127,17 @@ public class HomeController {
     }
 
     // Formulario de devolucion
-    @GetMapping("/public/formularioDevolucion")
+    @GetMapping("/public/crearformularioDevolucion")
     public String mostrarDevolucion(Model model) {
         model.addAttribute("devolucion", new Devolucion());
-        return "formularioDevolucion";
+        return "crearformularioDevolucion";
     }
 
-    @PostMapping("/public/envioDevolucion")
-    public String enviarDevolucion(@ModelAttribute Devolucion devolucion, Model model) {
-        model.addAttribute("devolucion", devolucion);
-        return "envioDevolucion";
-    }
+    //@PostMapping("/public/envioDevolucion")
+    //public String enviarDevolucion(@ModelAttribute Devolucion devolucion, Model model) {
+    //    model.addAttribute("devolucion", devolucion);
+    //    return "envioDevolucion";
+    //}
 
     // Formulario del Libro de Reclamaciones
     @GetMapping("/public/libroReclamaciones")
@@ -153,17 +153,17 @@ public class HomeController {
     }
 
     // Formulario para contactanos
-    @GetMapping("/public/contactanos")
+    @GetMapping("/public/CreaContactanos")
     public String mostrarContactanos(Model model) {
-        model.addAttribute("contacto", new Contactanos());
-        return "contactanos";
+        model.addAttribute("contactanos", new Contactanos());
+        return "CreaContactanos";
     }
 
-    @PostMapping("/public/enviarConsulta")
-    public String enviarConsulta(@ModelAttribute Contactanos consulta, Model model) {
-        model.addAttribute("contacto", consulta);
-        return "envioContactanos";
-    }
+    //@PostMapping("/public/enviarConsulta")
+    //public String enviarConsulta(@ModelAttribute Contactanos consulta, Model model) {
+    //    model.addAttribute("contacto", consulta);
+    //    return "envioContactanos";
+    //}
 
     // Galeria de Productos
     @GetMapping("/public/galeria")
