@@ -163,6 +163,7 @@ public class CarritoService {
         }
     }
 
+
     public double calcularTotalCarrito(User usuario) {
         Carrito carrito = obtenerCarritoPorUsuario(usuario);
         if (carrito != null) {
@@ -174,4 +175,5 @@ public class CarritoService {
         }
         return 0.0;
     }
+    
 }

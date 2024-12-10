@@ -102,17 +102,6 @@ public class CarritoController {
             return "redirect:/public/carrito/ver";
         }
     }
-/* 
-    @GetMapping("/total")
-    public String verTotalCarrito(Model model, @ModelAttribute("usuario") User usuario) {
-        if (usuario != null) {
-            double total = carritoService.calcularTotalCarrito(usuario);
-            model.addAttribute("total", total);
-        } else {
-            model.addAttribute("total", 0.0);
-        }
-        return "totalCarrito"; // Devuelve una vista que muestra el total del carrito
-    } */
 
     
 

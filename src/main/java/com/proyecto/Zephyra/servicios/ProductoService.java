@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 
 import com.proyecto.Zephyra.model.Categoria;
 import com.proyecto.Zephyra.model.Producto;
+import com.proyecto.Zephyra.model.Talla;
 import com.proyecto.Zephyra.repositorios.CategoriaRepository;
 
 import com.proyecto.Zephyra.repositorios.ProductoRepository;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductoService {
@@ -89,5 +91,28 @@ public class ProductoService {
 
     public List<Producto> obtenerProductosDestacados() {
         return productoRepository.findByDestacadoTrue();
+    }
+
+     public void disminuirStock(Integer productoId, String talla, int cantidad) {
+        // Buscar el producto por su ID y talla
+        Optional<Producto> productoOpt = productoRepository.findById(productoId);
+        if (productoOpt.isPresent()) {
+            Producto producto = productoOpt.get();
+            // Buscar y actualizar la cantidad de stock de la talla específica
+            for (Talla tallaItem : producto.getTallas()) {
+                if (tallaItem.getTamaño().equals(talla)) {
+                    int stockActual = tallaItem.getStock();
+                    if (stockActual >= cantidad) {
+                        tallaItem.setStock(stockActual - cantidad);
+                        productoRepository.save(producto);
+                    } else {
+                        throw new RuntimeException("Stock insuficiente para la talla " + talla);
+                    }
+                    break;
+                }
+            }
+        } else {
+            throw new RuntimeException("Producto no encontrado con ID: " + productoId);
+        }
     }
 }
